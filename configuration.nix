@@ -129,6 +129,7 @@ in
     nix
     neovim
     vim
+    feh # lighweight image viewer, hlavne se da pouzit pro nastaveni wallaperu
     # waybar:
     # --- SWAY PACKAGES ---
     pulseaudioFull # abych mohl nastavovat hlasitost pres pactl (pouzivam to v konfiguraci swaye)
@@ -240,7 +241,9 @@ in
         modifier = "Mod4";
         terminal = "alacritty";
       };
-      extraConfig = ''exec --no-startup-id xrandr --dpi 96 --output HDMI-0 --off --output DP-0 --mode 2560x1440 --pos 5120x0 --rotate normal --rate 165 --output DP-1 --off --output DP-2 --mode 2560x1440 --pos 2560x0 --rotate normal --rate 165 --output DP-3 --off --output DP-4 --mode 2560x1440 --pos 0x0 --rotate normal --rate 165 --output DP-5 --off'';
+      extraConfig = ''exec --no-startup-id xrandr --dpi 96 --output HDMI-0 --off --output DP-0 --mode 2560x1440 --pos 5120x0 --rotate normal --rate 165 --output DP-1 --off --output DP-2 --mode 2560x1440 --pos 2560x0 --rotate normal --rate 165 --output DP-3 --off --output DP-4 --mode 2560x1440 --pos 0x0 --rotate normal --rate 165 --output DP-5 --off
+exec --no-startup-id feh --bg-fill ~/.config/wallpaper.png
+'';
     };
 
     # ----- SETTINGS SWAY -----
