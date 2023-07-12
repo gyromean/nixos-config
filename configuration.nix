@@ -175,7 +175,29 @@ in
   services.udisks2.enable = true;
 
   security.polkit.enable = true; # neco pro Sway, https://nixos.wiki/wiki/Sway
-  hardware.opengl.enable = true;
+  hardware.opengl = {
+    enable = true;
+    driSupport = true; # NVIDIA
+    driSupport32Bit = true;
+  };
+
+  # ----- NVIDIA { -----
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+      "nvidia-x11"
+      "nvidia-settings"
+    ];
+
+  services.xserver.videoDrivers = ["nvidia"];
+
+  hardware.nvidia = {
+    modesetting.enable = true;
+    open = true;
+    nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
+  # ----- NVIDIA } -----
+
 
   programs.light.enable = true; # aby ve Swayi sel menit brightess a volume https://nixos.wiki/wiki/Sway
 
