@@ -266,6 +266,9 @@ in
         window = {
           titlebar = false; # aby nad oknama nebyly jejich nazvy
         };
+        gaps = {
+          inner = 10;
+        };
       };
     };
 
