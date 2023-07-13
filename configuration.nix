@@ -132,6 +132,7 @@ in
     feh # lighweight image viewer, hlavne se da pouzit pro nastaveni wallaperu
     xorg.xdpyinfo
     xclip
+    numlockx
     # waybar:
     # --- SWAY PACKAGES ---
     pulseaudioFull # abych mohl nastavovat hlasitost pres pactl (pouzivam to v konfiguraci swaye)
@@ -245,6 +246,8 @@ in
         startup = [
           { command = "xrandr --dpi 96 --output HDMI-0 --off --output DP-0 --mode 2560x1440 --pos 5120x0 --rotate normal --rate 165 --output DP-1 --off --output DP-2 --mode 2560x1440 --pos 2560x0 --rotate normal --rate 165 --output DP-3 --off --output DP-4 --mode 2560x1440 --pos 0x0 --rotate normal --rate 165 --output DP-5 --off"; notification = false; } # nastavi monitory na spravny poradi a spravny refresh rate; `--dpi 96` nastavi scaling UI elementu, ruzny aplikace na to berou ohled (treba chrome)
           { command = "feh --bg-fill ~/.config/wallpaper.png"; notification = false; } # nastaveni wallapper na startupu
+          { command = "xset r rate 175 30"; notification = false; } # nastaveni prodlevy pred key repeatem na 175 ms, frekvence key repeatu na 30 Hz
+          { command = "numlockx on"; notification = false; } # zapnout numlock pri bootu
         ];
         keybindings = lib.mkOptionDefault {
           "${mod}+h" = "focus left";
