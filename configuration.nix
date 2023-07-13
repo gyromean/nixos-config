@@ -237,15 +237,30 @@ in
     home.stateVersion = "22.05";
 
     # ----- SETTINGS i3 -----
-    xsession.windowManager.i3 = {
+    xsession.windowManager.i3 = let mod = "Mod4"; in {
       enable = true;
       config = {
-        modifier = "Mod4";
+        modifier = mod;
         terminal = "alacritty";
         startup = [
           { command = "xrandr --dpi 96 --output HDMI-0 --off --output DP-0 --mode 2560x1440 --pos 5120x0 --rotate normal --rate 165 --output DP-1 --off --output DP-2 --mode 2560x1440 --pos 2560x0 --rotate normal --rate 165 --output DP-3 --off --output DP-4 --mode 2560x1440 --pos 0x0 --rotate normal --rate 165 --output DP-5 --off"; notification = false; } # nastavi monitory na spravny poradi a spravny refresh rate; `--dpi 96` nastavi scaling UI elementu, ruzny aplikace na to berou ohled (treba chrome)
           { command = "feh --bg-fill ~/.config/wallpaper.png"; notification = false; } # nastaveni wallapper na startupu
         ];
+        keybindings = lib.mkOptionDefault {
+          "${mod}+h" = "focus left";
+          "${mod}+j" = "focus down";
+          "${mod}+k" = "focus up";
+          "${mod}+l" = "focus right";
+
+          "${mod}+Shift+h" = "move left";
+          "${mod}+Shift+j" = "move down";
+          "${mod}+Shift+k" = "move up";
+          "${mod}+Shift+l" = "move right";
+
+          "${mod}+q" = "kill";
+          "${mod}+n" = "splitv";
+          "${mod}+m" = "splith";
+        };
       };
     };
 
