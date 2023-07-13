@@ -130,6 +130,8 @@ in
     neovim
     vim
     feh # lighweight image viewer, hlavne se da pouzit pro nastaveni wallaperu
+    xorg.xdpyinfo
+    xclip
     # waybar:
     # --- SWAY PACKAGES ---
     pulseaudioFull # abych mohl nastavovat hlasitost pres pactl (pouzivam to v konfiguraci swaye)
