@@ -124,7 +124,6 @@ in
   # $ nix search wget
   # ----- GLOBAL PACKAGES -----
   environment.systemPackages = with pkgs; [
-    git
     (python3.withPackages my-python-packages) # nainstaluje python packages, jejich seznam se definuje nekde nahore
     nix
     neovim
@@ -267,6 +266,19 @@ in
         window = {
           titlebar = false; # aby nad oknama nebyly jejich nazvy
         };
+      };
+    };
+
+    # ----- SETTINGS GIT ------
+    programs.git = {
+      enable = true;
+      aliases = {
+        st = "status";
+        ci = "commit";
+        co = "checkout";
+        br = "branch";
+        ll = "log --oneline --graph --all --decorate";
+        last = "log --oneline --graph --decorate HEAD^..HEAD";
       };
     };
 
