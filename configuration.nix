@@ -240,10 +240,11 @@ in
       config = {
         modifier = "Mod4";
         terminal = "alacritty";
+        startup = [
+          { command = "xrandr --dpi 96 --output HDMI-0 --off --output DP-0 --mode 2560x1440 --pos 5120x0 --rotate normal --rate 165 --output DP-1 --off --output DP-2 --mode 2560x1440 --pos 2560x0 --rotate normal --rate 165 --output DP-3 --off --output DP-4 --mode 2560x1440 --pos 0x0 --rotate normal --rate 165 --output DP-5 --off"; notification = false; } # nastavi monitory na spravny poradi a spravny refresh rate; `--dpi 96` nastavi scaling UI elementu, ruzny aplikace na to berou ohled (treba chrome)
+          { command = "feh --bg-fill ~/.config/wallpaper.png"; notification = false; } # nastaveni wallapper na startupu
+        ];
       };
-      extraConfig = ''exec --no-startup-id xrandr --dpi 96 --output HDMI-0 --off --output DP-0 --mode 2560x1440 --pos 5120x0 --rotate normal --rate 165 --output DP-1 --off --output DP-2 --mode 2560x1440 --pos 2560x0 --rotate normal --rate 165 --output DP-3 --off --output DP-4 --mode 2560x1440 --pos 0x0 --rotate normal --rate 165 --output DP-5 --off
-exec --no-startup-id feh --bg-fill ~/.config/wallpaper.png
-'';
     };
 
     # ----- SETTINGS SWAY -----
