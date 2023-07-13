@@ -264,6 +264,9 @@ in
           "${mod}+n" = "splitv";
           "${mod}+m" = "splith";
         };
+        window = {
+          titlebar = false; # aby nad oknama nebyly jejich nazvy
+        };
       };
     };
 
