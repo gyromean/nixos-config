@@ -132,6 +132,7 @@ in
     xorg.xdpyinfo
     xclip
     numlockx
+    tree
     # waybar:
     # --- SWAY PACKAGES ---
     pulseaudioFull # abych mohl nastavovat hlasitost pres pactl (pouzivam to v konfiguraci swaye)
