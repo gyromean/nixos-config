@@ -82,6 +82,8 @@ in
     #media-session.enable = true;
   };
 
+  programs.zsh.enable = true; # musi to byt enabled i tady i presto ze to mam primarne v home-manageru, jinak to nemuzu nastavit jako home shell
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -91,6 +93,7 @@ in
     isNormalUser = true;
     description = "Pavel Holy";
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.zsh; # nastavit zsh jako vychozi shell
     packages = with pkgs; [
       # web browsers:
       firefox
@@ -555,6 +558,36 @@ font:
         enable = true;
         plugins = [ "sudo" ];
       };
+      # ty '' pred $ to escapujou v nixu, do relanyho .zshrc se nepropisou
+      initExtra = ''
+# sourcenout git prompts pro igloo (nord) theme
+. ~/.config/custom_nix/scripts/git-prompt.sh
+
+# sourcenout igloo theme https://github.com/arcticicestudio/igloo/tree/master/snowblocks/zsh
+fpath=(~/.config/custom_nix/zsh_themes $fpath)
+
+# nahrat prompts https://zsh.sourceforge.io/Doc/Release/User-Contributions.html#Prompt-Themes, nastavit options pro ZSH
+autoload -U promptinit
+promptinit
+IGLOO_ZSH_PROMPT_THEME_ALWAYS_SHOW_HOST=true
+IGLOO_ZSH_PROMPT_THEME_ALWAYS_SHOW_USER=true
+IGLOO_ZSH_PROMPT_THEME_HIDE_TIME=true
+prompt igloo
+
+# fixnout lag pri pastovani
+# This speeds up pasting w/ autosuggest
+# https://github.com/zsh-users/zsh-autosuggestions/issues/238
+pasteinit() {
+  OLD_SELF_INSERT=''${''${(s.:.)widgets[self-insert]}[2,3]}
+  zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
+}
+
+pastefinish() {
+  zle -N self-insert $OLD_SELF_INSERT
+}
+zstyle :bracketed-paste-magic paste-init pasteinit
+zstyle :bracketed-paste-magic paste-finish pastefinish
+'';
     }; # TODO - nastavit to jako default shell
 
     # ----- DEFAULT APPS -----
