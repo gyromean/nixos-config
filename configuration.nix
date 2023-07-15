@@ -250,6 +250,7 @@ in
           { command = "feh --bg-fill ~/.config/wallpaper.png"; notification = false; } # nastaveni wallapper na startupu
           { command = "xset r rate 175 30"; notification = false; } # nastaveni prodlevy pred key repeatem na 175 ms, frekvence key repeatu na 30 Hz
           { command = "numlockx on"; notification = false; } # zapnout numlock pri bootu
+          { command = "setxkbmap -layout 'us,cz(qwerty)' -option grp:alt_shift_toggle"; notification = false; } # nastavit qwerty cestinu jako sekundarni klavesnici; nastavit togglovani na alt+shift
         ];
         keybindings = lib.mkOptionDefault {
           "${mod}+h" = "focus left";
