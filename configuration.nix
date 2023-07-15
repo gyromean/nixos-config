@@ -134,6 +134,7 @@ in
     numlockx
     xfce.xfce4-terminal
     tree
+    cava
     # waybar:
     # --- SWAY PACKAGES ---
     pulseaudioFull # abych mohl nastavovat hlasitost pres pactl (pouzivam to v konfiguraci swaye)
