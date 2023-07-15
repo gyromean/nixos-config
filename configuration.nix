@@ -552,24 +552,6 @@ font:
       oh-my-zsh = {
         enable = true;
         plugins = [ "sudo" ];
-        #theme = "robbyrussell";
-        #theme = "agnoster";
-        #theme = "bira";
-        #theme = "crunch";
-        #theme = "dallas";
-        #theme = "darkblood";
-        #theme = "dstufft";
-        #theme = "fino-time";
-        #theme = "funky";
-        #theme = "gozilla"; # zajimavy, ale nevypisuje se tam full path
-        #theme = "half-life";
-        #theme = "jaischeema"; # zajimava sipecka
-        #theme = "jonathan"; # return code posledniho commandu
-        #theme = "simonoff";
-        #theme = "smt";
-        #theme = "terminalparty";
-        #theme = "trapd00r"; # xd strasici message COMMIT
-        theme = "igloo"; # xd strasici message COMMIT
       };
     }; # TODO - nastavit to jako default shell
 
