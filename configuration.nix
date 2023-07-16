@@ -687,6 +687,10 @@ ColorBold=#D8DEE9
 ColorBoldUseDefault=FALSE
 ScrollingBar=TERMINAL_SCROLLBAR_NONE
 '';
+
+    xdg.configFile."ranger/rc.conf".text = ''
+set show_hidden true
+'';
   };
 
   # ----- SETTINGS ENVIRONMENT ----- #
