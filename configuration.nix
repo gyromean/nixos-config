@@ -305,6 +305,15 @@ exec --no-startup-id xfce4-terminal --title __scratchpad
       };
     };
 
+    programs.btop = {
+      enable = true;
+      settings = {
+        color_theme = "nord";
+        vim_keys = true;
+        update_ms = 500;
+      };
+    };
+
     # ----- SETTINGS SWAY -----
     /*
     wayland.windowManager.sway = {
