@@ -269,6 +269,14 @@ in
           "${mod}+q" = "kill";
           "${mod}+n" = "splitv";
           "${mod}+m" = "splith";
+
+          # tyhle keybinds se daji zjistit pres program `xev`
+          "XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%";
+          "XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%";
+          "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle";
+          "XF86AudioPlay" = "exec --no-startup-id playerctl play-pause";
+          "XF86AudioNext" = "exec --no-startup-id playerctl next";
+          "XF86AudioPrev" = "exec --no-startup-id playerctl previous";
         };
         window = {
           titlebar = false; # aby nad oknama nebyly jejich nazvy
