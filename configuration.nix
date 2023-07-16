@@ -304,6 +304,15 @@ exec --no-startup-id xfce4-terminal --title __scratchpad
         ll = "log --oneline --graph --all --decorate";
         last = "log --oneline --graph --decorate HEAD^..HEAD";
       };
+      extraConfig = {
+        user = {
+          email = "gyro1125@gmail.com";
+          name = "Pavel Holy";
+        };
+        diff = {
+          algorithm = "patience";
+        };
+      };
     };
 
     programs.btop = {
