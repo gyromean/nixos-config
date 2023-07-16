@@ -579,7 +579,7 @@ font:
       enableSyntaxHighlighting = true;
       oh-my-zsh = {
         enable = true;
-        plugins = [ "sudo" ];
+        plugins = [ "sudo" "copypath" "copyfile" ];
       };
       # ty '' pred $ to escapujou v nixu, do relanyho .zshrc se nepropisou
       initExtra = ''
