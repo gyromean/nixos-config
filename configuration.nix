@@ -277,6 +277,11 @@ in
           inner = 10;
         };
       };
+      extraConfig = ''
+# zapnout jeden terminal v scratchpadu pri bootu
+for_window [title="__scratchpad"] move scratchpad
+exec --no-startup-id xfce4-terminal --title __scratchpad
+'';
     };
 
     # ----- SETTINGS GIT ------
