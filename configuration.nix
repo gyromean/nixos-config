@@ -590,7 +590,7 @@ font:
       enableSyntaxHighlighting = true;
       oh-my-zsh = {
         enable = true;
-        plugins = [ "sudo" "copypath" "copyfile" ];
+        plugins = [ "copypath" "copyfile" ];
       };
       # ty '' pred $ to escapujou v nixu, do relanyho .zshrc se nepropisou
       initExtra = ''
