@@ -624,6 +624,9 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 
 # nainstalovat zsh-vi-mode, viz https://github.com/jeffreytse/zsh-vi-mode#nix
 source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
+# prompt bude vzdycky na zacatku v insert modu
+ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 '';
     }; # TODO - nastavit to jako default shell
 
