@@ -139,6 +139,7 @@ in
     tree
     cava
     hexedit
+    libreoffice
     # waybar:
     # --- SWAY PACKAGES ---
     pulseaudioFull # abych mohl nastavovat hlasitost pres pactl (pouzivam to v konfiguraci swaye)
