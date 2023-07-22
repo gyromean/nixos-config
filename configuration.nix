@@ -499,6 +499,10 @@ font:
         enable = true;
         plugins = [ "copypath" "copyfile" ];
       };
+      shellAliases = {
+        v = "vim";
+        vf = "vim $(fzf)";
+      };
       # ty '' pred $ to escapujou v nixu, do relanyho .zshrc se nepropisou
       initExtra = ''
 # sourcenout git prompts pro igloo (nord) theme
