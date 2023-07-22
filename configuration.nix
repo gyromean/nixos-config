@@ -604,6 +604,7 @@ ColorPalette=#3B4252;#BF616A;#A3BE8C;#EBCB8B;#81A1C1;#B48EAD;#88C0D0;#E5E9F0;#4C
 ColorBold=#D8DEE9
 ColorBoldUseDefault=FALSE
 ScrollingBar=TERMINAL_SCROLLBAR_NONE
+ScrollingUnlimited=TRUE
 '';
 
     xdg.configFile."ranger/rc.conf".text = ''
