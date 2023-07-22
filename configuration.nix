@@ -295,6 +295,12 @@ exec --no-startup-id xfce4-terminal --title __scratchpad
 '';
     };
 
+    # ----- SETTINGS FZF ------
+    programs.fzf = {
+      enable = true;
+      defaultCommand = "find ."; # jinak to neukazuje hidden files
+    };
+
     # ----- SETTINGS GIT ------
     programs.git = {
       enable = true;
