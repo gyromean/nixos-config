@@ -521,6 +521,7 @@ font:
       };
       shellAliases = {
         v = "vim";
+        r = "ranger";
       };
       # ty '' pred $ to escapujou v nixu, do relanyho .zshrc se nepropisou
       initExtra = ''
