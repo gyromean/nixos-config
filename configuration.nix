@@ -598,7 +598,7 @@ application/x-extension-xht=firefox.desktop;
 
     xdg.configFile."xfce4/terminal/terminalrc".text = ''
 [Configuration]
-FontName=Source Code Pro for Powerline 10
+FontName=Source Code Pro for Powerline 12
 MiscAlwaysShowTabs=FALSE
 MiscBell=FALSE
 MiscBellUrgent=FALSE
