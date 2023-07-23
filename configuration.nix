@@ -140,6 +140,7 @@ in
     cava
     hexedit
     libreoffice
+    unzip # aby ranger umel unzip
     # waybar:
     # --- SWAY PACKAGES ---
     pulseaudioFull # abych mohl nastavovat hlasitost pres pactl (pouzivam to v konfiguraci swaye)
