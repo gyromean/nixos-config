@@ -301,6 +301,20 @@ exec --no-startup-id xfce4-terminal --title __scratchpad
     programs.fzf = {
       enable = true;
       defaultCommand = "find ."; # jinak to neukazuje hidden files
+      colors = {
+        "fg" = "#d0d0d0";
+        "bg" = "-1";
+        "hl" = "#88c0d0";
+        "fg+" = "#d0d0d0";
+        "bg+" = "-1";
+        "hl+" = "#88c0d0";
+        "info" = "#616e88";
+        "prompt" = "#d0d0d0";
+        "pointer" = "#d0d0d0";
+        "marker" = "#d0d0d0";
+        "spinner" = "#d0d0d0";
+        "header" = "#d0d0d0";
+      };
     };
 
     # ----- SETTINGS GIT ------
