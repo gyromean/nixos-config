@@ -141,6 +141,7 @@ in
     hexedit
     libreoffice
     unzip # aby ranger umel unzip
+    evince # PDF viewer
     # waybar:
     # --- SWAY PACKAGES ---
     pulseaudioFull # abych mohl nastavovat hlasitost pres pactl (pouzivam to v konfiguraci swaye)
