@@ -142,6 +142,7 @@ in
     libreoffice
     unzip # aby ranger umel unzip
     evince # PDF viewer
+    vlc
     # waybar:
     # --- SWAY PACKAGES ---
     pulseaudioFull # abych mohl nastavovat hlasitost pres pactl (pouzivam to v konfiguraci swaye)
