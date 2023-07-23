@@ -274,6 +274,7 @@ in
           "${mod}+n" = "splitv";
           "${mod}+m" = "splith";
           "${mod}+space" = "floating toggle";
+          "${mod}+Shift+space" = "focus mode_toggle";
 
           # tyhle keybinds se daji zjistit pres program `xev`
           "XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%";
