@@ -313,6 +313,9 @@ exec --no-startup-id xfce4-terminal --title __scratchpad
         br = "branch";
         ll = "log --oneline --graph --all --decorate";
         last = "log --oneline --graph --decorate HEAD^..HEAD";
+        d = "diff";
+        dc = "diff --cached";
+        cim = "commit -m";
       };
       extraConfig = {
         user = {
