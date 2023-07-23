@@ -503,7 +503,6 @@ font:
       };
       shellAliases = {
         v = "vim";
-        vf = "vim $(fzf)";
       };
       # ty '' pred $ to escapujou v nixu, do relanyho .zshrc se nepropisou
       initExtra = ''
@@ -540,6 +539,9 @@ source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 # prompt bude vzdycky na zacatku v insert modu
 ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+
+# custom skripty
+source ~/.config/custom_nix/scripts/scripts_to_source.sh
 '';
     }; # TODO - nastavit to jako default shell
 
