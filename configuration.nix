@@ -430,6 +430,7 @@ exec --no-startup-id xfce4-terminal --title __scratchpad
         telescope-fzf-native-nvim
         vim-gitgutter # git stav jednotlivych radek vlevo; pridava do vim-airline countery zmen
         vim-commentary # keybind na toggle comment radku
+        vim-surround # keybinds na zmenu uvozovek, zavorek, tagu, ...
       ];
       extraConfig = ''
 " ----- COLORSCHEME -----
