@@ -429,6 +429,7 @@ exec --no-startup-id xfce4-terminal --title __scratchpad
         telescope-nvim
         telescope-fzf-native-nvim
         vim-gitgutter # git stav jednotlivych radek vlevo; pridava do vim-airline countery zmen
+        vim-commentary # keybind na toggle comment radku
       ];
       extraConfig = ''
 " ----- COLORSCHEME -----
@@ -479,6 +480,10 @@ xnoremap <leader>p "_dP
 nnoremap <leader>u :UndotreeToggle<CR>
 nnoremap <C-f> :Telescope find_files<CR>
 nnoremap <C-g> :Telescope live_grep<CR>
+
+" ----- PLUGINS SETTINGS -----
+" ----- COMMENTARY -----
+autocmd FileType nix setlocal commentstring=#\ %s
       '';
       extraLuaConfig = ''
 -- ----- TREESITTER ----
