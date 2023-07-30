@@ -140,6 +140,7 @@ in
     cava
     hexedit
     libreoffice
+    ripgrep # aby fungoval live_grep ve vim pluginu telescope
     unzip # aby ranger umel unzip
     evince # PDF viewer
     vlc
@@ -156,6 +157,11 @@ in
     grim # screenshot functionality
     slurp # screenshot functionality
     #(xdg-desktop-portal-gnome.overrideAttrs (oldAttrs: rec { version = "43.1"; }))
+    # nvim lsp servers
+    rnix-lsp # nix
+    clang-tools
+    nodePackages.pyright
+    lua-language-server
   ];
 
   # ----- FONTS -----
@@ -415,24 +421,125 @@ exec --no-startup-id xfce4-terminal --title __scratchpad
         vim-airline-themes
         nord-vim
         nightfox-nvim
+        nvim-treesitter.withAllGrammars # viz https://nixos.wiki/wiki/Treesitter
+        nvim-lspconfig # na nastaveni LSP
+        indent-blankline-nvim # sedy cary na indentation a newline ikona na konci
+        undotree
+        nvim-treesitter-context
+        telescope-nvim
+        telescope-fzf-native-nvim
       ];
       extraConfig = ''
-set nu rnu
+" ----- COLORSCHEME -----
 let g:airline_powerline_fonts = 1
 let g:nord_italic = 1
-let g:nord_italic_comments = 1 "bacha, oba tyhle italicy musi byt jeste pred zavolanim `colorscheme nord`
+let g:nord_italic_comments = 1 " bacha, oba tyhle italicy musi byt jeste pred zavolanim `colorscheme nord`
 colorscheme nord
-set clipboard=unnamedplus
-nnoremap <C-w> :x<CR>
-nnoremap <C-s> :w<CR>
-let mapleader = " "
-nnoremap <leader>n :noh<CR>
-set gdefault
+" nastavit highlight na stejnou barvu jako Search (barvy muzu zobrazit pres `:hi`)
+hi! link TelescopeMatching Search
+hi! link TelescopePreviewLine Search
+
+" ----- SETS -----
+set nu rnu
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-set ignorecase
-set smartcase
-inoremap <C-v> <C-r>+
+set ignorecase " musi byt, aby smartcase fungoval
+set smartcase " search je case-insensitive az do momentu, kdy dam neco velkejma
+set clipboard=unnamedplus " nastavi clipboard na systemovej clipboard
+set gdefault " V substitute se dava defaultne g (replace vsude)
+set breakindent " text wrap zacina na stejnym indentation levelu
+set splitright " novy okna (treba pres vsplit) se oteviraji vpravo (misto defaultne nahore)
+set splitbelow " novy okna se oteviraji dole (misto defaultne nahore)
+set tildeop " ted kdyz se da ~ aby se menil case pisma, tak to jeste potrebuje motion (nemeni to individualni charakter)
+set scrolloff=8 " pri scrollovani bude nahore a dole vzdycky aspon 8 radek (pokud teda nejsem uplne na zacatku nebo na konci souboru)
+set undofile " bude existovat perzistentni historie zmen, ty pak muzu pouzivat jak z vimu tak z undo tree
+set noswapfile " nebude se zakladat a pouzivat swap file
+
+" ----- REBINDS -----
+let mapleader = " "
+" save a close
+nnoremap <C-w> :x<CR>
+" save
+nnoremap <C-s> :w<CR>
+" jednorazove vypne highlight ze search commandu
+nnoremap <leader>n :noh<CR>
+" paste v insert modu pres ctrl+v; `:h i_CTRL-R_CTRL-O`, ten <C-p> vypne to automaticky vim formatovani ktery to vetsinou posere, viz komentar pod dotazem zde https://vi.stackexchange.com/questions/12049/how-to-set-up-crtl-v-map-that-works-in-insert-mode (v tom komentu je to <C-r><C-p>, ale lepsi je <C-r><C-o> jak pouzivam ja)
+inoremap <C-v> <C-r><C-o>+
+" na wincmd, takze treba `space+w+s` splitne okno horizontalne, `space+w+v` splitne okno vertikalne atd.
+nnoremap <leader>w <C-w>
+nnoremap <C-h> :wincmd h<CR>
+nnoremap <C-j> :wincmd j<CR>
+nnoremap <C-k> :wincmd k<CR>
+nnoremap <C-l> :wincmd l<CR>
+" v visual modu kdyz neco selectu a prepisu to pres paste, tak se to co prepisuju zkopiruje do clipboardu - tohle zpusobi, ze v clipboardu zustane puvodni obsah
+xnoremap <leader>p "_dP
+" otevre Undotree, do nej preskocim jako do jinyho okna, takze <C-h>
+nnoremap <leader>u :UndotreeToggle<CR>
+nnoremap <C-f> :Telescope find_files<CR>
+nnoremap <C-g> :Telescope live_grep<CR>
       '';
+      extraLuaConfig = ''
+-- ----- TREESITTER ----
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+  },
+}
+
+-- ----- LSPCONFIG -----
+-- spustit servery
+require'lspconfig'.rnix.setup{}
+require'lspconfig'.clangd.setup{}
+require'lspconfig'.pyright.setup{}
+require'lspconfig'.lua_ls.setup{}
+
+-- ----- INDENT BLANKLINE -----
+vim.opt.list = true
+vim.opt.listchars:append "eol:↴"
+
+require("indent_blankline").setup {
+  show_end_of_line = true,
+}
+
+-- ----- TREESITTER CONTEXT ----
+require'treesitter-context'.setup{
+  enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+  max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+  min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+  line_numbers = true,
+  multiline_threshold = 20, -- Maximum number of lines to collapse for a single context line
+  trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+  mode = 'cursor',  -- Line used to calculate context. Choices: 'cursor', 'topline'
+  -- Separator between context and content. Should be a single character string, like '-'.
+  -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
+  separator = nil,
+  zindex = 20, -- The Z-index of the context window
+  on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
+}
+
+-- ----- TELESCOPE -----
+require'telescope'.setup{
+  defaults = {
+    mappings = {
+      i = {
+        ["<C-j>"] = 'move_selection_next',
+        ["<C-k>"] = 'move_selection_previous',
+        ["<C-s>"] = 'select_horizontal'
+      }
+    },
+    path_display = { "truncate" } -- aby se ukazovala prava cast pathu pri hledani
+  },
+  pickers = {
+    find_files = {
+      hidden = true, -- ukazovat hidden files
+      find_command = { "find", "-type", "f,l" } -- pridat prepinac `-type l`, jinak to neukazovalo linky, a tech je v NixOS hodne
+    },
+    live_grep = {
+      additional_args = { "--hidden", "--follow" } -- ukazovat hidden files a followovat linky
+    }
+  }
+}
+require'telescope'.load_extension('fzf') -- kvuli extensionu, musi se to volat az po volani require'telescope'.setup, https://github.com/nvim-telescope/telescope-fzf-native.nvim
+'';
     };
 
     # ----- SETTIGNS ALACRITTY -----
