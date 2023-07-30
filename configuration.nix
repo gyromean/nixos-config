@@ -428,6 +428,7 @@ exec --no-startup-id xfce4-terminal --title __scratchpad
         nvim-treesitter-context
         telescope-nvim
         telescope-fzf-native-nvim
+        vim-gitgutter # git stav jednotlivych radek vlevo; pridava do vim-airline countery zmen
       ];
       extraConfig = ''
 " ----- COLORSCHEME -----
@@ -453,6 +454,8 @@ set tildeop " ted kdyz se da ~ aby se menil case pisma, tak to jeste potrebuje m
 set scrolloff=8 " pri scrollovani bude nahore a dole vzdycky aspon 8 radek (pokud teda nejsem uplne na zacatku nebo na konci souboru)
 set undofile " bude existovat perzistentni historie zmen, ty pak muzu pouzivat jak z vimu tak z undo tree
 set noswapfile " nebude se zakladat a pouzivat swap file
+set updatetime=100 " mimo jine se bude vim-gitgutter updatovat kazdych 100 ms
+set signcolumn=number " signs (z vim-gitgutter nebo lsp) se budou ukazovat ve sloupecku cisel misto tech cisel
 
 " ----- REBINDS -----
 let mapleader = " "
