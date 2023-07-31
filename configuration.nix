@@ -513,6 +513,12 @@ lsp.setup_servers({'rnix', 'clangd', 'pyright', 'lua_ls', 'bashls'})
 
 lsp.setup()
 
+lsp.set_sign_icons({ -- musi se volat az po lsp.setup()
+  error = '◆',
+  warn = '▲',
+  hint = '■',
+})
+
 -- ----- INDENT BLANKLINE -----
 vim.opt.list = true
 vim.opt.listchars:append "eol:↴"
