@@ -422,7 +422,6 @@ exec --no-startup-id xfce4-terminal --title __scratchpad
         nord-vim
         nightfox-nvim
         nvim-treesitter.withAllGrammars # viz https://nixos.wiki/wiki/Treesitter
-        nvim-lspconfig # na nastaveni LSP
         indent-blankline-nvim # sedy cary na indentation a newline ikona na konci
         undotree
         nvim-treesitter-context
@@ -431,6 +430,13 @@ exec --no-startup-id xfce4-terminal --title __scratchpad
         vim-gitgutter # git stav jednotlivych radek vlevo; pridava do vim-airline countery zmen
         vim-commentary # keybind na toggle comment radku
         vim-surround # keybinds na zmenu uvozovek, zavorek, tagu, ...
+        lsp-zero-nvim
+        # dependencies pro lsp-zero-nvim:
+          nvim-lspconfig
+          nvim-cmp
+          cmp-nvim-lsp
+          luasnip
+          cmp-path # autocomplete pathu
       ];
       extraConfig = ''
 " ----- COLORSCHEME -----
@@ -494,12 +500,16 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
--- ----- LSPCONFIG -----
--- spustit servery
-require'lspconfig'.rnix.setup{}
-require'lspconfig'.clangd.setup{}
-require'lspconfig'.pyright.setup{}
-require'lspconfig'.lua_ls.setup{}
+-- ----- LSP ZERO -----
+local lsp = require('lsp-zero').preset({name = 'recommended'})
+
+lsp.on_attach(function(client, bufnr)
+  lsp.default_keymaps({buffer = bufnr})
+end)
+
+lsp.setup_servers({'rnix', 'clangd', 'pyright', 'lua_ls'})
+
+lsp.setup()
 
 -- ----- INDENT BLANKLINE -----
 vim.opt.list = true
