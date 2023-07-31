@@ -341,6 +341,7 @@ exec --no-startup-id xfce4-terminal --title __scratchpad
         dc = "diff --cached";
         cim = "commit -m";
         ap = "add -p";
+        au = "add -u";
       };
       extraConfig = {
         user = {
