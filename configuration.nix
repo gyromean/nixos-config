@@ -162,6 +162,7 @@ in
     clang-tools
     nodePackages.pyright
     lua-language-server
+    nodePackages.bash-language-server
   ];
 
   # ----- FONTS -----
@@ -507,7 +508,7 @@ lsp.on_attach(function(client, bufnr)
   lsp.default_keymaps({buffer = bufnr})
 end)
 
-lsp.setup_servers({'rnix', 'clangd', 'pyright', 'lua_ls'})
+lsp.setup_servers({'rnix', 'clangd', 'pyright', 'lua_ls', 'bashls'})
 
 lsp.setup()
 
