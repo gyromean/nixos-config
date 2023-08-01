@@ -432,6 +432,7 @@ exec --no-startup-id xfce4-terminal --title __scratchpad
         vim-gitgutter # git stav jednotlivych radek vlevo; pridava do vim-airline countery zmen
         vim-commentary # keybind na toggle comment radku
         vim-surround # keybinds na zmenu uvozovek, zavorek, tagu, ...
+        vim-easymotion # rychla navigace v textu
         lsp-zero-nvim
         # dependencies pro lsp-zero-nvim:
           nvim-lspconfig
