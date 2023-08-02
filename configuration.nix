@@ -490,10 +490,23 @@ xnoremap <leader>p "_dP
 nnoremap <leader>u :UndotreeToggle<CR>
 nnoremap <C-f> :Telescope find_files<CR>
 nnoremap <C-g> :Telescope live_grep<CR>
+" easymotion prebindovat Tab+klavesa
+nnoremap <Tab>h <Plug>(easymotion-F)
+nnoremap <Tab>j <Plug>(easymotion-j)
+nnoremap <Tab>k <Plug>(easymotion-k)
+nnoremap <Tab>l <Plug>(easymotion-f)
+nnoremap <Tab>w <Plug>(easymotion-w)
+nnoremap <Tab>b <Plug>(easymotion-b)
+nnoremap <Tab>W <Plug>(easymotion-W)
+nnoremap <Tab>B <Plug>(easymotion-B)
+nnoremap <Tab>n <Plug>(easymotion-bd-n)
 
 " ----- PLUGINS SETTINGS -----
 " ----- COMMENTARY -----
 autocmd FileType nix setlocal commentstring=#\ %s
+
+" ----- EASYMOTION -----
+let g:EasyMotion_smartcase = 1 " nastavit smart case hledani
       '';
       extraLuaConfig = ''
 -- ----- TREESITTER ----
