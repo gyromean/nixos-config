@@ -501,6 +501,11 @@ nnoremap <Tab>b <Plug>(easymotion-b)
 nnoremap <Tab>W <Plug>(easymotion-W)
 nnoremap <Tab>B <Plug>(easymotion-B)
 nnoremap <Tab>n <Plug>(easymotion-bd-n)
+" navigace uvnitr snippetu z autocompletu
+inoremap <c-h> <cmd>lua require'luasnip'.jump(-1)<CR>
+snoremap <c-h> <cmd>lua require'luasnip'.jump(-1)<CR>
+inoremap <c-l> <cmd>lua require'luasnip'.jump(1)<CR>
+snoremap <c-l> <cmd>lua require'luasnip'.jump(1)<CR>
 
 " ----- PLUGINS SETTINGS -----
 " ----- COMMENTARY -----
