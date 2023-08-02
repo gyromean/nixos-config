@@ -539,6 +539,20 @@ lsp.set_sign_icons({ -- musi se volat az po lsp.setup()
   hint = '■',
 })
 
+-- ----- CMP ----- (musi byt az po setupu LSP ZERO)
+local cmp = require('cmp')
+local cmp_select_opts = {behavior = cmp.SelectBehavior.Select}
+cmp.setup({
+  mapping = {
+    ['<CR>'] = cmp.config.disable,
+    ['<C-d>'] = cmp.mapping(function(fallback) fallback() end, {"s"}), -- disablovat <C-d> v select modu, idk jestli je to dobre
+
+    ['<Tab>'] = cmp.mapping.confirm({select = true}),
+    ['<C-j>'] = cmp.mapping.select_next_item(),
+    ['<C-k>'] = cmp.mapping.select_prev_item(),
+  }
+})
+
 -- ----- INDENT BLANKLINE -----
 vim.opt.list = true
 vim.opt.listchars:append "eol:↴"
