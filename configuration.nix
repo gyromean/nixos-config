@@ -491,16 +491,9 @@ xnoremap <leader>p "_dP
 nnoremap <leader>u :UndotreeToggle<CR>
 nnoremap <C-f> :Telescope find_files<CR>
 nnoremap <C-g> :Telescope live_grep<CR>
-" easymotion prebindovat Tab+klavesa
-nnoremap ,h <Plug>(easymotion-F)
-nnoremap ,j <Plug>(easymotion-j)
-nnoremap ,k <Plug>(easymotion-k)
-nnoremap ,l <Plug>(easymotion-f)
-nnoremap ,w <Plug>(easymotion-w)
-nnoremap ,b <Plug>(easymotion-b)
-nnoremap ,W <Plug>(easymotion-W)
-nnoremap ,B <Plug>(easymotion-B)
-nnoremap ,n <Plug>(easymotion-bd-n)
+" easymotion prebindovat na [ a ]
+nnoremap [[ <Plug>(easymotion-F)
+nnoremap ]] <Plug>(easymotion-f)
 " navigace uvnitr snippetu z autocompletu
 inoremap <C-h> <cmd>lua require'luasnip'.jump(-1)<CR>
 snoremap <C-h> <cmd>lua require'luasnip'.jump(-1)<CR>
