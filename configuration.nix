@@ -492,20 +492,26 @@ nnoremap <leader>u :UndotreeToggle<CR>
 nnoremap <C-f> :Telescope find_files<CR>
 nnoremap <C-g> :Telescope live_grep<CR>
 " easymotion prebindovat Tab+klavesa
-nnoremap <Tab>h <Plug>(easymotion-F)
-nnoremap <Tab>j <Plug>(easymotion-j)
-nnoremap <Tab>k <Plug>(easymotion-k)
-nnoremap <Tab>l <Plug>(easymotion-f)
-nnoremap <Tab>w <Plug>(easymotion-w)
-nnoremap <Tab>b <Plug>(easymotion-b)
-nnoremap <Tab>W <Plug>(easymotion-W)
-nnoremap <Tab>B <Plug>(easymotion-B)
-nnoremap <Tab>n <Plug>(easymotion-bd-n)
+nnoremap ,h <Plug>(easymotion-F)
+nnoremap ,j <Plug>(easymotion-j)
+nnoremap ,k <Plug>(easymotion-k)
+nnoremap ,l <Plug>(easymotion-f)
+nnoremap ,w <Plug>(easymotion-w)
+nnoremap ,b <Plug>(easymotion-b)
+nnoremap ,W <Plug>(easymotion-W)
+nnoremap ,B <Plug>(easymotion-B)
+nnoremap ,n <Plug>(easymotion-bd-n)
 " navigace uvnitr snippetu z autocompletu
-inoremap <c-h> <cmd>lua require'luasnip'.jump(-1)<CR>
-snoremap <c-h> <cmd>lua require'luasnip'.jump(-1)<CR>
-inoremap <c-l> <cmd>lua require'luasnip'.jump(1)<CR>
-snoremap <c-l> <cmd>lua require'luasnip'.jump(1)<CR>
+inoremap <C-h> <cmd>lua require'luasnip'.jump(-1)<CR>
+snoremap <C-h> <cmd>lua require'luasnip'.jump(-1)<CR>
+inoremap <C-l> <cmd>lua require'luasnip'.jump(1)<CR>
+snoremap <C-l> <cmd>lua require'luasnip'.jump(1)<CR>
+inoremap <Tab> <cmd>lua require'luasnip'.jump(1)<CR>
+snoremap <Tab> <cmd>lua require'luasnip'.jump(1)<CR>
+inoremap <S-Tab> <cmd>lua require'luasnip'.jump(-1)<CR>
+snoremap <S-Tab> <cmd>lua require'luasnip'.jump(-1)<CR>
+" vlozeni slozenych zavorek
+inoremap <C-p> <end><CR>{<CR>}<up><end><CR>
 
 " ----- PLUGINS SETTINGS -----
 " ----- COMMENTARY -----
@@ -527,6 +533,7 @@ local lsp = require('lsp-zero').preset({name = 'recommended'})
 
 lsp.on_attach(function(client, bufnr)
   lsp.default_keymaps({buffer = bufnr})
+  vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
 end)
 
 lsp.setup_servers({'rnix', 'clangd', 'pyright', 'lua_ls', 'bashls'})
