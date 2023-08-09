@@ -499,10 +499,8 @@ inoremap <C-h> <cmd>lua require'luasnip'.jump(-1)<CR>
 snoremap <C-h> <cmd>lua require'luasnip'.jump(-1)<CR>
 inoremap <C-l> <cmd>lua require'luasnip'.jump(1)<CR>
 snoremap <C-l> <cmd>lua require'luasnip'.jump(1)<CR>
-inoremap <Tab> <cmd>lua require'luasnip'.jump(1)<CR>
-snoremap <Tab> <cmd>lua require'luasnip'.jump(1)<CR>
-inoremap <S-Tab> <cmd>lua require'luasnip'.jump(-1)<CR>
-snoremap <S-Tab> <cmd>lua require'luasnip'.jump(-1)<CR>
+inoremap <C-y> <cmd>lua require'luasnip'.jump(1)<CR>
+snoremap <C-y> <cmd>lua require'luasnip'.jump(1)<CR>
 " vlozeni slozenych zavorek
 inoremap <C-p> <end><CR>{<CR>}<up><end><CR>
 
@@ -546,8 +544,8 @@ cmp.setup({
   mapping = {
     ['<CR>'] = cmp.config.disable,
     ['<C-d>'] = cmp.mapping(function(fallback) fallback() end, {"s"}), -- disablovat <C-d> v select modu, idk jestli je to dobre
+    ['<Tab>'] = cmp.mapping(function(fallback) fallback() end, {"s", "i"}), -- disablovat <C-d> v select modu, idk jestli je to dobre
 
-    ['<Tab>'] = cmp.mapping.confirm({select = true}),
     ['<C-j>'] = cmp.mapping.select_next_item(),
     ['<C-k>'] = cmp.mapping.select_prev_item(),
   }
@@ -603,14 +601,21 @@ require'telescope'.load_extension('fzf') -- kvuli extensionu, musi se to volat a
 '';
     };
 
+    xdg.configFile."nvim/after/plugin/init_after.vim".text = ''
+sunmap <leader><leader>
+'';
+
+    # -- NEOVIM AFTER FILETYPE PLUGINS --
     xdg.configFile."nvim/after/ftplugin/python.vim".text = ''
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-noremap <buffer><leader>d :s/\v^( *)(.*)$/\1print(f'{\2 = }')<CR>:noh<CR>
+nnoremap <buffer><leader>d :s/\v^( *)(.*)$/\1print(f'{\2 = }')<CR>:noh<CR>
+xnoremap <buffer><leader>d :s/\v^( *)(.*)$/\1print(f'{\2 = }')<CR>:noh<CR>
 '';
 
     xdg.configFile."nvim/after/ftplugin/c.vim".text = ''
 set formatoptions-=cro " vypnuti komentaru na dalsich radkach kdyz dam enter
-noremap <buffer><leader>d :call CDebugPrint()<CR>
+nnoremap <buffer><leader>d :call CDebugPrint()<CR>
+xnoremap <buffer><leader>d :call CDebugPrint()<CR>
 
 function! CDebugPrint() range
   let selector = input('Selector: ')
@@ -627,7 +632,8 @@ endfunction
 
     xdg.configFile."nvim/after/ftplugin/cpp.vim".text = ''
 set formatoptions-=cro " vypnuti komentaru na dalsich radkach kdyz dam enter
-noremap <buffer><leader>d :s/\v^( *)(.*)$/\1cerr << "\2 = " << \2 << endl;<CR>:noh<CR>
+nnoremap <buffer><leader>d :s/\v^( *)(.*)$/\1cerr << "\2 = " << \2 << endl;<CR>:noh<CR>
+xnoremap <buffer><leader>d :s/\v^( *)(.*)$/\1cerr << "\2 = " << \2 << endl;<CR>:noh<CR>
 '';
 
     xdg.configFile."nvim/after/ftplugin/json.vim".text = ''
