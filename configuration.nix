@@ -730,6 +730,8 @@ font:
       shellAliases = {
         v = "vim";
         r = "ranger";
+        x = "xdg-open &>/dev/null";
+        n = "(nemo . &>/dev/null &)";
       };
       # ty '' pred $ to escapujou v nixu, do relanyho .zshrc se nepropisou
       initExtra = ''
