@@ -440,6 +440,7 @@ exec --no-startup-id xfce4-terminal --title __scratchpad
           cmp-nvim-lsp
           luasnip
           cmp-path # autocomplete pathu
+        lspsaga-nvim-original
       ];
       extraConfig = ''
 " ----- COLORSCHEME -----
@@ -450,6 +451,7 @@ colorscheme nord
 " nastavit highlight na stejnou barvu jako Search (barvy muzu zobrazit pres `:hi`)
 hi! link TelescopeMatching Search
 hi! link TelescopePreviewLine Search
+hi String ctermfg=14 guifg=#8fbcbb
 
 " ----- SETS -----
 set nu rnu
@@ -520,11 +522,26 @@ require'nvim-treesitter.configs'.setup {
 }
 
 -- ----- LSP ZERO -----
-local lsp = require('lsp-zero').preset({name = 'recommended'})
+local lsp = require('lsp-zero').preset({
+  name = 'recommended',
+  set_lsp_keymaps = false
+})
 
 lsp.on_attach(function(client, bufnr)
-  lsp.default_keymaps({buffer = bufnr})
+  local opts = {buffer = bufnr}
+
+  vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+  vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+  vim.keymap.set('n', 'go', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
+  vim.keymap.set('n', 'gl', '<cmd>Lspsaga lsp_finder<cr>', opts)
   vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+  vim.keymap.set('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+  vim.keymap.set('n', 'K', '<cmd>Lspsaga hover_doc<cr>', opts)
+  vim.keymap.set('n', 'gx', '<cmd>Lspsaga code_action<cr>', opts)
+  vim.keymap.set('n', 'gr', '<cmd>Lspsaga rename<cr>', opts)
+  vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>', opts)
+  vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>', opts)
+  vim.keymap.set('i', '<C-x>', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
 end)
 
 lsp.setup_servers({'rnix', 'clangd', 'pyright', 'lua_ls', 'bashls'})
@@ -549,6 +566,25 @@ cmp.setup({
     ['<C-j>'] = cmp.mapping.select_next_item(),
     ['<C-k>'] = cmp.mapping.select_prev_item(),
   }
+})
+
+-- ----- LSPSAGA -----
+require('lspsaga').setup({
+  lightbulb = {
+    enable = false
+  },
+  symbol_in_winbar = {
+    enable = false
+  },
+  beacon = {
+    enable = false
+  },
+  rename = {
+    quit = 'q'
+  },
+  ui = {
+    code_action = "🅱️ ased"
+  },
 })
 
 -- ----- INDENT BLANKLINE -----
@@ -598,6 +634,9 @@ require'telescope'.setup{
   }
 }
 require'telescope'.load_extension('fzf') -- kvuli extensionu, musi se to volat az po volani require'telescope'.setup, https://github.com/nvim-telescope/telescope-fzf-native.nvim
+
+-- ----- CUSTOM SETTINSG -----
+vim.diagnostic.config({ virtual_text = true }) -- ukaze inline diagnostics (musi se volat az po setupu lsp-zero)
 '';
     };
 
@@ -640,6 +679,9 @@ xnoremap <buffer><leader>d :s/\v^( *)(.*)$/\1cerr << "\2 = " << \2 << endl;<CR>:
 set equalprg=jq " pouzit na formatovani program jq
 '';
 
+    xdg.configFile."nvim/after/ftplugin/lua.vim".text = ''
+set formatoptions-=cro " vypnuti komentaru na dalsich radkach kdyz dam enter
+'';
     # ----- SETTIGNS ALACRITTY -----
     programs.alacritty = {
       enable = true;
