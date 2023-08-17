@@ -157,6 +157,7 @@ in
     grim # screenshot functionality
     slurp # screenshot functionality
     #(xdg-desktop-portal-gnome.overrideAttrs (oldAttrs: rec { version = "43.1"; }))
+    wmctrl # na ziskani aktualniho workspace, pouzivam to v i3 configuraci
     # nvim lsp servers
     rnix-lsp # nix
     clang-tools
@@ -279,6 +280,36 @@ in
           "${mod}+Shift+k" = "move up";
           "${mod}+Shift+l" = "move right";
 
+          "${mod}+u" = ''exec --no-startup-id i3-msg workspace "$(i3-msg -t get_outputs | jq '.[] | .current_workspace' | tr -d '"' | grep '1$')"'';
+          "${mod}+i" = ''exec --no-startup-id i3-msg workspace "$(i3-msg -t get_outputs | jq '.[] | .current_workspace' | tr -d '"' | grep '2$')"'';
+          "${mod}+o" = ''exec --no-startup-id i3-msg workspace "$(i3-msg -t get_outputs | jq '.[] | .current_workspace' | tr -d '"' | grep '3$')"'';
+
+          "${mod}+Shift+u" = ''exec --no-startup-id i3-msg move container to workspace "$(i3-msg -t get_outputs | jq '.[] | .current_workspace' | tr -d '"' | grep '1$')"'';
+          "${mod}+Shift+i" = ''exec --no-startup-id i3-msg move container to workspace "$(i3-msg -t get_outputs | jq '.[] | .current_workspace' | tr -d '"' | grep '2$')"'';
+          "${mod}+Shift+o" = ''exec --no-startup-id i3-msg move container to workspace "$(i3-msg -t get_outputs | jq '.[] | .current_workspace' | tr -d '"' | grep '3$')"'';
+
+          "${mod}+1" = ''exec --no-startup-id i3-msg workspace 1:$(wmctrl -d | fgrep '*' | awk '{print $9}' | cut -c3)'';
+          "${mod}+2" = ''exec --no-startup-id i3-msg workspace 2:$(wmctrl -d | fgrep '*' | awk '{print $9}' | cut -c3)'';
+          "${mod}+3" = ''exec --no-startup-id i3-msg workspace 3:$(wmctrl -d | fgrep '*' | awk '{print $9}' | cut -c3)'';
+          "${mod}+4" = ''exec --no-startup-id i3-msg workspace 4:$(wmctrl -d | fgrep '*' | awk '{print $9}' | cut -c3)'';
+          "${mod}+5" = ''exec --no-startup-id i3-msg workspace 5:$(wmctrl -d | fgrep '*' | awk '{print $9}' | cut -c3)'';
+          "${mod}+6" = ''exec --no-startup-id i3-msg workspace 6:$(wmctrl -d | fgrep '*' | awk '{print $9}' | cut -c3)'';
+          "${mod}+7" = ''exec --no-startup-id i3-msg workspace 7:$(wmctrl -d | fgrep '*' | awk '{print $9}' | cut -c3)'';
+          "${mod}+8" = ''exec --no-startup-id i3-msg workspace 8:$(wmctrl -d | fgrep '*' | awk '{print $9}' | cut -c3)'';
+          "${mod}+9" = ''exec --no-startup-id i3-msg workspace 9:$(wmctrl -d | fgrep '*' | awk '{print $9}' | cut -c3)'';
+          "${mod}+0" = ''exec --no-startup-id i3-msg workspace 10:$(wmctrl -d | fgrep '*' | awk '{print $9}' | cut -c3)'';
+
+          "${mod}+Shift+1" = ''exec --no-startup-id i3-msg move container to workspace 1:$(wmctrl -d | fgrep '*' | awk '{print $9}' | cut -c3)'';
+          "${mod}+Shift+2" = ''exec --no-startup-id i3-msg move container to workspace 2:$(wmctrl -d | fgrep '*' | awk '{print $9}' | cut -c3)'';
+          "${mod}+Shift+3" = ''exec --no-startup-id i3-msg move container to workspace 3:$(wmctrl -d | fgrep '*' | awk '{print $9}' | cut -c3)'';
+          "${mod}+Shift+4" = ''exec --no-startup-id i3-msg move container to workspace 4:$(wmctrl -d | fgrep '*' | awk '{print $9}' | cut -c3)'';
+          "${mod}+Shift+5" = ''exec --no-startup-id i3-msg move container to workspace 5:$(wmctrl -d | fgrep '*' | awk '{print $9}' | cut -c3)'';
+          "${mod}+Shift+6" = ''exec --no-startup-id i3-msg move container to workspace 6:$(wmctrl -d | fgrep '*' | awk '{print $9}' | cut -c3)'';
+          "${mod}+Shift+7" = ''exec --no-startup-id i3-msg move container to workspace 7:$(wmctrl -d | fgrep '*' | awk '{print $9}' | cut -c3)'';
+          "${mod}+Shift+8" = ''exec --no-startup-id i3-msg move container to workspace 8:$(wmctrl -d | fgrep '*' | awk '{print $9}' | cut -c3)'';
+          "${mod}+Shift+9" = ''exec --no-startup-id i3-msg move container to workspace 9:$(wmctrl -d | fgrep '*' | awk '{print $9}' | cut -c3)'';
+          "${mod}+Shift+0" = ''exec --no-startup-id i3-msg move container to workspace 10:$(wmctrl -d | fgrep '*' | awk '{print $9}' | cut -c3)'';
+
           "${mod}+q" = "kill";
           "${mod}+n" = "splitv";
           "${mod}+m" = "splith";
@@ -304,6 +335,10 @@ in
 # zapnout jeden terminal v scratchpadu pri bootu
 for_window [title="__scratchpad"] move scratchpad
 exec --no-startup-id xfce4-terminal --title __scratchpad
+
+workspace 1:1 output DP-0
+workspace 1:2 output DP-4
+workspace 1:3 output DP-2
 '';
     };
 
