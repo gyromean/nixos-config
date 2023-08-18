@@ -695,11 +695,11 @@ xnoremap <buffer><leader>d :call CDebugPrint()<CR>
 function! CDebugPrint() range
   let selector = input('Selector: ')
   let pattern = '\v^( *)(.*)$'
-  let sub = '\1printf("\2 = %' .. selector .. '\\n", \2);'
+  let sub = '\1printf("\2 = %' .. selector .. '\\n", (\2));'
   if selector == '''
     return
   elseif selector == 'p'
-    let sub = '\1printf("\2 = %' .. selector .. '\\n", (void*)\2);'
+    let sub = '\1printf("\2 = %' .. selector .. '\\n", ((void*)\2));'
   endif
   exec printf('silent!%d,%ds/%s/%s/', a:firstline, a:lastline, pattern, sub)
 endfunction
@@ -707,8 +707,8 @@ endfunction
 
     xdg.configFile."nvim/after/ftplugin/cpp.vim".text = ''
 set formatoptions-=cro " vypnuti komentaru na dalsich radkach kdyz dam enter
-nnoremap <buffer><leader>d :s/\v^( *)(.*)$/\1cerr << "\2 = " << \2 << endl;<CR>:noh<CR>
-xnoremap <buffer><leader>d :s/\v^( *)(.*)$/\1cerr << "\2 = " << \2 << endl;<CR>:noh<CR>
+nnoremap <buffer><leader>d :s/\v^( *)(.*)$/\1cerr << "\2 = " << (\2) << endl;<CR>:noh<CR>
+xnoremap <buffer><leader>d :s/\v^( *)(.*)$/\1cerr << "\2 = " << (\2) << endl;<CR>:noh<CR>
 '';
 
     xdg.configFile."nvim/after/ftplugin/json.vim".text = ''
