@@ -811,7 +811,7 @@ font:
     # ----- SETTINGS ZSH -----
     programs.zsh = { # shell
       enable = true;
-      enableAutosuggestions = true;
+      enableAutosuggestions = false;
       enableSyntaxHighlighting = true;
       history.share = false;
       oh-my-zsh = {
@@ -859,6 +859,10 @@ source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 # prompt bude vzdycky na zacatku v insert modu
 ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+
+# znovu zprovoznit fzfovou zsh integraci, protoze ten vim mode ji castecne overwritnul
+zvm_after_init_commands+=('[ -f ${pkgs.fzf}/share/fzf/completion.zsh ] && source ${pkgs.fzf}/share/fzf/completion.zsh')
+zvm_after_init_commands+=('[ -f ${pkgs.fzf}/share/fzf/key-bindings.zsh ] && source ${pkgs.fzf}/share/fzf/key-bindings.zsh')
 
 # custom skripty
 source ~/.config/custom_nix/scripts/scripts_to_source.sh
