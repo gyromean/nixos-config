@@ -169,10 +169,17 @@ in
 
   # ----- FONTS -----
   # fonty musi byt tady, jinak je aplikace neuvidi
-  fonts.fonts = with pkgs; [
-    powerline-fonts
-    font-awesome # pro waybar, aby mel ikonky
-  ];
+  fonts = {
+    # enableDefaultFonts = true;
+    fonts = with pkgs; [
+      powerline-fonts
+      (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
+    ];
+    fontconfig.defaultFonts.monospace = [
+      "Source Code Pro for Powerline"
+      "SauceCodePro Nerd Font"
+    ];
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -782,16 +789,16 @@ colors:
 
 font:
   normal:
-    family: Source Code Pro for Powerline
+    family: monospace
     style: Regular
   bold:
-    family: Source Code Pro for Powerline
+    family: monospace
     style: Bold
   italic:
-    family: Source Code Pro for Powerline
+    family: monospace
     style: Italic
   bold_italic:
-    family: Source Code Pro for Powerline
+    family: monospace
     style: Bold Italic
   size: 11
       '';
@@ -891,7 +898,7 @@ application/x-extension-xht=firefox.desktop;
 
     xdg.configFile."xfce4/terminal/terminalrc".text = ''
 [Configuration]
-FontName=Source Code Pro for Powerline 12
+FontName=Monospace 11
 MiscAlwaysShowTabs=FALSE
 MiscBell=FALSE
 MiscBellUrgent=FALSE
