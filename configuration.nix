@@ -719,6 +719,10 @@ set equalprg=jq " pouzit na formatovani program jq
     xdg.configFile."nvim/after/ftplugin/lua.vim".text = ''
 set formatoptions-=cro " vypnuti komentaru na dalsich radkach kdyz dam enter
 '';
+
+    xdg.configFile."nvim/after/ftplugin/dosini.vim".text = ''
+set formatoptions-=cro " vypnuti komentaru na dalsich radkach kdyz dam enter
+'';
     # ----- SETTIGNS ALACRITTY -----
     programs.alacritty = {
       enable = true;
