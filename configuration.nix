@@ -802,6 +802,7 @@ font:
       enable = true;
       enableAutosuggestions = true;
       enableSyntaxHighlighting = true;
+      history.share = false;
       oh-my-zsh = {
         enable = true;
         plugins = [ "copypath" "copyfile" ];
