@@ -145,6 +145,7 @@ in
     evince # PDF viewer
     vlc
     gnome.eog # image viewer
+    gdb
     # waybar:
     # --- SWAY PACKAGES ---
     pulseaudioFull # abych mohl nastavovat hlasitost pres pactl (pouzivam to v konfiguraci swaye)
