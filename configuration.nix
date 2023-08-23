@@ -540,6 +540,8 @@ nnoremap <C-g> :Telescope live_grep<CR>
 " easymotion prebindovat na [ a ]
 nnoremap [[ <Plug>(easymotion-F)
 nnoremap ]] <Plug>(easymotion-f)
+xnoremap [[ <Plug>(easymotion-F)
+xnoremap ]] <Plug>(easymotion-f)
 " navigace uvnitr snippetu z autocompletu
 inoremap <C-h> <cmd>lua require'luasnip'.jump(-1)<CR>
 snoremap <C-h> <cmd>lua require'luasnip'.jump(-1)<CR>
