@@ -338,6 +338,7 @@ in
         gaps = {
           inner = 10;
         };
+        focus.wrapping = "no";
       };
       extraConfig = ''
 # zapnout jeden terminal v scratchpadu pri bootu
