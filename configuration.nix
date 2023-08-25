@@ -173,11 +173,11 @@ in
     # enableDefaultFonts = true;
     fonts = with pkgs; [
       powerline-fonts
-      (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
+      (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
     ];
     fontconfig.defaultFonts.monospace = [
       "Source Code Pro for Powerline"
-      "SauceCodePro Nerd Font"
+      "Symbols Nerd Font Mono"
     ];
   };
 
