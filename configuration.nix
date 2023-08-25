@@ -533,6 +533,8 @@ nnoremap <C-k> :wincmd k<CR>
 nnoremap <C-l> :wincmd l<CR>
 " v visual modu kdyz neco selectu a prepisu to pres paste, tak se to co prepisuju zkopiruje do clipboardu - tohle zpusobi, ze v clipboardu zustane puvodni obsah
 xnoremap <leader>p "_dP
+" mazani aniz by se prepsal obsah clipboardu
+noremap <leader>d "_d
 " otevre Undotree, do nej preskocim jako do jinyho okna, takze <C-h>
 nnoremap <leader>u :UndotreeToggle<CR>
 nnoremap <C-f> :Telescope find_files<CR>
