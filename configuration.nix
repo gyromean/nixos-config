@@ -862,7 +862,7 @@ font:
       # ty '' pred $ to escapujou v nixu, do relanyho .zshrc se nepropisou
       initExtra = ''
 # sourcenout git prompts pro igloo (nord) theme
-. ~/.config/custom_nix/scripts/git-prompt.sh
+. ~/.config/custom_nix/downloaded_scripts/git-prompt.sh
 
 # sourcenout igloo theme https://github.com/arcticicestudio/igloo/tree/master/snowblocks/zsh
 fpath=(~/.config/custom_nix/zsh_themes $fpath)
@@ -900,7 +900,7 @@ zvm_after_init_commands+=('[ -f ${pkgs.fzf}/share/fzf/completion.zsh ] && source
 zvm_after_init_commands+=('[ -f ${pkgs.fzf}/share/fzf/key-bindings.zsh ] && source ${pkgs.fzf}/share/fzf/key-bindings.zsh')
 
 # custom skripty
-source ~/.config/custom_nix/scripts/scripts_to_source.sh
+source ~/.config/custom_nix/custom_scripts/scripts_to_source.sh
 '';
     }; # TODO - nastavit to jako default shell
 
