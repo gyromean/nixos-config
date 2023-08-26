@@ -338,6 +338,33 @@ in
         gaps = {
           inner = 10;
         };
+        colors = let focused = "#eceff4ff"; unfocused = "#4c566aff"; other = "#ff0000ff"; in { # nastavit obrysy oken (cervenou abych si ji vsiml kdyz se nekdy projevi)
+          focused = { # #rrggbbaa
+            border = focused; background = other; text = other; # border je to co se ukazuje pri resizovani mysi
+            indicator = focused;
+            childBorder = focused;
+          };
+          focusedInactive = {
+            border = focused; background = other; text = other;
+            indicator = unfocused;
+            childBorder = unfocused;
+          };
+          unfocused = {
+            border = focused; background = other; text = other;
+            indicator = unfocused;
+            childBorder = unfocused;
+          };
+          placeholder = {
+            border = focused; background = other; text = other;
+            indicator = other;
+            childBorder = other;
+          };
+          urgent = {
+            border = focused; background = other; text = other;
+            indicator = other;
+            childBorder = other;
+          };
+        };
         focus.wrapping = "no";
       };
       extraConfig = ''
