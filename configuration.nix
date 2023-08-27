@@ -585,9 +585,8 @@ inoremap <C-y> <cmd>lua require'luasnip'.jump(1)<CR>
 snoremap <C-y> <cmd>lua require'luasnip'.jump(1)<CR>
 " vlozeni slozenych zavorek
 inoremap <C-p> <end><CR>{<CR>}<up><end><CR>
-" search results jsou vzdy uprostred obrazovky
-nnoremap n nzz
-nnoremap N Nzz
+" search results jsou vzdy uprostred obrazovky (ted to funguje jen smerem dopredu, <C-N> je for some reason MALE n)
+nnoremap <C-N> nzz
 
 " ----- PLUGINS SETTINGS -----
 " ----- COMMENTARY -----
