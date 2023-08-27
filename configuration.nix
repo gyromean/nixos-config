@@ -571,6 +571,11 @@ nnoremap [[ <Plug>(easymotion-F)
 nnoremap ]] <Plug>(easymotion-f)
 xnoremap [[ <Plug>(easymotion-F)
 xnoremap ]] <Plug>(easymotion-f)
+" easymotion prebindovat na [ a ] i v pythonu, protoze u nej se to samo prebinduje
+autocmd FileType python nnoremap <buffer> [[ <Plug>(easymotion-F)
+autocmd FileType python nnoremap <buffer> ]] <Plug>(easymotion-f)
+autocmd FileType python xnoremap <buffer> [[ <Plug>(easymotion-F)
+autocmd FileType python xnoremap <buffer> ]] <Plug>(easymotion-f)
 " navigace uvnitr snippetu z autocompletu
 inoremap <C-h> <cmd>lua require'luasnip'.jump(-1)<CR>
 snoremap <C-h> <cmd>lua require'luasnip'.jump(-1)<CR>
