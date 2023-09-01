@@ -332,6 +332,23 @@ in
           "XF86AudioNext" = "exec --no-startup-id playerctl next";
           "XF86AudioPrev" = "exec --no-startup-id playerctl previous";
         };
+        modes = {
+          "resize" = {
+            "h" = "resize shrink width 3 px or 3 ppt";
+            "j" = "resize shrink height 3 px or 3 ppt";
+            "l" = "resize grow width 3 px or 3 ppt";
+            "k" = "resize grow height 3 px or 3 ppt";
+
+            "Left" = "resize shrink width 3 px or 3 ppt";
+            "Down" = "resize shrink height 3 px or 3 ppt";
+            "Right" = "resize grow width 3 px or 3 ppt";
+            "Up" = "resize grow height 3 px or 3 ppt";
+
+            "Return" = "mode default";
+            "Escape" = "mode default";
+            "${mod}+r" = "mode default";
+          };
+        };
         window = {
           titlebar = false; # aby nad oknama nebyly jejich nazvy
         };
