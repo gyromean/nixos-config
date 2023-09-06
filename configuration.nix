@@ -20,6 +20,7 @@ in
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  hardware.i2c.enable = true; # potrebuju pro ovladani brightness monitoru, viz https://www.ddcutil.com/i2c_permissions/ a https://discourse.nixos.org/t/how-to-enable-ddc-brightness-control-i2c-permissions/20800/8
 
   networking.hostName = "bruhpc"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -146,6 +147,7 @@ in
     vlc
     gnome.eog # image viewer
     gdb
+    ddcutil # komunikace s monitorem (nastaveni brightness)
     # waybar:
     # --- SWAY PACKAGES ---
     pulseaudioFull # abych mohl nastavovat hlasitost pres pactl (pouzivam to v konfiguraci swaye)
@@ -277,6 +279,7 @@ in
           { command = "xset r rate 175 30"; notification = false; } # nastaveni prodlevy pred key repeatem na 175 ms, frekvence key repeatu na 30 Hz
           { command = "numlockx on"; notification = false; } # zapnout numlock pri bootu
           { command = "setxkbmap -layout 'us,cz(qwerty)' -option grp:alt_shift_toggle -option caps:escape_shifted_capslock"; notification = false; } # nastavit qwerty cestinu jako sekundarni klavesnici; nastavit togglovani na alt+shift; caps se chova jak escape, shift+caps se chova jako obycejny caps (kdyz jsem to rozdelil do vicero volani setxkbmap tak to nefungovalo)
+          { command = "systemctl --user restart polybar.service"; notification = false; }
         ];
         keybindings = lib.mkOptionDefault {
           "${mod}+h" = "focus left";
@@ -356,6 +359,7 @@ in
         gaps = {
           inner = 10;
         };
+        bars = []; # vypnout built-in i3 bar (misto nej pouzivam polybar)
         colors = let focused = "#eceff4ff"; unfocused = "#4c566aff"; other = "#ff0000ff"; in { # nastavit obrysy oken (cervenou abych si ji vsiml kdyz se nekdy projevi)
           focused = { # #rrggbbaa
             border = focused; background = other; text = other; # border je to co se ukazuje pri resizovani mysi
@@ -394,6 +398,28 @@ workspace 1:1 output DP-0
 workspace 1:2 output DP-4
 workspace 1:3 output DP-2
 '';
+    };
+
+    # ----- SETTINGS POLYBAR ------
+    services.polybar = {
+      enable = true;
+      package = pkgs.polybarFull;
+      script = ''
+PATH=$PATH:/run/current-system/sw/bin
+rm /tmp/polybar_*.sock
+
+python ~/.config/custom_nix/polybar_scripts/eyetimer.py &
+
+for m in $(polybar --list-monitors | cut -d":" -f1); do
+  MONITOR=$m polybar --reload example &
+  python ~/.config/custom_nix/polybar_scripts/brightness.py "$!" "$m" &
+done
+'';
+    };
+
+    # ----- SETTINGS PICOM -----
+    services.picom = {
+      enable = true; # bez picomu je za polybarem cerna cast kdyz nema width 100%
     };
 
     # ----- SETTINGS FZF ------
