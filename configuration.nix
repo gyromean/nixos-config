@@ -177,6 +177,7 @@ in
     ];
     fontconfig.defaultFonts.monospace = [
       "Source Code Pro for Powerline"
+      "DejaVu Sans" # kvuli braille symbolum, jinak se berou z fontu Freemono a ty se mi nelibi
       "Symbols Nerd Font Mono"
     ];
   };
