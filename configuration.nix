@@ -262,6 +262,16 @@ in
     };
   };
   
+  # ----- AVAHI ----- (pro resolvovalni .local domen)
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+    publish = {
+      enable = true;
+      addresses = true;
+      userServices = true;
+    };
+  };
 
   # ----- HOME MANAGER -----
   home-manager.users.pavel = {
