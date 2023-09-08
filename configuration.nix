@@ -148,6 +148,7 @@ in
     gnome.eog # image viewer
     gdb
     ddcutil # komunikace s monitorem (nastaveni brightness)
+    uxplay
     # waybar:
     # --- SWAY PACKAGES ---
     pulseaudioFull # abych mohl nastavovat hlasitost pres pactl (pouzivam to v konfiguraci swaye)
@@ -916,6 +917,7 @@ font:
         r = "ranger";
         x = "xdg-open &>/dev/null";
         n = "(nemo . &>/dev/null &)";
+        airplay = "uxplay -nh -n PC -s 1920x1080@120 -fps 120";
       };
       # ty '' pred $ to escapujou v nixu, do relanyho .zshrc se nepropisou
       initExtra = ''
