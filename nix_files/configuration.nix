@@ -287,7 +287,7 @@ in
         terminal = "xfce4-terminal";
         startup = [
           { command = "xrandr --dpi 96 --output HDMI-0 --off --output DP-0 --mode 2560x1440 --pos 0x0 --rotate normal --rate 165 --output DP-1 --off --output DP-2 --mode 2560x1440 --pos 5120x0 --rotate normal --rate 165 --output DP-3 --off --output DP-4 --mode 2560x1440 --pos 2560x0 --rotate normal --rate 165 --output DP-5 --off"; notification = false; } # nastavi monitory na spravny poradi a spravny refresh rate; `--dpi 96` nastavi scaling UI elementu, ruzny aplikace na to berou ohled (treba chrome)
-          { command = "feh --bg-fill ~/.config/custom_nix/wallpaper.png"; notification = false; } # nastaveni wallapper na startupu
+          { command = "feh --bg-fill ~/.config/nixos-config/wallpaper.png"; notification = false; } # nastaveni wallapper na startupu
           { command = "xset r rate 175 30"; notification = false; } # nastaveni prodlevy pred key repeatem na 175 ms, frekvence key repeatu na 30 Hz
           { command = "numlockx on"; notification = false; } # zapnout numlock pri bootu
           { command = "setxkbmap -layout 'us,cz(qwerty)' -option grp:alt_shift_toggle -option caps:escape_shifted_capslock"; notification = false; } # nastavit qwerty cestinu jako sekundarni klavesnici; nastavit togglovani na alt+shift; caps se chova jak escape, shift+caps se chova jako obycejny caps (kdyz jsem to rozdelil do vicero volani setxkbmap tak to nefungovalo)
@@ -420,15 +420,15 @@ workspace 1:3 output DP-2
 PATH=$PATH:/run/current-system/sw/bin
 rm /tmp/polybar_*.sock
 
-python ~/.config/custom_nix/polybar_scripts/eyetimer.py &
+python ~/.config/nixos-config/polybar_scripts/eyetimer.py &
 
 for m in $(polybar --list-monitors | cut -d":" -f1); do
   MONITOR=$m polybar --reload example &
-  python ~/.config/custom_nix/polybar_scripts/brightness.py "$!" "$m" &
+  python ~/.config/nixos-config/polybar_scripts/brightness.py "$!" "$m" &
 done
 '';
     };
-    xdg.configFile."polybar/config.ini".source = config.lib.file.mkOutOfStoreSymlink "/home/pavel/.config/custom_nix/dotfiles/polybar/config.ini";
+    xdg.configFile."polybar/config.ini".source = config.lib.file.mkOutOfStoreSymlink "/home/pavel/.config/nixos-config/dotfiles/polybar/config.ini";
 
     # ----- SETTINGS PICOM -----
     services.picom = {
@@ -931,7 +931,7 @@ font:
 . ${pkgs.git.outPath}/share/git/contrib/completion/git-prompt.sh
 
 # sourcenout igloo theme https://github.com/arcticicestudio/igloo/tree/master/snowblocks/zsh
-fpath=(~/.config/custom_nix/zsh_themes $fpath)
+fpath=(~/.config/nixos-config/zsh_themes $fpath)
 
 # nahrat prompts https://zsh.sourceforge.io/Doc/Release/User-Contributions.html#Prompt-Themes, nastavit options pro ZSH
 autoload -U promptinit
@@ -966,7 +966,7 @@ zvm_after_init_commands+=('[ -f ${pkgs.fzf}/share/fzf/completion.zsh ] && source
 zvm_after_init_commands+=('[ -f ${pkgs.fzf}/share/fzf/key-bindings.zsh ] && source ${pkgs.fzf}/share/fzf/key-bindings.zsh')
 
 # custom skripty
-source ~/.config/custom_nix/custom_scripts/scripts_to_source.sh
+source ~/.config/nixos-config/custom_scripts/scripts_to_source.sh
 '';
     }; # TODO - nastavit to jako default shell
 
