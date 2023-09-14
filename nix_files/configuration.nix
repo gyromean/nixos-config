@@ -4,6 +4,7 @@
 
 { config, pkgs, lib, ... }:
 let
+  machine = import /etc/nixos/machine.nix;
   # ----- PYTHON PACKAGES -----
   my-python-packages = ps: with ps; [
     sympy
@@ -22,7 +23,7 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
   hardware.i2c.enable = true; # potrebuju pro ovladani brightness monitoru, viz https://www.ddcutil.com/i2c_permissions/ a https://discourse.nixos.org/t/how-to-enable-ddc-brightness-control-i2c-permissions/20800/8
 
-  networking.hostName = "bruhpc"; # Define your hostname.
+  networking.hostName = machine.hostname; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
