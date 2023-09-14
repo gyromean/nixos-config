@@ -276,7 +276,7 @@ in
   };
 
   # ----- HOME MANAGER -----
-  home-manager.users.pavel = {
+  home-manager.users.pavel = { config, pkgs, ... }: {
     home.stateVersion = "22.05";
 
     # ----- SETTINGS i3 -----
@@ -428,6 +428,7 @@ for m in $(polybar --list-monitors | cut -d":" -f1); do
 done
 '';
     };
+    xdg.configFile."polybar/config.ini".source = config.lib.file.mkOutOfStoreSymlink "/home/pavel/.config/custom_nix/dotfiles/polybar/config.ini";
 
     # ----- SETTINGS PICOM -----
     services.picom = {
