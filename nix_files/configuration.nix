@@ -927,7 +927,7 @@ font:
       # ty '' pred $ to escapujou v nixu, do relanyho .zshrc se nepropisou
       initExtra = ''
 # sourcenout git prompts pro igloo (nord) theme
-. ~/.config/custom_nix/downloaded_scripts/git-prompt.sh
+. ${pkgs.git.outPath}/share/git/contrib/completion/git-prompt.sh
 
 # sourcenout igloo theme https://github.com/arcticicestudio/igloo/tree/master/snowblocks/zsh
 fpath=(~/.config/custom_nix/zsh_themes $fpath)
