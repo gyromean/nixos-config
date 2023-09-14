@@ -151,6 +151,7 @@ in
     gdb
     ddcutil # komunikace s monitorem (nastaveni brightness)
     uxplay
+    brightnessctl # nastaveni brightness na laptopu
     # waybar:
     # --- SWAY PACKAGES ---
     pulseaudioFull # abych mohl nastavovat hlasitost pres pactl (pouzivam to v konfiguraci swaye)
@@ -330,6 +331,8 @@ in
           "XF86AudioPlay" = "exec --no-startup-id playerctl play-pause";
           "XF86AudioNext" = "exec --no-startup-id playerctl next";
           "XF86AudioPrev" = "exec --no-startup-id playerctl previous";
+          "XF86MonBrightnessUp" = "exec --no-startup-id brightnessctl set 5%+";
+          "XF86MonBrightnessDown" = "exec --no-startup-id brightnessctl set 5%-";
         };
         modes = {
           "resize" = {
