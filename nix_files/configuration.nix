@@ -407,7 +407,7 @@ python ~/.config/nixos-config/polybar_scripts/eyetimer.py &
 
 for m in $(polybar --list-monitors | cut -d":" -f1); do
   MONITOR=$m polybar --reload example &
-  python ~/.config/nixos-config/polybar_scripts/brightness.py "$!" "$m" &
+  ${machine.polybarBrightness}
 done
 '';
     };
