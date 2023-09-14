@@ -20,7 +20,7 @@ q = asyncio.Queue()
 
 def set_output_raw(data):
   print(f'setting output >{data}<')
-  return subprocess.run(['polybar-msg', '-p', polybar_pid, 'action', 'brightness', 'send', data]).returncode
+  return subprocess.run(['polybar-msg', '-p', polybar_pid, 'action', 'desktop-brightness', 'send', data]).returncode
 
 def set_output(color, value):
   icon_index = value // 5
