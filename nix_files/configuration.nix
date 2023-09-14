@@ -4,7 +4,7 @@
 
 { config, pkgs, lib, ... }:
 let
-  machine = import /etc/nixos/machine.nix;
+  machine = import /etc/nixos/machine_vars.nix;
   # ----- PYTHON PACKAGES -----
   my-python-packages = ps: with ps; [
     sympy
