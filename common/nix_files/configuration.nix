@@ -335,8 +335,8 @@ in
           "XF86AudioPlay" = "exec --no-startup-id playerctl play-pause";
           "XF86AudioNext" = "exec --no-startup-id playerctl next";
           "XF86AudioPrev" = "exec --no-startup-id playerctl previous";
-          "XF86MonBrightnessUp" = "exec --no-startup-id brightnessctl set 5%+";
-          "XF86MonBrightnessDown" = "exec --no-startup-id brightnessctl set 5%-";
+          "XF86MonBrightnessUp" = "exec --no-startup-id echo increase | /run/current-system/sw/bin/nc -U /tmp/polybar_brightness.sock";
+          "XF86MonBrightnessDown" = "exec --no-startup-id echo decrease | /run/current-system/sw/bin/nc -U /tmp/polybar_brightness.sock";
         };
         modes = {
           "resize" = {
