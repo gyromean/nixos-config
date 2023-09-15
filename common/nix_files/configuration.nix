@@ -246,6 +246,10 @@ in
         i3blocks #if you are planning on using i3blocks over i3status
      ];
     };
+    libinput = {
+      enable = true;
+      touchpad.naturalScrolling = true;
+    };
   };
   
   # ----- AVAHI ----- (pro resolvovalni .local domen)
