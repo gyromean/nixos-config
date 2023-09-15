@@ -396,9 +396,7 @@ in
 for_window [title="__scratchpad"] move scratchpad
 exec --no-startup-id xfce4-terminal --title __scratchpad
 
-workspace 1:1 output DP-0
-workspace 1:2 output DP-4
-workspace 1:3 output DP-2
+${machine.workspaceSetup}
 '';
     };
 
