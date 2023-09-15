@@ -917,6 +917,8 @@ font:
         x = "xdg-open &>/dev/null";
         n = "(nemo . &>/dev/null &)";
         airplay = "uxplay -nh -n PC -s 1920x1080@120 -fps 120";
+        nx = "cd ~/.config/nixos-config";
+        con = "cd ~/.config/nixos-config/common/nix_files";
       };
       # ty '' pred $ to escapujou v nixu, do relanyho .zshrc se nepropisou
       initExtra = ''
