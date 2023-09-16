@@ -15,7 +15,7 @@ def set_output_raw(data):
 
 def set_output(value):
   icon_index = value // 5
-  data = set_color('blue', icons_distributed[icon_index]) + set_color('foreground', f' {value}%')
+  data = ' ' + set_color('blue', icons_distributed[icon_index]) + set_color('foreground', f' {value}% ')
   return set_output_raw(data)
 
 async def socket_reader_client(reader, writer):
