@@ -10,7 +10,7 @@ path_base = sys.argv[1]
 
 def is_charging():
   with open(os.path.join(path_base, 'status')) as f:
-    return f.read() == 'Charging\n'
+    return f.read() != 'Discharging\n'
 
 def energy_now():
   with open(os.path.join(path_base, 'energy_now')) as f:
