@@ -823,6 +823,10 @@ set formatoptions-=cro " vypnuti komentaru na dalsich radkach kdyz dam enter
     xdg.configFile."nvim/after/ftplugin/markdown.vim".text = ''
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 '';
+
+    xdg.configFile."nvim/after/ftplugin/sh.vim".text = ''
+set formatoptions-=cro " vypnuti komentaru na dalsich radkach kdyz dam enter
+'';
     # ----- SETTIGNS ALACRITTY -----
     programs.alacritty = {
       enable = true;
