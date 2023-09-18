@@ -4,7 +4,7 @@
 
 { config, pkgs, lib, ... }:
 let
-  machine = import /etc/nixos/machine/nix_files/vars.nix;
+  machine = import /etc/nixos/machine/nix-files/vars.nix;
   # ----- PYTHON PACKAGES -----
   my-python-packages = ps: with ps; [
     sympy
@@ -15,7 +15,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
-      /etc/nixos/machine/nix_files/settings.nix
+      /etc/nixos/machine/nix-files/settings.nix
       <home-manager/nixos>
     ];
 
@@ -423,7 +423,7 @@ ${machine.workspaceSetup}
 PATH=$PATH:/run/current-system/sw/bin
 rm /tmp/polybar_*.sock
 
-python ~/.config/nixos-config/common/polybar_scripts/eyetimer.py &
+python ~/.config/nixos-config/common/polybar-scripts/eyetimer.py &
 
 for m in $(polybar --list-monitors | cut -d":" -f1); do
   MONITOR=$m polybar --reload example &
@@ -937,7 +937,7 @@ font:
         n = "(nemo . &>/dev/null &)";
         airplay = "uxplay -nh -n PC -s 1920x1080@120 -fps 120";
         nx = "cd ~/.config/nixos-config";
-        con = "cd ~/.config/nixos-config/common/nix_files";
+        con = "cd ~/.config/nixos-config/common/nix-files";
       };
       # ty '' pred $ to escapujou v nixu, do relanyho .zshrc se nepropisou
       initExtra = ''
@@ -945,7 +945,7 @@ font:
 . ${pkgs.git.outPath}/share/git/contrib/completion/git-prompt.sh
 
 # sourcenout igloo theme https://github.com/arcticicestudio/igloo/tree/master/snowblocks/zsh
-fpath=(~/.config/nixos-config/common/zsh_themes $fpath)
+fpath=(~/.config/nixos-config/common/zsh-themes $fpath)
 
 # nahrat prompts https://zsh.sourceforge.io/Doc/Release/User-Contributions.html#Prompt-Themes, nastavit options pro ZSH
 autoload -U promptinit
@@ -980,7 +980,7 @@ zvm_after_init_commands+=('[ -f ${pkgs.fzf}/share/fzf/completion.zsh ] && source
 zvm_after_init_commands+=('[ -f ${pkgs.fzf}/share/fzf/key-bindings.zsh ] && source ${pkgs.fzf}/share/fzf/key-bindings.zsh')
 
 # custom skripty
-source ~/.config/nixos-config/common/zsh_scripts/scripts_to_source.sh
+source ~/.config/nixos-config/common/zsh-scripts/scripts-to-source.sh
 '';
     }; # TODO - nastavit to jako default shell
 

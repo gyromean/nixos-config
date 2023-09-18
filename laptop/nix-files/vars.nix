@@ -1,7 +1,7 @@
 {
   hostname = "pavellt";
   monitorSetup = "xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1 --off --output DP-1 --off";
-  polybarBrightness = ''python ~/.config/nixos-config/common/polybar_scripts/brightness-laptop.py &'';
+  polybarBrightness = ''python ~/.config/nixos-config/common/polybar-scripts/brightness-laptop.py &'';
   workspaceSetup = ''
   workspace 1:1 output eDP-1
   '';
