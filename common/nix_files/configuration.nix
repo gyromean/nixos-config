@@ -152,6 +152,8 @@ in
     ddcutil # komunikace s monitorem (nastaveni brightness)
     uxplay
     brightnessctl # nastaveni brightness na laptopu
+    dunst # potrebuje ho betterlockscreen
+    betterlockscreen
     # waybar:
     # --- SWAY PACKAGES ---
     pulseaudioFull # abych mohl nastavovat hlasitost pres pactl (pouzivam to v konfiguraci swaye)
@@ -328,6 +330,8 @@ in
           "${mod}+space" = "floating toggle";
           "${mod}+Shift+space" = "focus mode_toggle";
 
+          "${mod}+x" = ''mode "exit: [s]hutdown, [r]estart, [l]ock, sl[e]ep, l[o]gout"'';
+
           # tyhle keybinds se daji zjistit pres program `xev`
           "XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%";
           "XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%";
@@ -353,6 +357,17 @@ in
             "Return" = "mode default";
             "Escape" = "mode default";
             "${mod}+r" = "mode default";
+          };
+          "exit: [s]hutdown, [r]estart, [l]ock, sl[e]ep, l[o]gout" = {
+            "s" = ''exec "systemctl poweroff"'';
+            "r" = ''exec "systemctl reboot"'';
+            "l" = ''exec "i3-msg mode default; betterlockscreen -l"'';
+            "e" = ''exec "i3-msg mode default; systemctl suspend; betterlockscreen -l"'';
+            "o" = ''exec "i3-msg exit"'';
+
+            "Return" = "mode default";
+            "Escape" = "mode default";
+            "${mod}+x" = "mode default";
           };
         };
         window = {
