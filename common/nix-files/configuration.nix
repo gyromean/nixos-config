@@ -9,6 +9,7 @@ let
   my-python-packages = ps: with ps; [
     sympy
     requests
+    dbus-python # potrebuje ho instalator certifikatu na FIT eduroam
   ];
 in
 {
