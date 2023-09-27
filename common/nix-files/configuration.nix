@@ -251,7 +251,10 @@ in
     };
     libinput = {
       enable = true;
-      touchpad.naturalScrolling = true;
+      touchpad = {
+        naturalScrolling = true;
+        clickMethod = "clickfinger";
+      };
     };
   };
   
