@@ -10,6 +10,7 @@ let
     sympy
     requests
     dbus-python # potrebuje ho instalator certifikatu na FIT eduroam
+    beautifulsoup4
   ];
 in
 {
