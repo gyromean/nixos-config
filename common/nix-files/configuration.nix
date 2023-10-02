@@ -1070,7 +1070,12 @@ set show_hidden true
   };
 
   # ----- SETTINGS ENVIRONMENT ----- #
-  environment.variables.EDITOR = "nvim"; # nvim default editor; aby tohle zafungovalo, tak se musim relognout (nestaci `sudo nixos-rebuild switch`)
+  environment.variables = {
+    EDITOR = "nvim"; # nvim default editor; aby tohle zafungovalo, tak se musim relognout (nestaci `sudo nixos-rebuild switch`)
+    PATH = [
+      "/home/pavel/programy/path_links"
+    ];
+  };
 
 
 
