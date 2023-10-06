@@ -157,6 +157,8 @@ in
     brightnessctl # nastaveni brightness na laptopu
     dunst # potrebuje ho betterlockscreen
     betterlockscreen
+    libimobiledevice # pro kopirovani souboru z iPhone
+    ifuse # pro kopirovani souboru z iPhone
     # waybar:
     # --- SWAY PACKAGES ---
     pulseaudioFull # abych mohl nastavovat hlasitost pres pactl (pouzivam to v konfiguraci swaye)
@@ -228,6 +230,8 @@ in
 
   # konfigurace asi jde i takhle:
   #xdg.configFile."sway/config".text = '''';
+
+  services.usbmuxd.enable = true; # pro kopirovani souboru z iPhone
 
   # ----- i3 ----- # https://nixos.wiki/wiki/I3#Enabling
   environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw 
