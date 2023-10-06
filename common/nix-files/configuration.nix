@@ -158,6 +158,7 @@ in
     dunst # potrebuje ho betterlockscreen
     betterlockscreen
     rofi
+    fd # alternativa prikazu find
     libimobiledevice # pro kopirovani souboru z iPhone
     ifuse # pro kopirovani souboru z iPhone
     # waybar:
