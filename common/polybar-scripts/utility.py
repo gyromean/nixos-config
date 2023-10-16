@@ -7,10 +7,17 @@ colors = {
   'blue': '#ff88C0D0',
   'red': '#ffbf616a',
   'yellow': '#ffebcb8b',
+  'light-blue': '#1f88c0d0',
 }
 
 def set_color(color, data):
   return f'%{{F{colors[color]}}}' + data + '%{F-}'
+
+def set_background(color, data):
+  return f'%{{B{colors[color]}}}' + data + '%{B-}'
+
+def set_underline(color, data):
+  return f'%{{u{colors[color]}}}%{{+u}}' + data + '%{-u}'
 
 def distribute_icons(steps, icons):
   ret = [None for _ in range(steps)]
