@@ -12,6 +12,7 @@ let
     dbus-python # potrebuje ho instalator certifikatu na FIT eduroam
     beautifulsoup4
     blessed
+    i3ipc
   ];
 in
 {
