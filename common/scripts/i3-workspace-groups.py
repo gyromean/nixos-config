@@ -1,9 +1,29 @@
 #!/usr/bin/env python
 
-import subprocess, json, time, os, itertools
+import subprocess, json, time, os, itertools, sys
 from i3ipc import Connection
+sys.path.append('/home/pavel/.config/nixos-config/common/polybar-scripts/')
+from utility import set_color
 
 i3 = Connection()
+
+def set_output_raw(data):
+  print(f'setting output >{data}<')
+  return subprocess.run(['polybar-msg', 'action', 'i3-group', 'send', data]).returncode
+
+def set_output(active_group, group_count):
+  data = ' ' + set_color('blue', '󰍺') + set_color('foreground', f' {active_group} ')
+  if group_count > 1:
+    data += set_color('blue', f'(+{group_count - 1}) ')
+  set_output_raw(data)
+
+def refresh_polybar():
+  active_group = get_active_group()
+  groups = get_groups()
+  for name, num in groups.items():
+    if num == active_group:
+      set_output(name, len(groups))
+      return
 
 def rofi_query(options, use_nums=False):
   options_dict = {}
@@ -229,7 +249,7 @@ def cmd_rename_group(groups):
   del groups[group_name]
   save_groups(groups)
 
-def main():
+def show_menu():
   groups = get_groups()
   cmd = rofi_query(['󰍺 Select group', '󱄄 New group', '󰶐 Delete group', '󰨇 Move containers to different group', '󱋆 Rename group'])
   print(f'{cmd = }')
@@ -248,6 +268,14 @@ def main():
       return;
     case _:
       rofi_notification('Unknown option')
+  refresh_polybar()
+
+def main():
+  match sys.argv:
+    case [_, 'refresh-polybar']:
+      refresh_polybar()
+    case _:
+      show_menu()
 
 if __name__ == '__main__':
   main()

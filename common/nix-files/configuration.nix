@@ -447,6 +447,8 @@ for m in $(polybar --list-monitors | cut -d":" -f1); do
   ${machine.polybarBrightness}
   ${machine.polybarI3Workspaces}
 done
+
+python ~/.config/nixos-config/common/scripts/i3-workspace-groups.py refresh-polybar
 '';
     };
     xdg.configFile."polybar/config.ini".source = config.lib.file.mkOutOfStoreSymlink "/home/pavel/.config/nixos-config/common/dotfiles/polybar/config.ini";
