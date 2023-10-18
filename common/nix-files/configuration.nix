@@ -283,10 +283,10 @@ in
     home.stateVersion = "22.05";
 
     # ----- SETTINGS i3 -----
-    xsession.windowManager.i3 = let mod = "Mod4"; in {
+    xsession.windowManager.i3 = {
       enable = true;
-      config = {
-        modifier = mod;
+      config = rec {
+        modifier = "Mod4";
         terminal = "xfce4-terminal";
         startup = [
           { command = machine.monitorSetup; notification = false; } # nastavi monitory na spravny poradi a spravny refresh rate; `--dpi 96` nastavi scaling UI elementu, ruzny aplikace na to berou ohled (treba chrome)
@@ -298,55 +298,55 @@ in
           { command = "rm /tmp/i3-workspace-groups-*"; notification = false; }
         ];
         keybindings = lib.mkOptionDefault {
-          "${mod}+h" = "focus left";
-          "${mod}+j" = "focus down";
-          "${mod}+k" = "focus up";
-          "${mod}+l" = "focus right";
+          "${modifier}+h" = "focus left";
+          "${modifier}+j" = "focus down";
+          "${modifier}+k" = "focus up";
+          "${modifier}+l" = "focus right";
 
-          "${mod}+Shift+h" = "move left";
-          "${mod}+Shift+j" = "move down";
-          "${mod}+Shift+k" = "move up";
-          "${mod}+Shift+l" = "move right";
+          "${modifier}+Shift+h" = "move left";
+          "${modifier}+Shift+j" = "move down";
+          "${modifier}+Shift+k" = "move up";
+          "${modifier}+Shift+l" = "move right";
 
-          "${mod}+u" = ''exec --no-startup-id i3-msg workspace "$(i3-msg -t get_outputs | jq '.[] | .current_workspace' | tr -d '"' | fgrep ':1:')"'';
-          "${mod}+i" = ''exec --no-startup-id i3-msg workspace "$(i3-msg -t get_outputs | jq '.[] | .current_workspace' | tr -d '"' | fgrep ':2:')"'';
-          "${mod}+o" = ''exec --no-startup-id i3-msg workspace "$(i3-msg -t get_outputs | jq '.[] | .current_workspace' | tr -d '"' | fgrep ':3:')"'';
+          "${modifier}+u" = ''exec --no-startup-id i3-msg workspace "$(i3-msg -t get_outputs | jq '.[] | .current_workspace' | tr -d '"' | fgrep ':1:')"'';
+          "${modifier}+i" = ''exec --no-startup-id i3-msg workspace "$(i3-msg -t get_outputs | jq '.[] | .current_workspace' | tr -d '"' | fgrep ':2:')"'';
+          "${modifier}+o" = ''exec --no-startup-id i3-msg workspace "$(i3-msg -t get_outputs | jq '.[] | .current_workspace' | tr -d '"' | fgrep ':3:')"'';
 
-          "${mod}+Shift+u" = ''exec --no-startup-id i3-msg move container to workspace "$(i3-msg -t get_outputs | jq '.[] | .current_workspace' | tr -d '"' | fgrep ':1:')"'';
-          "${mod}+Shift+i" = ''exec --no-startup-id i3-msg move container to workspace "$(i3-msg -t get_outputs | jq '.[] | .current_workspace' | tr -d '"' | fgrep ':2:')"'';
-          "${mod}+Shift+o" = ''exec --no-startup-id i3-msg move container to workspace "$(i3-msg -t get_outputs | jq '.[] | .current_workspace' | tr -d '"' | fgrep ':3:')"'';
+          "${modifier}+Shift+u" = ''exec --no-startup-id i3-msg move container to workspace "$(i3-msg -t get_outputs | jq '.[] | .current_workspace' | tr -d '"' | fgrep ':1:')"'';
+          "${modifier}+Shift+i" = ''exec --no-startup-id i3-msg move container to workspace "$(i3-msg -t get_outputs | jq '.[] | .current_workspace' | tr -d '"' | fgrep ':2:')"'';
+          "${modifier}+Shift+o" = ''exec --no-startup-id i3-msg move container to workspace "$(i3-msg -t get_outputs | jq '.[] | .current_workspace' | tr -d '"' | fgrep ':3:')"'';
 
-          "${mod}+1" = ''exec --no-startup-id i3-msg workspace 1:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
-          "${mod}+2" = ''exec --no-startup-id i3-msg workspace 2:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
-          "${mod}+3" = ''exec --no-startup-id i3-msg workspace 3:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
-          "${mod}+4" = ''exec --no-startup-id i3-msg workspace 4:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
-          "${mod}+5" = ''exec --no-startup-id i3-msg workspace 5:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
-          "${mod}+6" = ''exec --no-startup-id i3-msg workspace 6:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
-          "${mod}+7" = ''exec --no-startup-id i3-msg workspace 7:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
-          "${mod}+8" = ''exec --no-startup-id i3-msg workspace 8:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
-          "${mod}+9" = ''exec --no-startup-id i3-msg workspace 9:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
-          "${mod}+0" = ''exec --no-startup-id i3-msg workspace 10:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
+          "${modifier}+1" = ''exec --no-startup-id i3-msg workspace 1:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
+          "${modifier}+2" = ''exec --no-startup-id i3-msg workspace 2:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
+          "${modifier}+3" = ''exec --no-startup-id i3-msg workspace 3:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
+          "${modifier}+4" = ''exec --no-startup-id i3-msg workspace 4:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
+          "${modifier}+5" = ''exec --no-startup-id i3-msg workspace 5:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
+          "${modifier}+6" = ''exec --no-startup-id i3-msg workspace 6:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
+          "${modifier}+7" = ''exec --no-startup-id i3-msg workspace 7:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
+          "${modifier}+8" = ''exec --no-startup-id i3-msg workspace 8:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
+          "${modifier}+9" = ''exec --no-startup-id i3-msg workspace 9:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
+          "${modifier}+0" = ''exec --no-startup-id i3-msg workspace 10:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
 
-          "${mod}+Shift+1" = ''exec --no-startup-id i3-msg move container to workspace 1:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
-          "${mod}+Shift+2" = ''exec --no-startup-id i3-msg move container to workspace 2:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
-          "${mod}+Shift+3" = ''exec --no-startup-id i3-msg move container to workspace 3:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
-          "${mod}+Shift+4" = ''exec --no-startup-id i3-msg move container to workspace 4:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
-          "${mod}+Shift+5" = ''exec --no-startup-id i3-msg move container to workspace 5:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
-          "${mod}+Shift+6" = ''exec --no-startup-id i3-msg move container to workspace 6:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
-          "${mod}+Shift+7" = ''exec --no-startup-id i3-msg move container to workspace 7:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
-          "${mod}+Shift+8" = ''exec --no-startup-id i3-msg move container to workspace 8:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
-          "${mod}+Shift+9" = ''exec --no-startup-id i3-msg move container to workspace 9:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
-          "${mod}+Shift+0" = ''exec --no-startup-id i3-msg move container to workspace 10:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
+          "${modifier}+Shift+1" = ''exec --no-startup-id i3-msg move container to workspace 1:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
+          "${modifier}+Shift+2" = ''exec --no-startup-id i3-msg move container to workspace 2:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
+          "${modifier}+Shift+3" = ''exec --no-startup-id i3-msg move container to workspace 3:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
+          "${modifier}+Shift+4" = ''exec --no-startup-id i3-msg move container to workspace 4:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
+          "${modifier}+Shift+5" = ''exec --no-startup-id i3-msg move container to workspace 5:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
+          "${modifier}+Shift+6" = ''exec --no-startup-id i3-msg move container to workspace 6:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
+          "${modifier}+Shift+7" = ''exec --no-startup-id i3-msg move container to workspace 7:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
+          "${modifier}+Shift+8" = ''exec --no-startup-id i3-msg move container to workspace 8:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
+          "${modifier}+Shift+9" = ''exec --no-startup-id i3-msg move container to workspace 9:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
+          "${modifier}+Shift+0" = ''exec --no-startup-id i3-msg move container to workspace 10:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
 
-          "${mod}+p" = ''exec python /home/pavel/.config/nixos-config/common/scripts/i3-workspace-groups.py'';
+          "${modifier}+p" = ''exec python /home/pavel/.config/nixos-config/common/scripts/i3-workspace-groups.py'';
 
-          "${mod}+q" = "kill";
-          "${mod}+n" = "splitv";
-          "${mod}+m" = "splith";
-          "${mod}+space" = "floating toggle";
-          "${mod}+Shift+space" = "focus mode_toggle";
+          "${modifier}+q" = "kill";
+          "${modifier}+n" = "splitv";
+          "${modifier}+m" = "splith";
+          "${modifier}+space" = "floating toggle";
+          "${modifier}+Shift+space" = "focus mode_toggle";
 
-          "${mod}+x" = ''mode "exit: [s]hutdown, [r]estart, [l]ock, sl[e]ep, l[o]gout"'';
+          "${modifier}+x" = ''mode "exit: [s]hutdown, [r]estart, [l]ock, sl[e]ep, l[o]gout"'';
 
           # tyhle keybinds se daji zjistit pres program `xev`
           "XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%";
@@ -372,7 +372,7 @@ in
 
             "Return" = "mode default";
             "Escape" = "mode default";
-            "${mod}+r" = "mode default";
+            "${modifier}+r" = "mode default";
           };
           "exit: [s]hutdown, [r]estart, [l]ock, sl[e]ep, l[o]gout" = {
             "s" = ''exec "systemctl poweroff"'';
@@ -383,7 +383,7 @@ in
 
             "Return" = "mode default";
             "Escape" = "mode default";
-            "${mod}+x" = "mode default";
+            "${modifier}+x" = "mode default";
           };
         };
         window = {
