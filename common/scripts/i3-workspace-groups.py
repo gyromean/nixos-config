@@ -233,12 +233,10 @@ def cmd_move_containers(groups): # move to active monitor in selected destinatio
       return
 
 def cmd_rename_group(groups):
-  code, group_name = rofi_query(list(groups))
-  if code == -1:
-    return
-  if code == -2:
-    rofi_notification(f'Unknown group {group_name}')
-    return
+  active_group = get_active_group()
+  for group_name, num in groups.items():
+    if num == active_group:
+      break
   code, new_group_name = rofi_query([])
   if code == -1 or new_group_name == group_name:
     return
@@ -251,7 +249,7 @@ def cmd_rename_group(groups):
 
 def show_menu():
   groups = get_groups()
-  cmd = rofi_query(['󰍺 Select group', '󱄄 New group', '󰶐 Delete group', '󰨇 Move containers to different group', '󱋆 Rename group'])
+  cmd = rofi_query(['󰍺 Select group', '󱄄 New group', '󰶐 Delete group', '󰨇 Move containers to different group', '󱋆 Rename group'], True)
   print(f'{cmd = }')
   match cmd:
     case (0, _): # select group
