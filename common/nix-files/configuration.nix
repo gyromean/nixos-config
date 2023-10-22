@@ -181,6 +181,7 @@ in
     nodePackages.pyright
     lua-language-server
     nodePackages.bash-language-server
+    ntfs3g
   ];
 
   # ----- FONTS -----
