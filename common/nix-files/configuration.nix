@@ -395,29 +395,39 @@ in
           inner = 10;
         };
         bars = []; # vypnout built-in i3 bar (misto nej pouzivam polybar)
-        colors = let focused = "#eceff4ff"; unfocused = "#4c566aff"; other = "#ff0000ff"; in { # nastavit obrysy oken (cervenou abych si ji vsiml kdyz se nekdy projevi)
+        colors = let focused = "#eceff4ff"; unfocused = "#4c566aff"; other = "#ff0000ff"; title_bright = "#88C0D0ff"; title_dark = "#2E3440ff"; in { # nastavit obrysy oken (cervenou abych si ji vsiml kdyz se nekdy projevi)
           focused = { # #rrggbbaa
-            border = focused; background = other; text = other; # border je to co se ukazuje pri resizovani mysi
+            border = focused; # border je to co se ukazuje pri resizovani mysi
+            background = title_bright;
+            text = title_dark;
             indicator = focused;
             childBorder = focused;
           };
           focusedInactive = {
-            border = focused; background = other; text = other;
+            border = unfocused;
+            background = title_dark;
+            text = title_bright;
             indicator = unfocused;
             childBorder = unfocused;
           };
           unfocused = {
-            border = focused; background = other; text = other;
+            border = unfocused;
+            background = title_dark;
+            text = title_bright;
             indicator = unfocused;
             childBorder = unfocused;
           };
           placeholder = {
-            border = focused; background = other; text = other;
+            border = other;
+            background = title_dark;
+            text = title_bright;
             indicator = other;
             childBorder = other;
           };
           urgent = {
-            border = focused; background = other; text = other;
+            border = other;
+            background = title_dark;
+            text = title_bright;
             indicator = other;
             childBorder = other;
           };
