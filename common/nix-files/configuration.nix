@@ -339,7 +339,8 @@ in
           "${modifier}+Shift+9" = ''exec --no-startup-id i3-msg move container to workspace 9:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
           "${modifier}+Shift+0" = ''exec --no-startup-id i3-msg move container to workspace 10:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
 
-          "${modifier}+p" = ''exec python /home/pavel/.config/nixos-config/common/scripts/i3-workspace-groups.py'';
+          "${modifier}+p" = ''exec python /home/pavel/.config/nixos-config/common/scripts/i3-workspace-groups.py select-group'';
+          "${modifier}+Shift+p" = ''exec python /home/pavel/.config/nixos-config/common/scripts/i3-workspace-groups.py'';
 
           "${modifier}+q" = "kill";
           "${modifier}+n" = "splitv";
