@@ -250,19 +250,19 @@ def cmd_rename_group(groups):
 def show_menu(cmd=None):
   groups = get_groups()
   if cmd is None:
-    cmd = rofi_query(['󰍺 Select group', '󱄄 New group', '󰶐 Delete group', '󰨇 Move containers to different group', '󱋆 Rename group'], True)
+    cmd = rofi_query(['󱄄 New group', '󰶐 Delete group', '󰨇 Move containers to different group', '󱋆 Rename group', '󰍺 Select group'], True)
   print(f'{cmd = }')
   match cmd:
-    case (0, _): # select group
-      cmd_select_group(groups)
-    case (1, _): # new group
+    case (0, _): # new group
       cmd_new_group(groups)
-    case (2, _): # delete group
+    case (1, _): # delete group
       cmd_delete_group(groups)
-    case (3, _): # move containers
+    case (2, _): # move containers
       cmd_move_containers(groups)
-    case (4, _): # rename group
+    case (3, _): # rename group
       cmd_rename_group(groups)
+    case (4, _): # select group
+      cmd_select_group(groups)
     case (-1, _):
       return;
     case _:
@@ -274,7 +274,7 @@ def main():
     case [_, 'refresh-polybar']:
       refresh_polybar()
     case [_, 'select-group']:
-      show_menu((0, None))
+      show_menu((4, None))
     case _:
       show_menu()
 
