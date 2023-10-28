@@ -182,6 +182,7 @@ in
     lua-language-server
     nodePackages.bash-language-server
     ntfs3g
+    inotify-tools # pro inotifywait
   ];
 
   # ----- FONTS -----
