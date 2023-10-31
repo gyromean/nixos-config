@@ -621,6 +621,7 @@ colorscheme nord
 hi! link TelescopeMatching Search
 hi! link TelescopePreviewLine Search
 hi String ctermfg=14 guifg=#8fbcbb
+hi Comment guifg=#677591
 
 " ----- SETS -----
 set nu rnu
@@ -639,6 +640,7 @@ set noswapfile " nebude se zakladat a pouzivat swap file
 set updatetime=100 " mimo jine se bude vim-gitgutter updatovat kazdych 100 ms
 set signcolumn=number " signs (z vim-gitgutter nebo lsp) se budou ukazovat ve sloupecku cisel misto tech cisel
 set noshowmode " nebude dola ukazovat v jakym jsem modu, protoze to stejne vidim v airline (diky tomu muzu pouzivat `print` z lua v insert modu a bude to vide)
+set termguicolors
 
 " ----- REBINDS -----
 let mapleader = " "
