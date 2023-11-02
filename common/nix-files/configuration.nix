@@ -13,6 +13,7 @@ let
     beautifulsoup4
     blessed
     i3ipc
+    numpy
   ];
 in
 {
