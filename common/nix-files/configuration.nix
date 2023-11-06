@@ -184,6 +184,7 @@ in
     nodePackages.bash-language-server
     ntfs3g
     inotify-tools # pro inotifywait
+    gnumake
   ];
 
   # ----- FONTS -----
