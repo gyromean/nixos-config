@@ -186,6 +186,7 @@ in
     inotify-tools # pro inotifywait
     gnumake
     neovide
+    openssl
   ];
 
   # ----- FONTS -----
