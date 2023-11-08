@@ -185,6 +185,7 @@ in
     ntfs3g
     inotify-tools # pro inotifywait
     gnumake
+    neovide
   ];
 
   # ----- FONTS -----
