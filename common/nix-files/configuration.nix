@@ -14,6 +14,7 @@ let
     blessed
     i3ipc
     numpy
+    pandas
   ];
 in
 {
