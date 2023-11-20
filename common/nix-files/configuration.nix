@@ -191,6 +191,7 @@ in
     gnumake
     neovide
     openssl
+    mindustry
   ];
 
   # ----- FONTS -----
