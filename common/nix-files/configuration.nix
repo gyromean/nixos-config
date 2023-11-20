@@ -16,6 +16,8 @@ let
     numpy
     pandas
     matplotlib
+    ipykernel
+    ipympl
   ];
 in
 {
@@ -458,9 +460,12 @@ ${machine.workspaceSetup}
         asvetliakov.vscode-neovim
         arcticicestudio.nord-visual-studio-code
         ms-python.python
+        ms-toolsai.jupyter
+        ms-toolsai.jupyter-renderers
       ];
       userSettings = {
         "workbench.colorTheme" = "Nord";
+        "jupyter.widgetScriptSources" = ["jsdelivr.com" "unpkg.com"];
       };
     };
 
