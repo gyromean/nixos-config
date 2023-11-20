@@ -15,6 +15,7 @@ let
     i3ipc
     numpy
     pandas
+    matplotlib
   ];
 in
 {
