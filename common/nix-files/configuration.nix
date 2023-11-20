@@ -94,6 +94,13 @@ in
     #media-session.enable = true;
   };
 
+  # enable bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+  services.blueman.enable = true;
+
   programs.zsh.enable = true; # musi to byt enabled i tady i presto ze to mam primarne v home-manageru, jinak to nemuzu nastavit jako home shell
 
   # Enable touchpad support (enabled default in most desktopManager).
