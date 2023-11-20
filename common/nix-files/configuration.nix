@@ -450,6 +450,20 @@ ${machine.workspaceSetup}
 '';
     };
 
+    # ----- SETTINGS VSCODE ------
+    programs.vscode = {
+      enable = true;
+      package = pkgs.vscodium;
+      extensions = with pkgs.vscode-extensions; [
+        asvetliakov.vscode-neovim
+        arcticicestudio.nord-visual-studio-code
+        ms-python.python
+      ];
+      userSettings = {
+        "workbench.colorTheme" = "Nord";
+      };
+    };
+
     # ----- SETTINGS POLYBAR ------
     services.polybar = {
       enable = true;
