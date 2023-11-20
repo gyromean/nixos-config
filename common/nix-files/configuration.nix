@@ -199,6 +199,7 @@ in
     neovide
     openssl
     mindustry
+    ncdu
   ];
 
   # ----- FONTS -----
