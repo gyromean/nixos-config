@@ -359,10 +359,12 @@ in
 
           "${modifier}+p" = ''exec python /home/pavel/.config/nixos-config/common/scripts/i3-workspace-groups.py select-group'';
           "${modifier}+Shift+p" = ''exec python /home/pavel/.config/nixos-config/common/scripts/i3-workspace-groups.py'';
+          "${modifier}+s" = "exec --no-startup-id flameshot gui";
 
           "${modifier}+q" = "kill";
           "${modifier}+n" = "splitv";
           "${modifier}+m" = "splith";
+          "${modifier}+w" = "layout toggle stacked tabbed";
           "${modifier}+space" = "floating toggle";
           "${modifier}+Shift+space" = "focus mode_toggle";
 
