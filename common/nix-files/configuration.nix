@@ -101,6 +101,8 @@ in
   };
   services.blueman.enable = true;
 
+  services.upower.enable = true; # vypsat moznosti pres `upower -e`, potom stav treba pres `upower -i /org/freedesktop/UPower/devices/battery_BAT0`
+
   programs.zsh.enable = true; # musi to byt enabled i tady i presto ze to mam primarne v home-manageru, jinak to nemuzu nastavit jako home shell
 
   # Enable touchpad support (enabled default in most desktopManager).
