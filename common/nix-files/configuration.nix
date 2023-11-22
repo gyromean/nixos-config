@@ -365,8 +365,8 @@ in
           "${modifier}+n" = "splitv";
           "${modifier}+m" = "splith";
           "${modifier}+w" = "layout toggle stacked tabbed";
-          "${modifier}+space" = "floating toggle";
-          "${modifier}+Shift+space" = "focus mode_toggle";
+          "${modifier}+z" = "focus mode_toggle";
+          "${modifier}+Shift+z" = "floating toggle";
 
           "${modifier}+x" = ''mode "exit: [s]hutdown, [r]estart, [l]ock, sl[e]ep, l[o]gout"'';
 
