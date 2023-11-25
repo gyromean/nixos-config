@@ -479,6 +479,7 @@ ${machine.workspaceSetup}
       userSettings = {
         "workbench.colorTheme" = "Nord";
         "jupyter.widgetScriptSources" = ["jsdelivr.com" "unpkg.com"];
+        "git.openRepositoryInParentFolders" = "never";
       };
     };
 
