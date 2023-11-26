@@ -18,6 +18,7 @@ let
     matplotlib
     ipykernel
     ipympl
+    pycryptodome
   ];
 in
 {
