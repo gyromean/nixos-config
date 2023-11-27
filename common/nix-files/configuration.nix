@@ -203,6 +203,7 @@ in
     openssl
     mindustry
     ncdu
+    nmap
   ];
 
   # ----- FONTS -----
