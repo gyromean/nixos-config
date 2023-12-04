@@ -44,6 +44,16 @@ in
   # Enable networking
   networking.networkmanager.enable = true;
 
+  networking.interfaces.virtbr = {
+    useDHCP = true;
+  };
+  networking.bridges = {
+    "virtbr" = {
+      interfaces = [ machine.defaultInterface ];
+      # interfaces = [];
+    };
+  };
+
   # Set your time zone.
   time.timeZone = "Europe/Prague";
 
@@ -102,6 +112,9 @@ in
   };
   services.blueman.enable = true;
 
+  virtualisation.libvirtd.enable = true;
+  programs.dconf.enable = true; # virt-manager requires dconf to remember settings
+
   services.upower.enable = true; # vypsat moznosti pres `upower -e`, potom stav treba pres `upower -i /org/freedesktop/UPower/devices/battery_BAT0`
 
   programs.zsh.enable = true; # musi to byt enabled i tady i presto ze to mam primarne v home-manageru, jinak to nemuzu nastavit jako home shell
@@ -114,7 +127,7 @@ in
   users.users.pavel = {
     isNormalUser = true;
     description = "Pavel Holy";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
     shell = pkgs.zsh; # nastavit zsh jako vychozi shell
     packages = with pkgs; [
       # web browsers:
@@ -204,6 +217,7 @@ in
     mindustry
     ncdu
     nmap
+    virt-manager
   ];
 
   # ----- FONTS -----
@@ -465,6 +479,14 @@ exec --no-startup-id xfce4-terminal --title __scratchpad
 
 ${machine.workspaceSetup}
 '';
+    };
+
+    # ----- SETTINGS VIRTMANAGER ------
+    dconf.settings = {
+      "org/virt-manager/virt-manager/connections" = {
+        autoconnect = ["qemu:///system"];
+        uris = ["qemu:///system"];
+      };
     };
 
     # ----- SETTINGS VSCODE ------

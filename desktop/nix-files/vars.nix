@@ -8,4 +8,5 @@
   workspace 1:2:0 output DP-4
   workspace 1:3:0 output DP-2
   '';
+  defaultInterface = "enp8s0";
 }
