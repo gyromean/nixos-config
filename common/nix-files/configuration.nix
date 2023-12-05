@@ -219,6 +219,7 @@ in
     nmap
     virt-manager
     gdbgui
+    vscode-extensions.vadimcn.vscode-lldb
   ];
 
   # ----- FONTS -----
@@ -675,6 +676,8 @@ python ~/.config/nixos-config/common/scripts/i3-workspace-groups.py refresh-poly
           luasnip
           cmp-path # autocomplete pathu
         lspsaga-nvim-original
+        nvim-dap
+        nvim-dap-ui
       ];
       extraConfig = ''
 source /home/pavel/.config/nixos-config/common/dotfiles/nvim/init.vim

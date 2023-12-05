@@ -84,3 +84,4 @@ luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/lsps
 luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/indent-blankline.lua
 luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/treesitter-context.lua
 luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/telescope.lua
+luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/dap.lua
