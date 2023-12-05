@@ -218,6 +218,7 @@ in
     ncdu
     nmap
     virt-manager
+    gdbgui
   ];
 
   # ----- FONTS -----
