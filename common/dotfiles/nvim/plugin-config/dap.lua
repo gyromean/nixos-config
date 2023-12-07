@@ -1,9 +1,14 @@
 local dap = require('dap')
 
+local port = 13000;
+
 dap.adapters.codelldb = {
   type = 'server',
-  host = '127.0.0.1',
-  port = 13000,
+  port = port,
+  executable = {
+    command = '/nix/store/mx92n3l9ngv29da5vkznf6xc9mlnhlvx-vscode-extension-vadimcn-vscode-lldb-1.9.2/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb',
+    args = {"--port", port},
+  }
 }
 
 dap.configurations.c = {
