@@ -1,6 +1,6 @@
 set formatoptions-=cro " vypnuti komentaru na dalsich radkach kdyz dam enter
-nnoremap <buffer><leader>d :call CDebugPrint()<CR>
-xnoremap <buffer><leader>d :call CDebugPrint()<CR>
+nnoremap <buffer><leader>p :call CDebugPrint()<CR>
+xnoremap <buffer><leader>p :call CDebugPrint()<CR>
 
 function! CDebugPrint() range
   let selector = input('Selector: ')
