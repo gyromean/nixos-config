@@ -220,6 +220,7 @@ in
     virt-manager
     gdbgui
     vscode-extensions.vadimcn.vscode-lldb
+    file
   ];
 
   # ----- FONTS -----
