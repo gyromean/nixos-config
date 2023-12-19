@@ -76,7 +76,15 @@ nnoremap <C-N> nzz
 " keybinds pro DAP
 nnoremap <leader>dt <cmd>lua require'dapui'.toggle()<CR>
 nnoremap <leader>db <cmd>lua require'dap'.toggle_breakpoint()<CR>
-nnoremap <leader>dc <cmd>lua require'dap'.continue()<CR>
+noremap <F1> <cmd>lua require'dap'.step_over()<CR>
+noremap <F2> <cmd>lua require'dap'.step_into()<CR>
+noremap <F3> <cmd>lua require'dap'.step_out()<CR>
+noremap <F4> <cmd>lua require'dap'.continue()<CR>
+noremap <F5> <cmd>lua require'dap'.restart()<CR>
+noremap <F6> <cmd>lua require'dap'.terminate()<CR>
+noremap <F7> <cmd>lua require'dap.ui.widgets'.centered_float(require'dap.ui.widgets'.frames)<CR>
+xnoremap <F8> "xy \| <cmd> lua require'dapui'.eval(vim.fn.getreg("x"))<CR>
+nnoremap <F8> <cmd> lua require'dapui'.eval(vim.fn.expand("<cword>"))<CR>
 
 " ----- PLUGIN SETTINGS -----
 luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/commentary.lua
