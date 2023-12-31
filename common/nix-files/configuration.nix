@@ -19,6 +19,7 @@ let
     ipykernel
     ipympl
     pycryptodome
+    pyqt6
   ];
 in
 {
