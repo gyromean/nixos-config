@@ -1,13 +1,22 @@
 " ----- COLORSCHEME -----
-let g:airline_powerline_fonts = 1
-let g:nord_italic = 1
-let g:nord_italic_comments = 1 " bacha, oba tyhle italicy musi byt jeste pred zavolanim `colorscheme nord`
 colorscheme nord
 " nastavit highlight na stejnou barvu jako Search (barvy muzu zobrazit pres `:hi`)
 hi! link TelescopeMatching Search
 hi! link TelescopePreviewLine Search
-hi String ctermfg=14 guifg=#8fbcbb
-hi Comment guifg=#677591
+hi @String guifg=#8fbcbb
+hi @Comment guifg=#677591
+hi VertSplit guifg=#434c5e
+hi LspDiagnosticsDefaultWarning guifg=#ebcb8b
+hi LspDiagnosticsVirtualTextWarning guifg=#ebcb8b
+hi LspDiagnosticsUnderlineWarning gui=undercurl guisp=#ebcb8b
+hi LspDiagnosticsFloatingWarning guifg=#ebcb8b
+hi LspDiagnosticsSignWarning guifg=#ebcb8b
+" disablovani semantic highlight tokenu od lsp klienta, viz `:help lsp-semantic-highlight`
+lua << EOF
+for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
+  vim.api.nvim_set_hl(0, group, {})
+end
+EOF
 
 " ----- SETS -----
 set nu rnu
@@ -97,3 +106,4 @@ luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/inde
 luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/treesitter-context.lua
 luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/telescope.lua
 luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/dap.lua
+luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/lualine.lua

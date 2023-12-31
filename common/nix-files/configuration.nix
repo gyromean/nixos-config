@@ -655,9 +655,8 @@ python ~/.config/nixos-config/common/scripts/i3-workspace-groups.py refresh-poly
       enable = true;
       vimAlias = true;
       plugins = with pkgs.vimPlugins; [
-        vim-airline
-        vim-airline-themes
-        nord-vim
+        lualine-nvim
+        nord-nvim
         nightfox-nvim
         nvim-treesitter.withAllGrammars # viz https://nixos.wiki/wiki/Treesitter
         indent-blankline-nvim # sedy cary na indentation a newline ikona na konci
