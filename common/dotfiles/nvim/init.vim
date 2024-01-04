@@ -85,6 +85,7 @@ nnoremap <C-N> nzz
 " keybinds pro DAP
 nnoremap <leader>dt <cmd>lua require'dapui'.toggle()<CR>
 nnoremap <leader>db <cmd>lua require'dap'.toggle_breakpoint()<CR>
+nnoremap <leader>dB <cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
 noremap <F1> <cmd>lua require'dap'.step_over()<CR>
 noremap <F2> <cmd>lua require'dap'.step_into()<CR>
 noremap <F3> <cmd>lua require'dap'.step_out()<CR>
