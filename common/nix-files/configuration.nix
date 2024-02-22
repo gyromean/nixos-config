@@ -31,8 +31,15 @@ in
     ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
+  # boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub = {
+    enable = true;
+    device = "nodev";
+    useOSProber = true;
+    efiSupport = true;
+  };
+
   hardware.i2c.enable = true; # potrebuju pro ovladani brightness monitoru, viz https://www.ddcutil.com/i2c_permissions/ a https://discourse.nixos.org/t/how-to-enable-ddc-brightness-control-i2c-permissions/20800/8
 
   networking.hostName = machine.hostname; # Define your hostname.
