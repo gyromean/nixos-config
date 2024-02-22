@@ -237,6 +237,8 @@ in
     graphviz
     dos2unix # prevedeni CRLF na LF
     bvi # binary vi, alternativa hexeditu
+    man-pages # man pages treba pro Ceckovy veci
+    man-pages-posix # idk taky nejaky man pages
   ];
 
   # ----- FONTS -----
