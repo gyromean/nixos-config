@@ -692,6 +692,7 @@ python ~/.config/nixos-config/common/scripts/i3-workspace-groups.py refresh-poly
         lspsaga-nvim-original
         nvim-dap
         nvim-dap-ui
+        nvim-dap-virtual-text
       ];
       extraConfig = ''
 source /home/pavel/.config/nixos-config/common/dotfiles/nvim/init.vim
