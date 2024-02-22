@@ -681,6 +681,7 @@ python ~/.config/nixos-config/common/scripts/i3-workspace-groups.py refresh-poly
         vim-commentary # keybind na toggle comment radku
         vim-surround # keybinds na zmenu uvozovek, zavorek, tagu, ...
         vim-easymotion # rychla navigace v textu
+        nvim-ts-autotag
         lsp-zero-nvim
         # dependencies pro lsp-zero-nvim:
           nvim-lspconfig

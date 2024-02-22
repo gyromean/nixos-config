@@ -108,3 +108,4 @@ luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/tree
 luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/telescope.lua
 luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/dap.lua
 luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/lualine.lua
+luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/ts-autotag.lua
