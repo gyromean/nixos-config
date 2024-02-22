@@ -230,6 +230,7 @@ in
     virt-manager
     gdbgui
     file
+    kotlin
     qmk # firmware pro custom klavesnice
   ];
 
