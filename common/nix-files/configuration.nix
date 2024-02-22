@@ -806,6 +806,7 @@ font:
         nx = "cd ~/.config/nixos-config";
         con = "cd ~/.config/nixos-config/common/nix-files";
         nv = "neovide --multigrid";
+        g = "git";
       };
       # ty '' pred $ to escapujou v nixu, do relanyho .zshrc se nepropisou
       initExtra = ''
