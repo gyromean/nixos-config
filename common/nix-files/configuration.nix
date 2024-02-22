@@ -231,6 +231,7 @@ in
     gdbgui
     vscode-extensions.vadimcn.vscode-lldb
     file
+    qmk # firmware pro custom klavesnice
   ];
 
   # ----- FONTS -----
@@ -278,6 +279,8 @@ in
     driSupport = true; # NVIDIA
     driSupport32Bit = true;
   };
+
+  hardware.keyboard.qmk.enable = true;
 
   programs.light.enable = true; # aby ve Swayi sel menit brightess a volume https://nixos.wiki/wiki/Sway
 
