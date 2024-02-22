@@ -236,6 +236,7 @@ in
     qmk # firmware pro custom klavesnice
     graphviz
     dos2unix # prevedeni CRLF na LF
+    bvi # binary vi, alternativa hexeditu
   ];
 
   # ----- FONTS -----
