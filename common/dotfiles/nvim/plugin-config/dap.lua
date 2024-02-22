@@ -6,7 +6,7 @@ dap.adapters.codelldb = {
   type = 'server',
   port = port,
   executable = {
-    command = '/nix/store/mx92n3l9ngv29da5vkznf6xc9mlnhlvx-vscode-extension-vadimcn-vscode-lldb-1.9.2/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb',
+    command = '/nix/store/cyi60l3x73z6vb0f7qlfldwmpx0jfqmw-vscode-extension-vadimcn-vscode-lldb-1.9.2/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb',
     args = {"--port", port},
   }
 }

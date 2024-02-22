@@ -229,7 +229,6 @@ in
     nmap
     virt-manager
     gdbgui
-    vscode-extensions.vadimcn.vscode-lldb
     file
     qmk # firmware pro custom klavesnice
   ];
@@ -515,6 +514,7 @@ ${machine.workspaceSetup}
         ms-python.python
         ms-toolsai.jupyter
         ms-toolsai.jupyter-renderers
+        vadimcn.vscode-lldb
       ];
       userSettings = {
         "workbench.colorTheme" = "Nord";
