@@ -348,7 +348,7 @@ in
       enable = true;
       config = rec {
         modifier = "Mod4";
-        terminal = "xfce4-terminal";
+        terminal = "wezterm";
         startup = [
           { command = machine.monitorSetup; notification = false; } # nastavi monitory na spravny poradi a spravny refresh rate; `--dpi 96` nastavi scaling UI elementu, ruzny aplikace na to berou ohled (treba chrome)
           { command = "feh --bg-fill ~/.config/nixos-config/wallpaper.png"; notification = false; } # nastaveni wallapper na startupu
@@ -932,6 +932,11 @@ ScrollingUnlimited=TRUE
     xdg.configFile."ranger/rc.conf".text = ''
 set show_hidden true
 '';
+
+    programs.wezterm = {
+      enable = true;
+    };
+    xdg.configFile."wezterm/wezterm.lua".source = config.lib.file.mkOutOfStoreSymlink "/home/pavel/.config/nixos-config/common/dotfiles/wezterm/wezterm.lua";
   };
 
   # ----- SETTINGS ENVIRONMENT ----- #
