@@ -795,6 +795,7 @@ font:
         airplay = "uxplay -nh -n PC -s 1920x1080@120 -fps 120";
         nx = "cd ~/.config/nixos-config";
         con = "cd ~/.config/nixos-config/common/nix-files";
+        nv = "neovide --multigrid";
       };
       # ty '' pred $ to escapujou v nixu, do relanyho .zshrc se nepropisou
       initExtra = ''
