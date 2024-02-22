@@ -231,6 +231,7 @@ in
     gdbgui
     file
     kotlin
+    evtest # ziskani prichozich eventu z klavesnice/mysi
     qmk # firmware pro custom klavesnice
   ];
 
