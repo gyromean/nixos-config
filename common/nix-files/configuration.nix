@@ -234,6 +234,7 @@ in
     evtest # ziskani prichozich eventu z klavesnice/mysi
     manim # program pro tvorbu animaci z pythoniho zdrojaku
     qmk # firmware pro custom klavesnice
+    graphviz
   ];
 
   # ----- FONTS -----
