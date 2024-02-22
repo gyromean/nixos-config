@@ -235,6 +235,7 @@ in
     manim # program pro tvorbu animaci z pythoniho zdrojaku
     qmk # firmware pro custom klavesnice
     graphviz
+    dos2unix # prevedeni CRLF na LF
   ];
 
   # ----- FONTS -----
