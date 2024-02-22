@@ -239,6 +239,7 @@ in
     bvi # binary vi, alternativa hexeditu
     man-pages # man pages treba pro Ceckovy veci
     man-pages-posix # idk taky nejaky man pages
+    moreutils # dalsi veci, treba `errno -l` vypise, co ktery errno znamena
   ];
 
   # ----- FONTS -----
