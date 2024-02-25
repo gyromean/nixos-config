@@ -3,6 +3,8 @@ local cmp_select_opts = {behavior = cmp.SelectBehavior.Select}
 cmp.setup({
   sources = {
     { name = 'path' },
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
   },
   mapping = {
     ['<CR>'] = cmp.config.disable,
@@ -12,5 +14,6 @@ cmp.setup({
 
     ['<C-j>'] = cmp.mapping.select_next_item(),
     ['<C-k>'] = cmp.mapping.select_prev_item(),
-  }
+    ['<C-y>'] = cmp.mapping.confirm(),
+  },
 })
