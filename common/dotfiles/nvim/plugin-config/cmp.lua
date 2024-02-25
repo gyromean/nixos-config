@@ -1,6 +1,9 @@
 local cmp = require('cmp')
 local cmp_select_opts = {behavior = cmp.SelectBehavior.Select}
 cmp.setup({
+  sources = {
+    { name = 'path' },
+  },
   mapping = {
     ['<CR>'] = cmp.config.disable,
     ['<C-P>'] = cmp.config.disable, -- for some reason to musi byt velky P
