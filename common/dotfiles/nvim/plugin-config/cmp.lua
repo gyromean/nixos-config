@@ -1,11 +1,16 @@
 local cmp = require('cmp')
-local cmp_select_opts = {behavior = cmp.SelectBehavior.Select}
+
 cmp.setup({
-  sources = {
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+    end,
+  },
+  sources = cmp.config.sources({
     { name = 'path' },
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
-  },
+  }),
   mapping = {
     ['<CR>'] = cmp.config.disable,
     ['<C-P>'] = cmp.config.disable, -- for some reason to musi byt velky P

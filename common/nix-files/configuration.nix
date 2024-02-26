@@ -701,6 +701,7 @@ python ~/.config/nixos-config/common/scripts/i3-workspace-groups.py refresh-poly
           nvim-cmp
           cmp-nvim-lsp
           luasnip
+          cmp_luasnip
           cmp-path # autocomplete pathu
         lspsaga-nvim
         nvim-dap
