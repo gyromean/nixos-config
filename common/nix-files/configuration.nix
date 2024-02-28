@@ -244,6 +244,7 @@ in
     man-pages-posix # idk taky nejaky man pages
     moreutils # dalsi veci, treba `errno -l` vypise, co ktery errno znamena
     (hiPrio parallel) # viz https://discourse.nixos.org/t/why-is-parallel-overwritten-by-moreutils-s-parallel/36979/2
+    pavucontrol
   ];
 
   # ----- FONTS -----
