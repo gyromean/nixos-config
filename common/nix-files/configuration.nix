@@ -92,8 +92,8 @@ in
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "us";
-    xkbVariant = "";
+    xkb.layout = "us";
+    xkb.variant = "";
   };
 
   # Enable CUPS to print documents.
@@ -335,7 +335,7 @@ in
   # ----- AVAHI ----- (pro resolvovalni .local domen)
   services.avahi = {
     enable = true;
-    nssmdns = true;
+    nssmdns4 = true;
     publish = {
       enable = true;
       addresses = true;
