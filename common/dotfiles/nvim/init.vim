@@ -118,3 +118,4 @@ luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/dap.
 luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/lualine.lua
 luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/ts-autotag.lua
 luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/luasnip.lua
+luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/todo-comments.lua
