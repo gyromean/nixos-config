@@ -247,6 +247,7 @@ in
     pavucontrol # audio
     qpwgraph # audio
     ffmpeg
+    dust # neco jako windirstat
   ];
 
   # ----- FONTS -----
