@@ -248,6 +248,7 @@ in
     qpwgraph # audio
     ffmpeg
     dust # neco jako windirstat
+    tldr # tldr man pages
   ];
 
   # ----- FONTS -----
