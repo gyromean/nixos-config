@@ -246,6 +246,7 @@ in
     (hiPrio parallel) # viz https://discourse.nixos.org/t/why-is-parallel-overwritten-by-moreutils-s-parallel/36979/2
     pavucontrol # audio
     qpwgraph # audio
+    ffmpeg
   ];
 
   # ----- FONTS -----
