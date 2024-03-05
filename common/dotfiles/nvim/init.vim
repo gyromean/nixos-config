@@ -59,8 +59,10 @@ xnoremap <leader>p "_dP
 noremap <leader>d "_d
 " otevre Undotree, do nej preskocim jako do jinyho okna, takze <C-h>
 nnoremap <leader>u :UndotreeToggle<CR>
-nnoremap <C-f> :Telescope find_files<CR>
-nnoremap <C-g> :Telescope live_grep<CR>
+nnoremap <leader>tf :Telescope find_files<CR>
+nnoremap <leader>tg :Telescope live_grep<CR>
+nnoremap <leader>tk :Telescope keymaps<CR>
+nnoremap <leader>tt :Telescope treesitter<CR>
 " easymotion prebindovat na [ a ]
 nnoremap [[ <Plug>(easymotion-F)
 nnoremap ]] <Plug>(easymotion-f)
