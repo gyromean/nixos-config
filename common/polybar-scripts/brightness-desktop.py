@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import sys, subprocess, asyncio, glob, socket
-from utility import set_color, distribute_icons
+from utility import set_color, choose_icon
 
 monitor_bus_map = { # pri pouziti bus number je to rychlejsi
   'DP-0': '6',
@@ -10,7 +10,6 @@ monitor_bus_map = { # pri pouziti bus number je to rychlejsi
 }
 
 icon_pool = ['󰃞', '󰃟', '󰃠']
-icons_distributed = distribute_icons(21, icon_pool)
 
 polybar_pid = sys.argv[1]
 monitor_bus_number = monitor_bus_map[sys.argv[2]]
@@ -24,7 +23,7 @@ def set_output_raw(data):
 
 def set_output(color, value):
   icon_index = value // 5
-  data = ' ' + set_color(color, icons_distributed[icon_index]) + set_color('foreground', f' {value}% ')
+  data = ' ' + set_color(color, choose_icon(icon_pool, 0, 20, icon_index)) + set_color('foreground', f' {value}% ')
   return set_output_raw(data)
 
 async def socket_reader_client(reader, writer):

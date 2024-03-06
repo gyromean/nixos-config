@@ -2,11 +2,11 @@
 
 import asyncio, subprocess
 from enum import Enum
-from utility import set_color, distribute_icons
+from utility import set_color, choose_icon
 
 socket_name = '/tmp/polybar_eyetimer.sock'
-icon_pool = ['󰝦', '󰪞', '󰪟', '󰪠', '󰪡', '󰪢', '󰪣', '󰪤']
-icon_idle = icon_pool[0]
+icon_pool = ['󰪤', '󰪣', '󰪢', '󰪡', '󰪠', '󰪟', '󰪞', '󰝦']
+icon_idle = icon_pool[-1]
 icon_finished = '󰪥'
 finished_signal_period = 2
 
@@ -67,7 +67,6 @@ async def main():
   current_state = states.idle
   index_default = 20
   index = 20
-  icons = distribute_icons(index_default, icon_pool)[::-1]
   asyncio.create_task(socket_reader_server())
   await q.put('reset')
   while True:
@@ -75,7 +74,7 @@ async def main():
     match(cmd):
       case 'sleep':
         if index > 0:
-          active_sleeper = asyncio.create_task(print_timer(index, icons[index - 1]))
+          active_sleeper = asyncio.create_task(print_timer(index, choose_icon(icon_pool, 1, index_default, index)))
           index -= 1
         else:
           await q.put('red')
@@ -96,7 +95,7 @@ async def main():
       case 'start':
         if current_state != states.counting_down:
           close_coros()
-          index = 20
+          index = index_default
           await q.put('sleep')
           current_state = states.counting_down
 

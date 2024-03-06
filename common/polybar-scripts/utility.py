@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+from math import floor
+
 colors = {
   'background': '#ff4c566a',
   'foreground': '#ffeceff4',
@@ -19,14 +21,20 @@ def set_background(color, data):
 def set_underline(color, data):
   return f'%{{u{colors[color]}}}%{{+u}}' + data + '%{-u}'
 
-def distribute_icons(steps, icons):
-  ret = [None for _ in range(steps)]
-  i_ret: int = 0
-  i_icons = 0
-  while i_ret < steps:
-    if i_ret < (i_icons + 1) * steps / len(icons):
-      ret[i_ret] = icons[i_icons]
-      i_ret += 1
-    else:
-      i_icons += 1
-  return ret
+# for example, for values icons = 'abcd', start = 0, end = 9 and request = 0..9 and prefer_periodic set to:
+# True, algorithm produces  aaa bb ccc dd
+# False, algorithm produces aaa bb cc ddd (prefers symmetric)
+# None, algorithm sets prefer_periodic to True if the number of icons is even, False if it's odd
+def choose_icon(icons, start, end, request, prefer_periodic=True): # TODO: odstranit debug parametr
+  if request <= start:
+    return icons[0]
+  if request >= end:
+    return icons[-1]
+  request -= start
+  interval_size = end - start
+  if prefer_periodic == None:
+    prefer_periodic = len(icons) % 2 == 0
+  if prefer_periodic:
+    interval_size += 1
+  index = floor(request / (interval_size / len(icons)))
+  return icons[index]

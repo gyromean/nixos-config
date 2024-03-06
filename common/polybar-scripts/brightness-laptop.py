@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 
 import subprocess, asyncio
-from utility import set_color, distribute_icons
+from utility import set_color, choose_icon
 
 icon_pool = ['󰃞', '󰃟', '󰃠']
-icons_distributed = distribute_icons(21, icon_pool)
 socket_name = '/tmp/polybar_brightness.sock'
 
 q = asyncio.Queue()
@@ -15,7 +14,7 @@ def set_output_raw(data):
 
 def set_output(value):
   icon_index = value // 5
-  data = ' ' + set_color('blue', icons_distributed[icon_index]) + set_color('foreground', f' {value}% ')
+  data = ' ' + set_color('blue', choose_icon(icon_pool, 0, 20, icon_index)) + set_color('foreground', f' {value}% ')
   return set_output_raw(data)
 
 async def socket_reader_client(reader, writer):
