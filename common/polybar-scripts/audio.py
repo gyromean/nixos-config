@@ -43,7 +43,7 @@ class Impl(PolybarIPC):
     output = comp_proc.stdout.decode()
     connected_lines = list(filter(lambda line: line.strip().startswith('Connected'), output.splitlines()))
     is_connected = len(connected_lines) and connected_lines[0].endswith('yes')
-    return is_connected
+    return bool(is_connected)
 
   # NOTE: for monitoring bluetooth connection, not used currently
   # TODO: implement monitoring whether bluetooth headphones are in range
