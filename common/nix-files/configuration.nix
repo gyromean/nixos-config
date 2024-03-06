@@ -422,9 +422,9 @@ in
           "${modifier}+x" = ''mode "exit: [s]hutdown, [r]estart, [l]ock, sl[e]ep, l[o]gout"'';
 
           # tyhle keybinds se daji zjistit pres program `xev`
-          "XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%";
-          "XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%";
-          "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle";
+          "XF86AudioRaiseVolume" = "exec --no-startup-id echo up | /run/current-system/sw/bin/nc -w0 -U /tmp/polybar_audio.sock";
+          "XF86AudioLowerVolume" = "exec --no-startup-id echo down | /run/current-system/sw/bin/nc -w0 -U /tmp/polybar_audio.sock";
+          "XF86AudioMute" = "exec --no-startup-id echo left | /run/current-system/sw/bin/nc -w0 -U /tmp/polybar_audio.sock";
           "XF86AudioPlay" = "exec --no-startup-id playerctl play-pause";
           "XF86AudioNext" = "exec --no-startup-id playerctl next";
           "XF86AudioPrev" = "exec --no-startup-id playerctl previous";
@@ -558,6 +558,7 @@ for m in $(polybar --list-monitors | cut -d":" -f1); do
 done
 
 python ~/.config/nixos-config/common/polybar-scripts/eyetimer.py &
+python ~/.config/nixos-config/common/polybar-scripts/audio.py &
 
 python ~/.config/nixos-config/common/scripts/i3-workspace-groups.py refresh-polybar
 '';
