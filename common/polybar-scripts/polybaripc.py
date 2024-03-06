@@ -58,7 +58,8 @@ class PolybarIPC:
   async def push_cmd(self, cmd):
     await self.q.put(cmd)
 
-  def update(self, data):
+  def update(self, data, use_spaces=True):
+    if use_spaces: data = ' ' + data + ' '
     payload = ['polybar-msg']
     if self.polybar_pid: payload.extend(['-p', self.polybar_pid])
     payload.extend(['action', self.module_name])
