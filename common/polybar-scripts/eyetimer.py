@@ -87,10 +87,9 @@ async def main():
         active_color = asyncio.create_task(finished_normal())
 
       case 'reset':
-        if current_state != states.idle:
-          close_coros()
-          set_output(' ' + set_color('blue', icon_idle) + set_color('foreground', ' -- '))
-          current_state = states.idle
+        close_coros()
+        set_output(' ' + set_color('blue', icon_idle) + set_color('foreground', ' -- '))
+        current_state = states.idle
 
       case 'start':
         if current_state != states.counting_down:

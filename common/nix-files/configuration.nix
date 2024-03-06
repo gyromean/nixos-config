@@ -550,14 +550,14 @@ ${machine.workspaceSetup}
 PATH=$PATH:/run/current-system/sw/bin
 rm /tmp/polybar_*.sock
 
-python ~/.config/nixos-config/common/polybar-scripts/eyetimer.py &
-
 for m in $(polybar --list-monitors | cut -d":" -f1); do
   MONITOR=$m polybar --reload example &
   polybar_pid="$!"
   ${machine.polybarBrightness}
   ${machine.polybarI3Workspaces}
 done
+
+python ~/.config/nixos-config/common/polybar-scripts/eyetimer.py &
 
 python ~/.config/nixos-config/common/scripts/i3-workspace-groups.py refresh-polybar
 '';
