@@ -37,7 +37,7 @@ a.create_task(a.example_task('Runs immediately after calling a.run()'))
 a.create_task(a.example_task('Runs 2 seconds after calling a.run()'), 2)
 input('All tasks start after callling a.run(), pres enter...')
 a.blinker_task = None
-a.run('test') # pass initial cmd to be enqued, can be ommited
+a.run('test') # pass initial cmd to be enqued, can be omitted
 
 # example configuration in common/dotfiles/polybar/config.ini
 '''
