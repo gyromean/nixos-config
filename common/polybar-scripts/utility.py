@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from datetime import datetime
 from math import floor
 
 colors = {
@@ -38,3 +39,6 @@ def choose_icon(icons, start, end, request, prefer_periodic=True): # TODO: odstr
     interval_size += 1
   index = floor(request / (interval_size / len(icons)))
   return icons[index]
+
+def log_print(data):
+  print(f'[{datetime.now()}] {data}')
