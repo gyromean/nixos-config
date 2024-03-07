@@ -30,9 +30,17 @@ def get_mute(sink='@DEFAULT_SINK@'):
   mute_str = output.split(': ')[1]
   return False if mute_str == 'no' else True
 
+def wait_wireplumber_running(sink='@DEFAULT_SINK@'):
+  while True:
+    comp_proc = subprocess.run(['wpctl', 'get-volume', str(sink)], capture_output=True)
+    output = comp_proc.stdout.decode().strip()
+    if output != '':
+      return
+
 class Impl(PolybarIPC):
   def __init__(self, headphones_mac, *args, **kwargs):
     super().__init__(*args, **kwargs)
+    wait_wireplumber_running()
     self.headphones_mac = headphones_mac
     self.volume = get_volume() // 5 * 5
     self.mute = get_mute()
