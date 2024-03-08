@@ -53,8 +53,6 @@ in
   networking.networkmanager.enable = true;
   systemd.services.NetworkManager-wait-online.enable = false;
 
-  boot.kernelPackages = pkgs.linuxPackages_6_5; # 6.7.3 dela problem s nvidia driverem, viz https://forums.developer.nvidia.com/t/linux-6-7-3-545-29-06-550-40-07-error-modpost-gpl-incompatible-module-nvidia-ko-uses-gpl-only-symbol-rcu-read-lock/280908/10
-
   networking.interfaces.virtbr = {
     useDHCP = true;
   };
