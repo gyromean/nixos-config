@@ -247,6 +247,7 @@ in
     ffmpeg
     dust # neco jako windirstat
     tldr # tldr man pages
+    texliveFull
   ];
 
   # ----- FONTS -----
