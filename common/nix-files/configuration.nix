@@ -714,6 +714,7 @@ python ~/.config/nixos-config/common/scripts/i3-workspace-groups.py refresh-poly
         nvim-dap-ui
         nvim-dap-virtual-text
         todo-comments-nvim
+        vimtex
       ];
       extraConfig = ''
 source /home/pavel/.config/nixos-config/common/dotfiles/nvim/init.vim
