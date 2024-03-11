@@ -248,6 +248,7 @@ in
     dust # neco jako windirstat
     tldr # tldr man pages
     texliveFull
+    zathura # lightweight pdf viewer s vim keybinds
   ];
 
   # ----- FONTS -----
