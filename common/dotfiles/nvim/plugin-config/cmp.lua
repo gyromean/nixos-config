@@ -11,6 +11,10 @@ cmp.setup({
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
   }),
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
   mapping = {
     ['<CR>'] = cmp.config.disable,
     ['<C-P>'] = cmp.config.disable, -- for some reason to musi byt velky P
@@ -19,6 +23,7 @@ cmp.setup({
 
     ['<C-j>'] = cmp.mapping.select_next_item(),
     ['<C-k>'] = cmp.mapping.select_prev_item(),
-    ['<C-y>'] = cmp.mapping.confirm(),
+    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+    ['<C-Space>'] = cmp.mapping.complete {},
   },
 })
