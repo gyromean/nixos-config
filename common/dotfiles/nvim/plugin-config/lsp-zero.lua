@@ -20,7 +20,14 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set('i', '<C-x>', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
 end)
 
-lsp.setup_servers({'rnix', 'clangd', 'pyright', 'lua_ls', 'bashls'})
+lsp.setup_servers({
+  'rnix',
+  'clangd',
+  'pyright',
+  'lua_ls',
+  'bashls',
+  'texlab',
+})
 
 lsp.setup()
 

@@ -250,6 +250,7 @@ in
     texliveFull
     zathura # lightweight pdf viewer s vim keybinds
     xdotool # simuluje keyboard input a mouse activity (je potreba kvuli interakci zathura a vimtex pluginu)
+    texlab
   ];
 
   # ----- FONTS -----
