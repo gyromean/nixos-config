@@ -63,6 +63,8 @@ nnoremap <leader>tf :Telescope find_files<CR>
 nnoremap <leader>tg :Telescope live_grep<CR>
 nnoremap <leader>tk :Telescope keymaps<CR>
 nnoremap <leader>tt :Telescope treesitter<CR>
+nnoremap <leader>tc :Telescope commands<CR>
+nnoremap <leader>th :Telescope help_tags<CR>
 " easymotion prebindovat na [ a ]
 nnoremap [[ <Plug>(easymotion-F)
 nnoremap ]] <Plug>(easymotion-f)
