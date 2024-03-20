@@ -692,7 +692,6 @@ python ~/.config/nixos-config/common/scripts/i3-workspace-groups.py refresh-poly
         nord-nvim
         nightfox-nvim
         nvim-treesitter.withAllGrammars # viz https://nixos.wiki/wiki/Treesitter
-        indent-blankline-nvim # sedy cary na indentation a newline ikona na konci
         undotree
         nvim-treesitter-context
         telescope-nvim

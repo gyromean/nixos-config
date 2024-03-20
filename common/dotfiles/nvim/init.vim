@@ -16,6 +16,9 @@ lua << EOF
 for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
   vim.api.nvim_set_hl(0, group, {})
 end
+
+vim.opt.list = true
+vim.opt.listchars:append "eol:↴"
 EOF
 
 " ----- SETS -----
@@ -118,7 +121,6 @@ luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/tree
 luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/lsp-zero.lua
 luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/cmp.lua
 luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/lspsaga.lua
-luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/indent-blankline.lua
 luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/treesitter-context.lua
 luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/telescope.lua
 luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/dap.lua
