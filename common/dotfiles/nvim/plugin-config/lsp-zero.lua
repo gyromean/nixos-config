@@ -21,7 +21,7 @@ lsp.on_attach(function(client, bufnr)
 end)
 
 lsp.setup_servers({
-  'rnix',
+  'nixd',
   'clangd',
   'pyright',
   'lua_ls',

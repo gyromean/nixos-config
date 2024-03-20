@@ -215,7 +215,7 @@ in
     #(xdg-desktop-portal-gnome.overrideAttrs (oldAttrs: rec { version = "43.1"; }))
     wmctrl # na ziskani aktualniho workspace, pouzivam to v i3 configuraci
     # nvim lsp servers
-    rnix-lsp # nix
+    nixd # nix language server
     clang-tools
     nodePackages.pyright
     lua-language-server
@@ -225,7 +225,6 @@ in
     gnumake
     neovide
     openssl
-    mindustry
     ncdu
     nmap
     virt-manager
@@ -738,7 +737,7 @@ source /home/pavel/.config/nixos-config/common/dotfiles/nvim/init.vim
     # ----- SETTINGS ZSH -----
     programs.zsh = { # shell
       enable = true;
-      enableAutosuggestions = false;
+      autosuggestion.enable = false;
       syntaxHighlighting.enable = true;
       history.share = false;
       oh-my-zsh = {
