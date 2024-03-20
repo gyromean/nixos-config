@@ -775,7 +775,7 @@ source /home/pavel/.config/nixos-config/common/dotfiles/nvim/init.vim
         x = "xdg-open &>/dev/null";
         n = "(nemo . &>/dev/null &)";
         airplay = "uxplay -nh -n PC -s 1920x1080@120 -fps 120";
-        nv = "neovide --multigrid";
+        nv = "neovide";
         g = "git";
       };
       # ty '' pred $ to escapujou v nixu, do relanyho .zshrc se nepropisou
