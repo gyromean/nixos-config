@@ -23,7 +23,7 @@ In this temporary shell call:
 git clone git@github.com:gyromean/qmk-config.git ~/.config/nixos-config
 ```
 
-Now we need to properly link the repo files.
+Now we need to properly link the repo files:
 
 Firstly, remove the current configuration and link this one:
 ```bash
@@ -46,17 +46,17 @@ Finally, restart the system.
 
 ### Setting up ssh keys
 
-Call
+Call:
 ```bash
 ssh-keygen
 ```
-The newly generated keys are stored in `~/.ssh`. The public key (`id_rsa.pub`) can now be upload to github or gitlab.
+The newly generated keys are stored in `~/.ssh`. The public key (`id_rsa.pub`) can now be uploaded to github or gitlab.
 
 ## Rebuilding system
 The two primary commands:
 ```bash
-sudo nixos-rebuild switch # adds new generation to grub, meaning next time you boot the changes are used (many of the changes take affect immediately, but not all)
-sudo nixos-rebuild test # does not add this to grub, meaning after rebooting the effects of this command no longer exist
+sudo nixos-rebuild switch # adds the new generation to grub, meaning next time you boot the changes are used (many of the changes take affect immediately, but not all)
+sudo nixos-rebuild test # does not add the new generation to grub, meaning after rebooting the effects of this command no longer exist
 ```
 
 ## Updating packages
@@ -67,9 +67,9 @@ sudo nix-channel --update
 After that, rebuild system as described in the previous section.
 
 ## Upgrading system
-Switch to new NixOS and Home Manager channels. In this guide we use the unstable channel, so this step does not apply to us.
+Switch to new NixOS and Home Manager channels. In this guide we use the unstable channel which is always the newest, so we do not have to worry about this step.
 
-Finally, rebuild system with the `--upgrade` flag, i.e.:
+Then rebuild system with the `--upgrade` flag, i.e.:
 ```bash
 sudo nixos-rebuild switch --upgrade
 ```
@@ -77,7 +77,7 @@ sudo nixos-rebuild switch --upgrade
 ## Freeing up space
 
 ### Delete old generations
-This deletes all generations except this one and no longer used packages:
+This deletes all unused packages and all generations (except the newest):
 ```bash
 sudo nix-collect-garbage -d
 ```
