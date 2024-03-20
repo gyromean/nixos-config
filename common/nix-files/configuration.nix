@@ -135,6 +135,7 @@ in
       devices = builtins.removeAttrs devices [ machine.device ];
       folders = {
         "Sync" = shareFolder "/home/pavel/sync";
+        "School" = shareFolder "/home/pavel/skola";
       };
     };
   };
