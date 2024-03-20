@@ -22,6 +22,21 @@ vim.opt.listchars:append "eol:↴"
 
 if vim.g.neovide then -- only executes inside neovide
   vim.g.neovide_floating_shadow = false
+  vim.g.neovide_scale_factor = 1.0 -- see https://neovide.dev/faq.html#how-can-i-dynamically-change-the-scale-at-runtime
+  local change_scale_factor = function(delta)
+    vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+    vim.cmd'redraw!' -- without this the rescale will not be applied until some further user input which causes neovim to redraw
+  end
+  vim.keymap.set("n", "<C-=>", function()
+    change_scale_factor(1.25)
+  end)
+  vim.keymap.set("n", "<C-->", function()
+    change_scale_factor(1/1.25)
+  end)
+  vim.keymap.set("n", "<C-0>", function()
+    vim.g.neovide_scale_factor = 1.0
+    change_scale_factor(1)
+  end)
 end
 EOF
 
