@@ -9,5 +9,4 @@
   workspace 1:3:0 output DP-2
   '';
   defaultInterface = "enp8s0";
-  device = "desktop";
 }

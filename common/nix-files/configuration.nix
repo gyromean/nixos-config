@@ -116,13 +116,13 @@ in
 
   services.syncthing = let
     devices = {
-      desktop = { id = "UDT2VMQ-ZO3ADZK-3S4PKYD-KACHGD2-E4H7S6C-CNIN7GZ-OEFD25L-X3IR3QN"; };
-      laptop = { id = "PAWMAPS-NBWXQMH-GYQF2UU-JRKHTEP-4ENC3BN-FNJYRUJ-QZ2HO5H-DBL4DAG"; };
+      pavelpc = { id = "UDT2VMQ-ZO3ADZK-3S4PKYD-KACHGD2-E4H7S6C-CNIN7GZ-OEFD25L-X3IR3QN"; };
+      pavellt = { id = "PAWMAPS-NBWXQMH-GYQF2UU-JRKHTEP-4ENC3BN-FNJYRUJ-QZ2HO5H-DBL4DAG"; };
     };
     shareFolder = (path: {
       path = path;
       versioning.type = "trashcan";
-      devices = lib.attrsets.mapAttrsToList (name: value: name) (builtins.removeAttrs devices [ machine.device ]);
+      devices = lib.attrsets.mapAttrsToList (name: value: name) (builtins.removeAttrs devices [ machine.hostname ]);
     });
   in {
     enable = true;
@@ -132,7 +132,7 @@ in
     overrideDevices = true;     # overrides any devices added or deleted through the WebUI
     overrideFolders = true;     # overrides any folders added or deleted through the WebUI
     settings = {
-      devices = builtins.removeAttrs devices [ machine.device ];
+      devices = builtins.removeAttrs devices [ machine.hostname ];
       folders = {
         "Sync" = shareFolder "/home/pavel/sync";
         "School" = shareFolder "/home/pavel/skola";
