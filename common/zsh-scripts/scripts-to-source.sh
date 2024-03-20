@@ -79,3 +79,21 @@ f()
   find_cmd="find $fzf_dir 2>/dev/null"
   FZF_DEFAULT_COMMAND="$find_cmd" fzf
 }
+
+# change directory to one of the predefined locations
+j()
+{
+  if [ $# -eq 0 ]; then
+    echo 'Usage: j DIR_NAME'
+    return
+  fi
+  cmd="$1"
+  case "$cmd" in
+    'nx') dest=$HOME'/.config/nixos-config/';;
+    'con') dest=$HOME'/.config/nixos-config/common/nix-files/';;
+    'vim') dest=$HOME'/.config/nixos-config/common/dotfiles/nvim/';;
+    'ps') dest=$HOME'/.config/nixos-config/common/polybar-scripts/';;
+    *) echo Unknown destination "$cmd"...; return;;
+  esac
+  cd "$dest"
+}

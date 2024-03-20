@@ -750,8 +750,6 @@ source /home/pavel/.config/nixos-config/common/dotfiles/nvim/init.vim
         x = "xdg-open &>/dev/null";
         n = "(nemo . &>/dev/null &)";
         airplay = "uxplay -nh -n PC -s 1920x1080@120 -fps 120";
-        nx = "cd ~/.config/nixos-config";
-        con = "cd ~/.config/nixos-config/common/nix-files";
         nv = "neovide --multigrid";
         g = "git";
       };
