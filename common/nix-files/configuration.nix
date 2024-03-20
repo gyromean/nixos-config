@@ -116,8 +116,8 @@ in
 
   services.syncthing = let
     devices = {
-      # desktop = { id = ""; }; # TODO: dodelat
-      # laptop = { id = ""; }; # TODO: dodelat
+      desktop = { id = "UDT2VMQ-ZO3ADZK-3S4PKYD-KACHGD2-E4H7S6C-CNIN7GZ-OEFD25L-X3IR3QN"; };
+      laptop = { id = "PAWMAPS-NBWXQMH-GYQF2UU-JRKHTEP-4ENC3BN-FNJYRUJ-QZ2HO5H-DBL4DAG"; };
     };
     shareFolder = (path: {
       path = path;
@@ -128,11 +128,11 @@ in
     enable = true;
     user = "pavel";
     dataDir = "/home/pavel/sync";
-    configDir = "/home/pavel/Documents/.config/syncthing";
+    configDir = "/home/pavel/.config/syncthing";
     overrideDevices = true;     # overrides any devices added or deleted through the WebUI
     overrideFolders = true;     # overrides any folders added or deleted through the WebUI
     settings = {
-      devices = devices;
+      devices = builtins.removeAttrs devices [ machine.device ];
       folders = {
         "Sync" = shareFolder "/home/pavel/sync";
       };
