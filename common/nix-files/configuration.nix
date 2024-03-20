@@ -114,6 +114,31 @@ in
     #media-session.enable = true;
   };
 
+  services.syncthing = let
+    devices = {
+      # desktop = { id = ""; }; # TODO: dodelat
+      # laptop = { id = ""; }; # TODO: dodelat
+    };
+    shareFolder = (path: {
+      path = path;
+      versioning.type = "trashcan";
+      devices = lib.attrsets.mapAttrsToList (name: value: name) (builtins.removeAttrs devices [ machine.device ]);
+    });
+  in {
+    enable = true;
+    user = "pavel";
+    dataDir = "/home/pavel/sync";
+    configDir = "/home/pavel/Documents/.config/syncthing";
+    overrideDevices = true;     # overrides any devices added or deleted through the WebUI
+    overrideFolders = true;     # overrides any folders added or deleted through the WebUI
+    settings = {
+      devices = devices;
+      folders = {
+        "Sync" = shareFolder "/home/pavel/sync";
+      };
+    };
+  };
+
   # enable bluetooth
   hardware.bluetooth = {
     enable = true;

@@ -7,4 +7,5 @@
   workspace 1:1:0 output eDP-1
   '';
   defaultInterface = "wlp1s0";
+  device = "laptop";
 }
