@@ -19,6 +19,10 @@ end
 
 vim.opt.list = true
 vim.opt.listchars:append "eol:↴"
+
+if vim.g.neovide then -- only executes inside neovide
+  vim.g.neovide_floating_shadow = false
+end
 EOF
 
 " ----- SETS -----
