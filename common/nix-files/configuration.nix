@@ -559,7 +559,6 @@ ${machine.workspaceSetup}
         ms-python.python
         ms-toolsai.jupyter
         ms-toolsai.jupyter-renderers
-        vadimcn.vscode-lldb
       ];
       userSettings = {
         "workbench.colorTheme" = "Nord";
