@@ -115,21 +115,21 @@ nnoremap <C-N> nzz
 nnoremap <leader>dt <cmd>lua require'dapui'.toggle()<CR>
 nnoremap <leader>db <cmd>lua require'dap'.toggle_breakpoint()<CR>
 nnoremap <leader>dB <cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
-" RAISE-s
-noremap <F9> <cmd>lua require'dap'.step_over()<CR>
-" RAISE-d
-noremap <F10> <cmd>lua require'dap'.step_into()<CR>
 " RAISE-e (nemuzu F11, protoze to catchuje xfce4-terminal)
 noremap <F4> <cmd>lua require'dap'.step_out()<CR>
-" RAISE-a
-noremap <F8> <cmd>lua require'dap'.continue()<CR>
 " RAISE-r
 noremap <F5> <cmd>lua require'dap'.restart()<CR>
 " RAISE-t
 noremap <F6> <cmd>lua require'dap'.terminate()<CR>
-" RAISE-esc
+" RAISE-1
 noremap <F7> <cmd>lua require'dap.ui.widgets'.centered_float(require'dap.ui.widgets'.frames)<CR>
-" RAISE-g
+" RAISE-2
+noremap <F8> <cmd>lua require'dap'.continue()<CR>
+" RAISE-3
+noremap <F9> <cmd>lua require'dap'.step_over()<CR>
+" RAISE-4
+noremap <F10> <cmd>lua require'dap'.step_into()<CR>
+" RAISE-6
 xnoremap <F12> "xy \| <cmd> lua require'dapui'.eval(vim.fn.getreg("x"))<CR>
 nnoremap <F12> <cmd> lua require'dapui'.eval(vim.fn.expand("<cword>"))<CR>
 
