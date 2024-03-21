@@ -1,28 +1,36 @@
 local dap = require('dap')
 
-local port = 13000;
-
-dap.adapters.codelldb = {
-  type = 'server',
-  port = port,
-  executable = {
-    command = '/nix/store/cyi60l3x73z6vb0f7qlfldwmpx0jfqmw-vscode-extension-vadimcn-vscode-lldb-1.9.2/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb',
-    args = {"--port", port},
-  }
+dap.adapters.gdb = {
+  type = "executable",
+  command = "gdb",
+  args = { "-i", "dap" }
 }
 
-dap.configurations.c = {
+dap.configurations.cpp = {
   {
-    name = "Launch file",
-    type = "codelldb",
+    name = "Launch",
+    type = "gdb",
     request = "launch",
     program = function()
-      return vim.fn.input('Bruhh xD Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+      if vim.g.dap_selected_program then
+        return vim.g.dap_selected_program
+      end
+      vim.g.dap_selected_program = vim.fn.input('Executable (without args): ', vim.fn.getcwd() .. '/', 'file')
+      return vim.g.dap_selected_program
     end,
-    cwd = '${workspaceFolder}',
-    stopOnEntry = false,
+    args = function()
+      if vim.g.dap_selected_program_args then
+        return vim.g.dap_selected_program_args
+      end
+      vim.g.dap_selected_program_args = vim.fn.input('Args: ')
+      return vim.g.dap_selected_program_args
+    end,
+    cwd = "${workspaceFolder}",
+    stopAtBeginningOfMainSubprogram = false,
   },
 }
+
+dap.configurations.c = dap.configurations.cpp;
 
 require("dapui").setup({
     controls = {

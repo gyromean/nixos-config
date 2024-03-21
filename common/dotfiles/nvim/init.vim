@@ -133,6 +133,15 @@ noremap <F10> <cmd>lua require'dap'.step_into()<CR>
 xnoremap <F12> "xy \| <cmd> lua require'dapui'.eval(vim.fn.getreg("x"))<CR>
 nnoremap <F12> <cmd> lua require'dapui'.eval(vim.fn.expand("<cword>"))<CR>
 
+lua << EOF
+  vim.api.nvim_create_user_command('DapResetExecutable', function()
+    vim.g.dap_selected_program = nil
+  end, { nargs = 0 })
+  vim.api.nvim_create_user_command('DapResetArgs', function()
+    vim.g.dap_selected_program_args = nil
+  end, { nargs = 0 })
+EOF
+
 " ----- PLUGIN SETTINGS -----
 luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/commentary.lua
 luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/easymotion.lua
