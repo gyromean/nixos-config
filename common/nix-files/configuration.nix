@@ -292,6 +292,7 @@ in
     zathura # lightweight pdf viewer s vim keybinds
     xdotool # simuluje keyboard input a mouse activity (je potreba kvuli interakci zathura a vimtex pluginu)
     texlab # LSP for LaTeX
+    httpie # alternative to curl
   ];
 
   # ----- FONTS -----
