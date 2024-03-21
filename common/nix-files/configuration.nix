@@ -115,10 +115,26 @@ in
   };
 
   services.syncthing = let
-    devices = {
-      pavelpc = { id = "UDT2VMQ-ZO3ADZK-3S4PKYD-KACHGD2-E4H7S6C-CNIN7GZ-OEFD25L-X3IR3QN"; };
-      pavellt = { id = "PAWMAPS-NBWXQMH-GYQF2UU-JRKHTEP-4ENC3BN-FNJYRUJ-QZ2HO5H-DBL4DAG"; };
-    };
+    devices =
+      (builtins.listToAttrs
+        (builtins.map
+          (path: let
+            vars = import path;
+            in { name = vars.hostname; value = { id = vars.syncthingId; }; }
+          )
+          (builtins.filter
+            (path: builtins.pathExists path)
+            (lib.attrsets.mapAttrsToList
+              (path: type: "/home/pavel/.config/nixos-config/" + path + "/nix-files/vars.nix")
+              (lib.attrsets.filterAttrs
+                (name: type: type == "directory")
+                (builtins.readDir /home/pavel/.config/nixos-config)
+              )
+            )
+          )
+        )
+      );
+
     shareFolder = (path: {
       path = path;
       versioning.type = "trashcan";

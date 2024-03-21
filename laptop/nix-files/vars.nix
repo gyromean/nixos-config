@@ -7,4 +7,5 @@
   workspace 1:1:0 output eDP-1
   '';
   defaultInterface = "wlp1s0";
+  syncthingId = "PAWMAPS-NBWXQMH-GYQF2UU-JRKHTEP-4ENC3BN-FNJYRUJ-QZ2HO5H-DBL4DAG";
 }

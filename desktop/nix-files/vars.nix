@@ -9,4 +9,5 @@
   workspace 1:3:0 output DP-2
   '';
   defaultInterface = "enp8s0";
+  syncthingId = "UDT2VMQ-ZO3ADZK-3S4PKYD-KACHGD2-E4H7S6C-CNIN7GZ-OEFD25L-X3IR3QN";
 }
