@@ -156,3 +156,4 @@ luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/luas
 luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/todo-comments.lua
 luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/vimtex.lua
 luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/gitgutter.lua
+luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/harpoon.lua
