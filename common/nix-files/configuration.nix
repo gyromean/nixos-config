@@ -924,6 +924,9 @@ set show_hidden true
       enable = true;
     };
     xdg.configFile."wezterm/wezterm.lua".source = config.lib.file.mkOutOfStoreSymlink "/home/pavel/.config/nixos-config/common/dotfiles/wezterm/wezterm.lua";
+
+    # ----- SETTINGS ZATHURA -----
+    xdg.configFile."zathura".source = config.lib.file.mkOutOfStoreSymlink "/home/pavel/.config/nixos-config/common/dotfiles/zathura";
   };
 
   # ----- SETTINGS ENVIRONMENT ----- #
