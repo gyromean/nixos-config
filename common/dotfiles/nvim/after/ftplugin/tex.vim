@@ -20,6 +20,8 @@ nmap <leader>ll <Plug>(vimtex-compile)
 nmap <leader>lv <Plug>(vimtex-view)
 nmap <leader>li <Plug>(vimtex-info)
 nmap <leader>lt <Plug>(vimtex-toc-open)
+nmap <leader>lc <Plug>(vimtex-clean)
+nmap <leader>lC <Plug>(vimtex-clean-full)
 
 imap <C-]> <Plug>(vimtex-delim-close)
 
