@@ -155,3 +155,4 @@ luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/ts-a
 luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/luasnip.lua
 luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/todo-comments.lua
 luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/vimtex.lua
+luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/gitgutter.lua
