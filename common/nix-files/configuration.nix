@@ -28,6 +28,7 @@ in
       /etc/nixos/hardware-configuration.nix
       /etc/nixos/machine/nix-files/settings.nix
       <home-manager/nixos>
+      ./symlink-dotfiles.nix
     ];
 
   # Bootloader.
@@ -607,7 +608,6 @@ python ~/.config/nixos-config/common/polybar-scripts/audio.py &
 python ~/.config/nixos-config/common/scripts/i3-workspace-groups.py refresh-polybar
 '';
     };
-    xdg.configFile."polybar/config.ini".source = config.lib.file.mkOutOfStoreSymlink "/home/pavel/.config/nixos-config/common/dotfiles/polybar/config.ini";
 
     # ----- SETTINGS PICOM -----
     services.picom = {
@@ -764,13 +764,11 @@ python ~/.config/nixos-config/common/scripts/i3-workspace-groups.py refresh-poly
 source /home/pavel/.config/nixos-config/common/dotfiles/nvim/init.vim
 '';
     };
-    xdg.configFile."nvim/after".source = config.lib.file.mkOutOfStoreSymlink "/home/pavel/.config/nixos-config/common/dotfiles/nvim/after";
 
     # ----- SETTIGNS ALACRITTY -----
     programs.alacritty = {
       enable = true;
     };
-    xdg.configFile."alacritty/alacritty.toml".source = config.lib.file.mkOutOfStoreSymlink "/home/pavel/.config/nixos-config/common/dotfiles/alacritty/alacritty.toml";
 
     # ----- SETTINGS TMUX -----
     programs.tmux = {
@@ -920,11 +918,6 @@ ScrollingUnlimited=TRUE
     xdg.configFile."ranger/rc.conf".text = ''
 set show_hidden true
 '';
-
-    xdg.configFile."wezterm/wezterm.lua".source = config.lib.file.mkOutOfStoreSymlink "/home/pavel/.config/nixos-config/common/dotfiles/wezterm/wezterm.lua";
-
-    # ----- SETTINGS ZATHURA -----
-    xdg.configFile."zathura".source = config.lib.file.mkOutOfStoreSymlink "/home/pavel/.config/nixos-config/common/dotfiles/zathura";
   };
 
   # ----- SETTINGS ENVIRONMENT ----- #
