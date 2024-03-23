@@ -93,6 +93,7 @@ j()
     'con') dest=$HOME'/.config/nixos-config/common/nix-files/';;
     'vim') dest=$HOME'/.config/nixos-config/common/dotfiles/nvim/';;
     'ps') dest=$HOME'/.config/nixos-config/common/polybar-scripts/';;
+    'dot') dest=$HOME'/.config/nixos-config/common/dotfiles/';;
     'km') dest=$HOME'/qmk_firmware/keyboards/lily58/keymaps/gyromean';;
     *) echo Unknown destination "$cmd"...; return;;
   esac
