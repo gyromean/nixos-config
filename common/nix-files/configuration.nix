@@ -293,6 +293,7 @@ in
     xdotool # simuluje keyboard input a mouse activity (je potreba kvuli interakci zathura a vimtex pluginu)
     texlab # LSP for LaTeX
     httpie # alternative to curl
+    wezterm # terminal emulator
   ];
 
   # ----- FONTS -----
@@ -920,9 +921,6 @@ ScrollingUnlimited=TRUE
 set show_hidden true
 '';
 
-    programs.wezterm = {
-      enable = true;
-    };
     xdg.configFile."wezterm/wezterm.lua".source = config.lib.file.mkOutOfStoreSymlink "/home/pavel/.config/nixos-config/common/dotfiles/wezterm/wezterm.lua";
 
     # ----- SETTINGS ZATHURA -----
