@@ -28,6 +28,13 @@ lspconfig.pyright.setup({})
 lspconfig.lua_ls.setup({})
 lspconfig.bashls.setup({})
 lspconfig.texlab.setup({})
+lspconfig.ltex.setup({
+  settings = {
+    ltex = {
+      language = "en-US";
+    },
+  },
+})
 
 lsp_zero.set_sign_icons({ -- musi se volat az po lsp.setup()
   error = '◆',
