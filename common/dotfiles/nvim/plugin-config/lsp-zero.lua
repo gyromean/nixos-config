@@ -1,9 +1,11 @@
-local lsp = require('lsp-zero').preset({
+local lspconfig = require('lspconfig')
+
+local lsp_zero = require('lsp-zero').preset({
   name = 'recommended',
   set_lsp_keymaps = false
 })
 
-lsp.on_attach(function(client, bufnr)
+lsp_zero.on_attach(function(client, bufnr)
   local opts = {buffer = bufnr}
 
   vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
@@ -20,18 +22,14 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set('i', '<C-x>', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
 end)
 
-lsp.setup_servers({
-  'nixd',
-  'clangd',
-  'pyright',
-  'lua_ls',
-  'bashls',
-  'texlab',
-})
+lspconfig.nixd.setup({})
+lspconfig.clangd.setup({})
+lspconfig.pyright.setup({})
+lspconfig.lua_ls.setup({})
+lspconfig.bashls.setup({})
+lspconfig.texlab.setup({})
 
-lsp.setup()
-
-lsp.set_sign_icons({ -- musi se volat az po lsp.setup()
+lsp_zero.set_sign_icons({ -- musi se volat az po lsp.setup()
   error = '◆',
   warn = '▲',
   hint = '■',
