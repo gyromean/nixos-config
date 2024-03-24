@@ -12,7 +12,7 @@
         )
         [
           "polybar"
-          "nvim/after"
+          "nvim"
           "alacritty"
           "wezterm"
           "zathura"

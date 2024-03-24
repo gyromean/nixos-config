@@ -760,9 +760,6 @@ python ~/.config/nixos-config/common/scripts/i3-workspace-groups.py refresh-poly
         vimtex
         harpoon2
       ];
-      extraConfig = ''
-source /home/pavel/.config/nixos-config/common/dotfiles/nvim/init.vim
-'';
     };
 
     # ----- SETTIGNS ALACRITTY -----
