@@ -12,6 +12,7 @@ hi LspDiagnosticsUnderlineWarning gui=undercurl guisp=#ebcb8b
 hi LspDiagnosticsFloatingWarning guifg=#ebcb8b
 hi LspDiagnosticsSignWarning guifg=#ebcb8b
 " disablovani semantic highlight tokenu od lsp klienta, viz `:help lsp-semantic-highlight`
+let mapleader = " "
 lua << EOF
 for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
   vim.api.nvim_set_hl(0, group, {})
@@ -38,6 +39,9 @@ if vim.g.neovide then -- only executes inside neovide
     change_scale_factor(1)
   end)
 end
+
+vim.keymap.set({"n", "x"}, "<leader>ls", function() require'syns'.query_synonyms() end)
+vim.keymap.set({"n", "x"}, "<leader>la", function() require'syns'.query_antonyms() end)
 EOF
 
 " ----- SETS -----
@@ -60,7 +64,6 @@ set noshowmode " nebude dola ukazovat v jakym jsem modu, protoze to stejne vidim
 set termguicolors
 
 " ----- REBINDS -----
-let mapleader = " "
 " save a close
 nnoremap <C-w> :x<CR>
 " save
