@@ -1,4 +1,6 @@
 from urllib.request import urlopen
+from urllib.error import HTTPError
+from urllib.parse import quote
 import re, json
 
 class Syns:
@@ -9,11 +11,17 @@ class Syns:
     return self.query(req, 'antonyms', 'Antonyms', 1)
 
   def query(self, req, definition_key, display_name, sort_sign):
-    url = f'https://www.thesaurus.com/browse/{req}'
-    with urlopen(url) as u:
-      if u.status != 200:
-        return f'HTTP error, response {u.status}'
-      html_text = u.read().decode()
+    req_quoted = quote(req)
+    url = f'https://www.thesaurus.com/browse/{req_quoted}'
+    try:
+      # with urlopen(url) as u:
+      with urlopen(url) as u:
+        print(f'{u.status = }')
+        if u.status != 200:
+          return f'HTTP error, response {u.status}'
+        html_text = u.read().decode()
+    except HTTPError:
+      return f'Requested word not found'
 
     m = re.search(r'JSON.parse\("(.*)"\)', html_text)
 
@@ -33,6 +41,9 @@ class Syns:
       for syn in d[definition_key]: # jsou tu accessable i ty antonyms, jen je tady nepouzivam, viz dole
         sim = int(syn['similarity'])
         ret.append((syn['term'], sim, pos, definition))
+
+    if len(ret) == 0:
+      return f"thesaurus.com's page for this word has no data"
 
     ret.sort(key=lambda x: (sort_sign * x[1], x[2], x[3], x[0]))
     return (ret, display_name)

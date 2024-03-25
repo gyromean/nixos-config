@@ -7,8 +7,6 @@ local actions = require('telescope.actions')
 local action_state = require('telescope.actions.state')
 local entry_display = require('telescope.pickers.entry_display')
 
-M.dict = require('syns.dict')
-
 local function load_python_file(path)
   local plugin_path = string.match(debug.getinfo(1).source:sub(2), "^.*/")
   vim.cmd(':pyfile ' .. plugin_path .. path)
@@ -53,8 +51,8 @@ local function capitalize_first_letter(str)
   return string.upper(string.sub(str, 1, 1)) .. string.sub(str, 2)
 end
 
-local function replace_word(selection, original_request, new_word)
-  if should_capitalize_output(original_request) then
+local function replace_word(selection, request, new_word)
+  if should_capitalize_output(request) then
     new_word = capitalize_first_letter(new_word)
   end
   if selection ~= nil then -- visual mode
@@ -79,13 +77,12 @@ end
 -- https://github.com/nvim-telescope/telescope.nvim/blob/master/developers.md
 -- https://github.com/nvim-telescope/telescope.nvim/blob/c2b8311dfacd08b3056b8f0249025d633a4e71a8/lua/telescope/make_entry.lua#L1208
 
--- original_request - original word under cursor
--- request - original_request converted to lowercase
+-- request - original word under cursor
 -- words - synonyms/antonyms for telescope to display
 -- selection - information about selection if in visual mode, nil in normal mode
 -- display_name - message to display in telescope (synonyms vs antonyms)
 -- opts - additional options for telescope
-local function query_telescope(original_request, request, words, selection, display_name, opts)
+local function query_telescope(request, words, selection, display_name, opts)
   opts = opts or {}
   local picker = pickers.new(opts, {
     prompt_title = display_name .. " of '" .. request .. "'",
@@ -135,19 +132,20 @@ local function query_telescope(original_request, request, words, selection, disp
         actions.close(prompt_bufnr)
         local selected_option = action_state.get_selected_entry().value[1]
         vim.print(action_state.get_selected_entry())
-        replace_word(selection, original_request, selected_option)
+        replace_word(selection, request, selected_option)
       end)
       return true
     end,
   })
   picker:find()
 end
+
 local function query(get_function, opts)
   local mode = vim.api.nvim_get_mode().mode
-  local original_request
+  local request
   local selection
   if mode == 'n' then -- normal mode, get word under cursor
-    original_request = vim.fn.expand("<cword>")
+    request = vim.fn.expand("<cword>")
     selection = nil
   else -- visual mode
     local pos_a = vim.fn.getpos("v")
@@ -172,7 +170,7 @@ local function query(get_function, opts)
     end
     start_col = start_col - 1
 
-    original_request = vim.api.nvim_buf_get_text(buf, start_row, start_col, end_row, end_col, {})[1]
+    request = vim.api.nvim_buf_get_text(buf, start_row, start_col, end_row, end_col, {})[1]
     selection = {
       buf = buf,
       start_row = start_row,
@@ -182,20 +180,13 @@ local function query(get_function, opts)
     }
   end
 
-  local request = string.lower(original_request)
-  local url = M.dict[request]
-  if url == nil then
-    print("There are no matches for word '" .. request .. "'")
-    return
-  end
-
-  local words, display_name = get_function(url)
+  local words, display_name = get_function(request)
 
   if words == nil then
     return
   end
 
-  query_telescope(original_request, request, words, selection, display_name, opts)
+  query_telescope(request, words, selection, display_name, opts)
 end
 
 function M.query_synonyms(opts)
