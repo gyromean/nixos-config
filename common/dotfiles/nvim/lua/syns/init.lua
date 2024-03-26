@@ -140,7 +140,7 @@ local function query_telescope(request, words, selection, display_name, opts)
   picker:find()
 end
 
-local function query(get_function, opts)
+local function query(specialized_get_url, opts)
   local mode = vim.api.nvim_get_mode().mode
   local request
   local selection
@@ -180,7 +180,7 @@ local function query(get_function, opts)
     }
   end
 
-  local words, display_name = get_function(request)
+  local words, display_name = specialized_get_url(request)
 
   if words == nil then
     return

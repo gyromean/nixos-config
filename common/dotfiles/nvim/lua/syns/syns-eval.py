@@ -18,10 +18,10 @@ class Syns:
       with urlopen(url) as u:
         print(f'{u.status = }')
         if u.status != 200:
-          return f'HTTP error, response {u.status}'
+          return f"HTTP error for word '{req}', response {u.status}"
         html_text = u.read().decode()
     except HTTPError:
-      return f'Requested word not found'
+      return f"Requested word '{req}' not found"
 
     m = re.search(r'JSON.parse\("(.*)"\)', html_text)
 
@@ -30,7 +30,7 @@ class Syns:
 
     filtered_tuna = list(filter(lambda x: x['type'] == 'fetchTunaResults/fulfilled', loaded_json['loaderData']['0-11']))[0]
     if filtered_tuna['payload']['data'] == None:
-      return f"thesaurus.com's page for this word has no data"
+      return f"thesaurus.com's page for word '{req}' has no data"
     definitions = filtered_tuna['payload']['data']['definitionData']['definitions']
 
     ret = []
