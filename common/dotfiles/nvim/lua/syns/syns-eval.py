@@ -4,24 +4,36 @@ from urllib.parse import quote
 import re, json
 
 class Syns:
-  def query_synonyms(self, req):
-    return self.query(req, 'synonyms', 'Synonyms', -1)
+  class Error(Exception):
+    pass
 
-  def query_antonyms(self, req):
-    return self.query(req, 'antonyms', 'Antonyms', 1)
+  @staticmethod
+  def lua_error_wrapper(func):
+    def ret(*args, **kwargs):
+      try:
+        return {"ok": True, "content": func(*args, **kwargs)}
+      except Syns.Error as e:
+        return {"ok": False, "content": e.args[0]}
+    return ret
 
-  def query(self, req, definition_key, display_name, sort_sign):
-    req_quoted = quote(req)
-    url = f'https://www.thesaurus.com/browse/{req_quoted}'
+  @lua_error_wrapper
+  def query_synonyms(self, input_text):
+    return {"prompt_title": f"Synonyms of '{input_text}'"} | self.query(input_text, 'synonyms', -1)
+
+  @lua_error_wrapper
+  def query_antonyms(self, input_text):
+    return {"prompt_title": f"Antonyms of '{input_text}'"} | self.query(input_text, 'antonyms', 1)
+
+  def query(self, input_text, definition_key, sort_sign):
+    input_text_quoted = quote(input_text)
+    url = f'https://www.thesaurus.com/browse/{input_text_quoted}'
     try:
-      # with urlopen(url) as u:
       with urlopen(url) as u:
-        print(f'{u.status = }')
         if u.status != 200:
-          return f"HTTP error for word '{req}', response {u.status}"
+          raise Syns.Error(f"HTTP error for word '{input_text}', response {u.status}")
         html_text = u.read().decode()
     except HTTPError:
-      return f"Requested word '{req}' not found"
+      raise Syns.Error(f"Requested word '{input_text}' not found")
 
     m = re.search(r'JSON.parse\("(.*)"\)', html_text)
 
@@ -30,7 +42,7 @@ class Syns:
 
     filtered_tuna = list(filter(lambda x: x['type'] == 'fetchTunaResults/fulfilled', loaded_json['loaderData']['0-11']))[0]
     if filtered_tuna['payload']['data'] == None:
-      return f"thesaurus.com's page for word '{req}' has no data"
+      raise Syns.Error(f"thesaurus.com's page for word '{input_text}' has no data")
     definitions = filtered_tuna['payload']['data']['definitionData']['definitions']
 
     ret = []
@@ -38,12 +50,14 @@ class Syns:
     for d in definitions:
       pos = d['pos'] # verb etc.
       definition = d['definition'] # explanation on the meaning in this context of synonyms
-      for syn in d[definition_key]: # jsou tu accessable i ty antonyms, jen je tady nepouzivam, viz dole
+      for syn in d[definition_key]:
         sim = int(syn['similarity'])
         ret.append((syn['term'], sim, pos, definition))
 
     if len(ret) == 0:
-      return f"thesaurus.com's page for this word has no data"
+      raise Syns.Error(f"thesaurus.com's page for '{input_text}' has no data")
 
     ret.sort(key=lambda x: (sort_sign * x[1], x[2], x[3], x[0]))
-    return (ret, display_name)
+    return {
+      "data": ret,
+    }
