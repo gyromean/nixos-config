@@ -296,6 +296,7 @@ in
     httpie # alternative to curl
     wezterm # terminal emulator
     ltex-ls # grammar and spell checker language server
+    lua
   ];
 
   # ----- FONTS -----
