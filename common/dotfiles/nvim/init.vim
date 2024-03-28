@@ -40,8 +40,9 @@ if vim.g.neovide then -- only executes inside neovide
   end)
 end
 
-vim.keymap.set({"n", "x"}, "<leader>ls", function() require'syns'.query_synonyms() end)
-vim.keymap.set({"n", "x"}, "<leader>la", function() require'syns'.query_antonyms() end)
+vim.keymap.set({"n", "x"}, "<leader>rs", function() require'syns'.request_synonyms() end)
+vim.keymap.set({"n", "x"}, "<leader>ra", function() require'syns'.request_antonyms() end)
+vim.keymap.set({"n", "x"}, "<leader>rt", function() require'syns'.request_translation() end)
 vim.keymap.set({"n"}, "<leader>mm", "<cmd>messages<CR>")
 vim.keymap.set({"n"}, "<leader>mc", "<cmd>messages clear<CR>")
 EOF
