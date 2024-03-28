@@ -42,7 +42,8 @@ end
 
 vim.keymap.set({"n", "x"}, "<leader>ls", function() require'syns'.query_synonyms() end)
 vim.keymap.set({"n", "x"}, "<leader>la", function() require'syns'.query_antonyms() end)
-vim.keymap.set({"n"}, "<leader>m", "<cmd>messages<CR>")
+vim.keymap.set({"n"}, "<leader>mm", "<cmd>messages<CR>")
+vim.keymap.set({"n"}, "<leader>mc", "<cmd>messages clear<CR>")
 EOF
 
 " ----- SETS -----
