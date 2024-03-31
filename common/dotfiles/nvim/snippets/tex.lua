@@ -80,4 +80,20 @@ return {
     }
     )
   ),
+  s({trig = ";tt", snippetType="autosnippet"},
+    fmta([[\texttt{<>}<>]],
+    {
+      i(1),
+      i(0),
+    }
+    )
+  ),
+  s({trig = " ;c", snippetType="autosnippet"},
+    fmta([[~\cite{<>}<>]],
+    {
+      i(1),
+      i(0),
+    }
+    )
+  ),
 }
