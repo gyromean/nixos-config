@@ -94,6 +94,8 @@ class Syns:
           meaning = Syns.get_html_inner_text(val)[1:-1] # remove parenthesis
         elif Syns.is_html_class(val, 'w'):
           cur_word['translation'].append({'type': 'context', 'val': Syns.get_html_inner_text(val)})
+        elif Syns.is_html_class(val, 'no_translation'):
+          cur_word['translation'].append({'type': 'normal', 'val': Syns.get_html_inner_text(val)})
       elif len(val) == 0: # space, will add manually later
         pass
       elif ',' in val:
@@ -212,6 +214,8 @@ class Syns:
   # input_text = 'býť' # TODO: priklad slova ktery to nezna, takze nejak to osefit
   # json.dump(
   # TODO: prozkoumat `autíčko` vs `letadlo`
+
+  # TODO: viď je tam ten notranslate
 
   # pprint(xd)
 

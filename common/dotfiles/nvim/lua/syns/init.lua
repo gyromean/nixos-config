@@ -6,6 +6,7 @@ local conf = require('telescope.config').values
 local actions = require('telescope.actions')
 local action_state = require('telescope.actions.state')
 local entry_display = require('telescope.pickers.entry_display')
+local previewers = require('telescope.previewers')
 
 local function execute_python_file(path)
   local plugin_path = string.match(debug.getinfo(1).source:sub(2), "^.*/")
@@ -225,6 +226,29 @@ local function translation_to_displayer_call(translation)
   return ret
 end
 
+local function definition_to_lines(definition)
+  local ret = {}
+  table.insert(ret, definition.meaning)
+  for _, e in ipairs(definition.examples) do
+    table.insert(ret, '  ' .. e.src .. ' -> ' .. e.dst)
+  end
+  return ret
+end
+
+local function definitions_to_lines(definitions)
+  local ret = {}
+  for _, line in ipairs(definition_to_lines(definitions[1])) do
+    table.insert(ret, line)
+  end
+  for i = 2, #definitions do
+    table.insert(ret, '')
+    for _, line in ipairs(definition_to_lines(definitions[i])) do
+      table.insert(ret, line)
+    end
+  end
+  return ret
+end
+
 local function run_telescope_translation(input_text, response, selection, opts)
   -- vim.print('response.data[6] = ' .. vim.inspect(response.data[6]))
   -- vim.print('response.data = ' .. vim.inspect(response.data))
@@ -274,6 +298,17 @@ local function run_telescope_translation(input_text, response, selection, opts)
       end)
       return true
     end,
+
+    -- inspiration from https://github.com/nvim-telescope/telescope.nvim/blob/master/lua/telescope/builtin/__internal.lua#L455
+    previewer = previewers.new_buffer_previewer({
+      title = 'Definitions and examples',
+      define_preview = function(self, entry)
+        -- vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, {'bruh', 'lmao'})
+        local tmp = definitions_to_lines(entry.value.definitions)
+        vim.print('tmp = ' .. vim.inspect(tmp))
+        vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, tmp)
+      end,
+    }),
   })
   picker:find()
 end
