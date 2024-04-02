@@ -11,6 +11,10 @@ vim.g.vimtex_compiler_latexmk = {
   },
 }
 
+vim.g.vimtex_compiler_latexmk_engines = {
+  _ = '-lualatex'
+}
+
 vim.g.vimtex_mappings_enabled = false
 
 -- uncomment for symbolic names to display as symbols (e.g. \alpha)
