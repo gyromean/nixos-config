@@ -88,8 +88,24 @@ return {
     }
     )
   ),
-  s({trig = " ;c", snippetType="autosnippet"},
+  s({trig = ";it", snippetType="autosnippet"},
+    fmta([[\textit{<>}<>]],
+    {
+      i(1),
+      i(0),
+    }
+    )
+  ),
+  s({trig = ";c", snippetType="autosnippet"},
     fmta([[~\cite{<>}<>]],
+    {
+      i(1),
+      i(0),
+    }
+    )
+  ),
+  s({trig = ";r", snippetType="autosnippet"},
+    fmta([[~\ref{<>}<>]],
     {
       i(1),
       i(0),
