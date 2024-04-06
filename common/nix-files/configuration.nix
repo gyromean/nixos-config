@@ -297,6 +297,7 @@ in
     wezterm # terminal emulator
     ltex-ls # grammar and spell checker language server
     lua
+    slides # terminal based presentation tool
   ];
 
   # ----- FONTS -----
