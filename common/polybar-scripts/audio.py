@@ -14,10 +14,17 @@ def set_volume(value, sink='@DEFAULT_SINK@'):
   subprocess.run(['wpctl', 'set-volume', str(sink), f'{value}%'])
 
 def get_volume(sink='@DEFAULT_SINK@'):
-  comp_proc = subprocess.run(['wpctl', 'get-volume', str(sink)], capture_output=True)
-  output = comp_proc.stdout.decode().strip()
-  volume = int(output.split(' ')[1].replace('.', ''))
-  return volume
+  while True:
+    print('trying to get volume')
+    try:
+      comp_proc = subprocess.run(['wpctl', 'get-volume', str(sink)], capture_output=True)
+      output = comp_proc.stdout.decode().strip()
+      volume = int(output.split(' ')[1].replace('.', ''))
+      print('success')
+      return volume
+    except IndexError:
+      print('IndexError, retrying...')
+      pass
 
 # state is '1' for mute, '0' for unmute, or 'toggle'
 def set_mute(state='toggle', sink='@DEFAULT_SINK@'):
