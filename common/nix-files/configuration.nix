@@ -299,6 +299,7 @@ in
     lua
     slides # terminal based presentation tool
     graph-easy # drawing ascii art graphs (nodes and edges)
+    gef # frontend for gdb
   ];
 
   # ----- FONTS -----
