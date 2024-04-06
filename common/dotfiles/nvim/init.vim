@@ -45,8 +45,8 @@ vim.keymap.set({"n", "x"}, "<leader>ra", function() require'syns'.request_antony
 vim.keymap.set({"n", "x"}, "<leader>rt", function() require'syns'.request_translation() end)
 vim.keymap.set({"n"}, "<leader>mm", "<cmd>messages<CR>")
 vim.keymap.set({"n"}, "<leader>mc", "<cmd>messages clear<CR>")
-vim.keymap.set({"n"}, "j", "gj")
-vim.keymap.set({"n"}, "k", "gk")
+vim.keymap.set({"n", "x"}, "j", "gj")
+vim.keymap.set({"n", "x"}, "k", "gk")
 EOF
 
 " ----- SETS -----
