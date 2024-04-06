@@ -99,3 +99,9 @@ j()
   esac
   cd "$dest"
 }
+
+# open zathura asynchronously
+z()
+{
+  (zathura "$@" &>/dev/null &)
+}
