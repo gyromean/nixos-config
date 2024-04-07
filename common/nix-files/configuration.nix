@@ -300,6 +300,7 @@ in
     slides # terminal based presentation tool
     graph-easy # drawing ascii art graphs (nodes and edges)
     gef # frontend for gdb
+    screenkey # display pressed keys in gui overlay
   ];
 
   # ----- FONTS -----
