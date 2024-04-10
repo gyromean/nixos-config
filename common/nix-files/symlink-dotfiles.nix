@@ -10,13 +10,13 @@
             value.source = (config.lib.file.mkOutOfStoreSymlink "/home/pavel/.config/nixos-config/common/dotfiles/${path}");
           }
         )
-        [
-          "polybar"
-          "nvim"
-          "alacritty"
-          "wezterm"
-          "zathura"
-        ]
+        (lib.attrsets.mapAttrsToList
+          (path: type: path)
+          (lib.attrsets.filterAttrs
+            (name: type: type == "directory")
+            (builtins.readDir /home/pavel/.config/nixos-config/common/dotfiles)
+          )
+        )
       )
     );
   };
