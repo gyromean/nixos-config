@@ -64,7 +64,7 @@ set scrolloff=8 " pri scrollovani bude nahore a dole vzdycky aspon 8 radek (poku
 set undofile " bude existovat perzistentni historie zmen, ty pak muzu pouzivat jak z vimu tak z undo tree
 set noswapfile " nebude se zakladat a pouzivat swap file
 set updatetime=100 " mimo jine se bude vim-gitgutter updatovat kazdych 100 ms
-set signcolumn=number " signs (z vim-gitgutter nebo lsp) se budou ukazovat ve sloupecku cisel misto tech cisel
+set signcolumn=yes " signs (z vim-gitgutter nebo lsp) se budou vzdy ukazovat v extra sloupecku
 set noshowmode " nebude dola ukazovat v jakym jsem modu, protoze to stejne vidim v airline (diky tomu muzu pouzivat `print` z lua v insert modu a bude to vide)
 set termguicolors
 set shortmess+=I " disable intro screen
