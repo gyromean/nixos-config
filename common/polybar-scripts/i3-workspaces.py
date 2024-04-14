@@ -14,6 +14,10 @@ monitor_id_map = {
 polybar_pid = sys.argv[1]
 monitor_id = monitor_id_map[sys.argv[2]]
 
+workspace_icons = {
+  '10': '  ',
+}
+
 def set_output_raw(data):
   print(f'setting output >{data}<')
   return subprocess.run(['polybar-msg', '-p', polybar_pid, 'action', 'i3', 'send', data]).returncode
@@ -33,7 +37,7 @@ def on_workspace_event(i3, e):
     display_name, workspace_monitor, group = name.split(':')
     if workspace_monitor != monitor_id or group != active_group:
       continue
-    formatted_name = set_color('foreground', f' {display_name} ')
+    formatted_name = set_color('foreground', workspace_icons.get(display_name, f' {display_name} '))
     if name == focused_workspace_name:
       formatted_name = set_underline('blue', formatted_name)
       formatted_name = set_background('light-blue', formatted_name)
