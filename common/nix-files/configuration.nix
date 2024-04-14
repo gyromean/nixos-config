@@ -301,6 +301,7 @@ in
     graph-easy # drawing ascii art graphs (nodes and edges)
     gef # frontend for gdb
     screenkey # display pressed keys in gui overlay
+    pdfgrep # grep in pdf files
   ];
 
   # ----- FONTS -----
