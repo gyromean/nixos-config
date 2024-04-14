@@ -95,6 +95,7 @@ j()
     'ps') dest=$HOME'/.config/nixos-config/common/polybar-scripts/';;
     'dot') dest=$HOME'/.config/nixos-config/common/dotfiles/';;
     'km') dest=$HOME'/qmk_firmware/keyboards/lily58/keymaps/gyromean';;
+    'the') dest=$HOME'/skola/thesis-rename-later-bakalarka/thesis';;
     *) echo Unknown destination "$cmd"...; return;;
   esac
   cd "$dest"
