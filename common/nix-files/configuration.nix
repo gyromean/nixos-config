@@ -302,6 +302,7 @@ in
     gef # frontend for gdb
     screenkey # display pressed keys in gui overlay
     pdfgrep # grep in pdf files
+    poppler_utils # contains pdfseparate for splitting pdf to multiple pdfs
   ];
 
   # ----- FONTS -----
