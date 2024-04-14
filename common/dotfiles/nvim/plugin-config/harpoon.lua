@@ -1,3 +1,5 @@
+# for the harpoon state to be shared via syncthing, a symlink must be created, i.e. `ln -s ~/sync/harpoon.json ~/.local/share/nvim/harpoon.json`
+
 local harpoon = require'harpoon'
 
 harpoon:setup()
