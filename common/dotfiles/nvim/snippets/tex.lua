@@ -1,7 +1,7 @@
 local ls = require'luasnip'
 
 local function create_ex_snippet(ex_command, snip)
-  vim.api.nvim_buf_create_user_command(0, ex_command, function(opts)
+  vim.api.nvim_create_user_command(ex_command, function(opts)
     local fargs = opts.fargs
     ls.snip_expand(snip, {expand_params = {captures = fargs}})
   end, { nargs = '*' })
