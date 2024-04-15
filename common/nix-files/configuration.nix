@@ -303,6 +303,7 @@ in
     screenkey # display pressed keys in gui overlay
     pdfgrep # grep in pdf files
     poppler_utils # contains pdfseparate for splitting pdf to multiple pdfs
+    fast-downward # pddl planning system
   ];
 
   # ----- FONTS -----
