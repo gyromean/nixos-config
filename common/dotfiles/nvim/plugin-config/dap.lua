@@ -32,6 +32,8 @@ dap.configurations.cpp = {
 
 dap.configurations.c = dap.configurations.cpp;
 
+require('dap-python').setup('python')
+
 require("dapui").setup({
     controls = {
       element = "repl",

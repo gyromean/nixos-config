@@ -305,6 +305,7 @@ in
     poppler_utils # contains pdfseparate for splitting pdf to multiple pdfs
     fast-downward # pddl planning system
     python312Packages.servefile # simple http server for serving file to download or providing file upload functionality
+    python311Packages.debugpy # python debugger
   ];
 
   # ----- FONTS -----
@@ -766,6 +767,7 @@ python ~/.config/nixos-config/common/scripts/i3-workspace-groups.py refresh-poly
         nvim-dap
         nvim-dap-ui
         nvim-dap-virtual-text
+        nvim-dap-python
         todo-comments-nvim
         vimtex
         harpoon2
