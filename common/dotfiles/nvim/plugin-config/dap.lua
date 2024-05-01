@@ -105,4 +105,4 @@ require("dapui").setup({
   }
 )
 
-require("nvim-dap-virtual-text").setup()
+-- require("nvim-dap-virtual-text").setup() -- causes significant slowdown (at least on big files, like in libwebp)
