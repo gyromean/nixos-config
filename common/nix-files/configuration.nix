@@ -304,6 +304,7 @@ in
     pdfgrep # grep in pdf files
     poppler_utils # contains pdfseparate for splitting pdf to multiple pdfs
     fast-downward # pddl planning system
+    python312Packages.servefile # simple http server for serving file to download or providing file upload functionality
   ];
 
   # ----- FONTS -----
