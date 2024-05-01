@@ -385,12 +385,12 @@ in
         i3blocks #if you are planning on using i3blocks over i3status
      ];
     };
-    libinput = {
-      enable = true;
-      touchpad = {
-        naturalScrolling = true;
-        clickMethod = "clickfinger";
-      };
+  };
+  services.libinput = {
+    enable = true;
+    touchpad = {
+      naturalScrolling = true;
+      clickMethod = "clickfinger";
     };
   };
   
