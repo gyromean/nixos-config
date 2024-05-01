@@ -112,4 +112,12 @@ return {
     }
     )
   ),
+  s({trig = ";m", snippetType="autosnippet"},
+    fmta([[\mintinline{c}{<>}<>]],
+    {
+      i(1),
+      i(0),
+    }
+    )
+  ),
 }
