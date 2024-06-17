@@ -166,3 +166,4 @@ luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/todo
 luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/vimtex.lua
 luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/gitgutter.lua
 luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/harpoon.lua
+luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/oil.lua
