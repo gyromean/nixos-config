@@ -771,6 +771,7 @@ python ~/.config/nixos-config/common/scripts/i3-workspace-groups.py refresh-poly
         todo-comments-nvim
         vimtex
         harpoon2
+        oil-nvim
       ];
     };
 
