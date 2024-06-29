@@ -310,6 +310,7 @@ in
     manim-slides
     diff-pdf
     qrcp # servefile alternative
+    imagemagick
   ];
 
   # ----- FONTS -----
