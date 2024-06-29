@@ -20,6 +20,7 @@ let
     ipympl
     pycryptodome
     pyqt6
+    manim-slides
   ];
 in
 {
@@ -306,6 +307,7 @@ in
     fast-downward # pddl planning system
     python312Packages.servefile # simple http server for serving file to download or providing file upload functionality
     python311Packages.debugpy # python debugger
+    manim-slides
   ];
 
   # ----- FONTS -----
