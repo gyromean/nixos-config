@@ -309,6 +309,7 @@ in
     python311Packages.debugpy # python debugger
     manim-slides
     diff-pdf
+    qrcp # servefile alternative
   ];
 
   # ----- FONTS -----
