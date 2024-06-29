@@ -166,6 +166,7 @@ in
   services.blueman.enable = true;
 
   virtualisation.libvirtd.enable = true;
+  virtualisation.docker.enable = true;
   programs.dconf.enable = true; # virt-manager requires dconf to remember settings
 
   services.upower.enable = true; # vypsat moznosti pres `upower -e`, potom stav treba pres `upower -i /org/freedesktop/UPower/devices/battery_BAT0`
@@ -182,7 +183,7 @@ in
   users.users.pavel = {
     isNormalUser = true;
     description = "Pavel Holy";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" ];
     shell = pkgs.zsh; # nastavit zsh jako vychozi shell
     packages = with pkgs; [
       # web browsers:
