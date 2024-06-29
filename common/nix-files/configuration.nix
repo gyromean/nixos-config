@@ -262,7 +262,7 @@ in
     # nvim lsp servers
     nixd # nix language server
     clang-tools
-    nodePackages.pyright
+    pyright
     lua-language-server
     nodePackages.bash-language-server
     ntfs3g
@@ -354,10 +354,9 @@ in
   services.udisks2.enable = true;
 
   security.polkit.enable = true; # neco pro Sway, https://nixos.wiki/wiki/Sway
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true; # NVIDIA
-    driSupport32Bit = true;
+    enable32Bit = true;
   };
 
   hardware.keyboard.qmk.enable = true;
