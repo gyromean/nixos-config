@@ -48,6 +48,6 @@
       )
     );
   in {
-    nixosConfigurations = mkNixosConfigs [ "desktop" ];
+    nixosConfigurations = mkNixosConfigs [ "desktop" "laptop" ];
   };
 }
