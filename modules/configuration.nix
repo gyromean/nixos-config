@@ -25,7 +25,6 @@ in
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./symlink-dotfiles.nix
     ];
 
   # Bootloader.
