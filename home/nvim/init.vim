@@ -112,7 +112,7 @@ snoremap <C-l> <cmd>lua require'luasnip'.jump(1)<CR>
 inoremap <C-y> <cmd>lua require'luasnip'.jump(1)<CR>
 snoremap <C-y> <cmd>lua require'luasnip'.jump(1)<CR>
 " reloaduje snippety
-nnoremap <leader>L <cmd>lua require'luasnip.loaders.from_lua'.load({ paths = "/home/pavel/.config/nixos-config/common/dotfiles/nvim/snippets" })<CR>
+nnoremap <leader>L <cmd>lua require'luasnip.loaders.from_lua'.load({ paths = "/home/pavel/.config/nvim/snippets" })<CR>
 
 " vlozeni slozenych zavorek
 inoremap <C-p> <end><CR>{<CR>}<up><end><CR>

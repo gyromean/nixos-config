@@ -2,7 +2,7 @@
 
 import subprocess, json, time, os, itertools, sys
 from i3ipc import Connection
-sys.path.append('/home/pavel/.config/nixos-config/common/polybar-scripts/')
+sys.path.append('/home/pavel/.config/custom/polybar-scripts/')
 from utility import set_color
 
 i3 = Connection()

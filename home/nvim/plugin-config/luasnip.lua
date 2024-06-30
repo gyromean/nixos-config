@@ -5,4 +5,4 @@ ls.setup({
   enable_autosnippets = true,
 })
 
-require'luasnip.loaders.from_lua'.load({ paths = "/home/pavel/.config/nixos-config/common/dotfiles/nvim/snippets" })
+require'luasnip.loaders.from_lua'.load({ paths = "/home/pavel/.config/custom/dotfiles/nvim/snippets" })

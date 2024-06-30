@@ -8,7 +8,7 @@
       terminal = "alacritty";
       startup = [
         { command = machine.monitorSetup; notification = false; } # nastavi monitory na spravny poradi a spravny refresh rate; `--dpi 96` nastavi scaling UI elementu, ruzny aplikace na to berou ohled (treba chrome)
-        { command = "feh --bg-fill ~/.config/nixos-config/wallpaper.png"; notification = false; } # nastaveni wallapper na startupu
+        { command = "feh --bg-fill ${../wallpaper.png}"; notification = false; } # nastaveni wallapper na startupu
         { command = "xset r rate 175 30"; notification = false; } # nastaveni prodlevy pred key repeatem na 175 ms, frekvence key repeatu na 30 Hz
         { command = "numlockx on"; notification = false; } # zapnout numlock pri bootu
         { command = "setxkbmap -layout 'us,cz(qwerty)' -option grp:alt_shift_toggle -option caps:escape_shifted_capslock"; notification = false; } # nastavit qwerty cestinu jako sekundarni klavesnici; nastavit togglovani na alt+shift; caps se chova jak escape, shift+caps se chova jako obycejny caps (kdyz jsem to rozdelil do vicero volani setxkbmap tak to nefungovalo)
@@ -56,8 +56,8 @@
         "${modifier}+Shift+9" = ''exec --no-startup-id i3-msg move container to workspace 9:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
         "${modifier}+Shift+0" = ''exec --no-startup-id i3-msg move container to workspace 10:$(wmctrl -d | fgrep '*' | awk '{print $9}' | sed -e 's/^[^:]*://g')'';
 
-        "${modifier}+p" = ''exec python /home/pavel/.config/nixos-config/common/scripts/i3-workspace-groups.py select-group'';
-        "${modifier}+Shift+p" = ''exec python /home/pavel/.config/nixos-config/common/scripts/i3-workspace-groups.py'';
+        "${modifier}+p" = ''exec python /home/pavel/.config/custom/scripts/i3-workspace-groups.py select-group'';
+        "${modifier}+Shift+p" = ''exec python /home/pavel/.config/custom/scripts/i3-workspace-groups.py'';
         "${modifier}+s" = "exec --no-startup-id flameshot gui";
 
         "${modifier}+q" = "kill";
@@ -204,10 +204,10 @@ ${machine.polybarBrightness}
 ${machine.polybarI3Workspaces}
 done
 
-python ~/.config/nixos-config/common/polybar-scripts/eyetimer.py &
-python ~/.config/nixos-config/common/polybar-scripts/audio.py &
+python ~/.config/custom/polybar-scripts/eyetimer.py &
+python ~/.config/custom/polybar-scripts/audio.py &
 
-python ~/.config/nixos-config/common/scripts/i3-workspace-groups.py refresh-polybar
+python ~/.config/custom/scripts/i3-workspace-groups.py refresh-polybar
 '';
   };
 
@@ -401,7 +401,7 @@ python ~/.config/nixos-config/common/scripts/i3-workspace-groups.py refresh-poly
 . ${pkgs.git.outPath}/share/git/contrib/completion/git-prompt.sh
 
 # sourcenout igloo theme https://github.com/arcticicestudio/igloo/tree/master/snowblocks/zsh
-fpath=(~/.config/nixos-config/common/zsh-themes $fpath)
+fpath=(~/.config/custom/zsh-themes $fpath)
 
 # nahrat prompts https://zsh.sourceforge.io/Doc/Release/User-Contributions.html#Prompt-Themes, nastavit options pro ZSH
 autoload -U promptinit
@@ -436,7 +436,7 @@ zvm_after_init_commands+=('[ -f ${pkgs.fzf}/share/fzf/completion.zsh ] && source
 zvm_after_init_commands+=('[ -f ${pkgs.fzf}/share/fzf/key-bindings.zsh ] && source ${pkgs.fzf}/share/fzf/key-bindings.zsh')
 
 # custom skripty
-source ~/.config/nixos-config/common/zsh-scripts/scripts-to-source.sh
+source ~/.config/custom/zsh-scripts/scripts-to-source.sh
 '';
   }; # TODO - nastavit to jako default shell
 
