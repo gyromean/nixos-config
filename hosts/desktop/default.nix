@@ -1,6 +1,11 @@
 { config, pkgs, lib, ... }:
+
 {
-  # ----- NVIDIA -----
+  imports = [
+    ../../modules/configuration.nix
+    ./hardware-configuration.nix
+  ];
+
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
       "nvidia-x11"

@@ -1,0 +1,2 @@
+set disassembly-flavor att
+add-auto-load-safe-path /tmp/gef/.gdbinit

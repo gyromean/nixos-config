@@ -150,20 +150,20 @@ lua << EOF
 EOF
 
 " ----- PLUGIN SETTINGS -----
-luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/commentary.lua
-luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/easymotion.lua
-luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/treesitter.lua
-luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/lsp-zero.lua
-luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/cmp.lua
-luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/lspsaga.lua
-luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/treesitter-context.lua
-luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/telescope.lua
-luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/dap.lua
-luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/lualine.lua
-luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/ts-autotag.lua
-luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/luasnip.lua
-luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/todo-comments.lua
-luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/vimtex.lua
-luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/gitgutter.lua
-luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/harpoon.lua
-luafile /home/pavel/.config/nixos-config/common/dotfiles/nvim/plugin-config/oil.lua
+luafile ~/.config/nvim/plugin-config/commentary.lua
+luafile ~/.config/nvim/plugin-config/easymotion.lua
+luafile ~/.config/nvim/plugin-config/treesitter.lua
+luafile ~/.config/nvim/plugin-config/lsp-zero.lua
+luafile ~/.config/nvim/plugin-config/cmp.lua
+luafile ~/.config/nvim/plugin-config/lspsaga.lua
+luafile ~/.config/nvim/plugin-config/treesitter-context.lua
+luafile ~/.config/nvim/plugin-config/telescope.lua
+luafile ~/.config/nvim/plugin-config/dap.lua
+luafile ~/.config/nvim/plugin-config/lualine.lua
+luafile ~/.config/nvim/plugin-config/ts-autotag.lua
+luafile ~/.config/nvim/plugin-config/luasnip.lua
+luafile ~/.config/nvim/plugin-config/todo-comments.lua
+luafile ~/.config/nvim/plugin-config/vimtex.lua
+luafile ~/.config/nvim/plugin-config/gitgutter.lua
+luafile ~/.config/nvim/plugin-config/harpoon.lua
+luafile ~/.config/nvim/plugin-config/oil.lua
