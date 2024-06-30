@@ -24,22 +24,22 @@
     mkNixosConfigs = hostsDirectories:
     (builtins.listToAttrs
       (builtins.map
-        (host:
+        (hostDir:
         let
-          machine = import ./hosts/${host}/vars.nix;
+          machine = import ./hosts/${hostDir}/vars.nix;
         in {
           name = machine.hostname;
           value = lib.nixosSystem {
             system = "x86_64-linux";
-            specialArgs = { inherit machine opts; };
+            specialArgs = { inherit opts; machine = machine // { inherit hostDir; }; };
             modules = [
-              ./hosts/${host}
+              ./hosts/${hostDir}
               home-manager.nixosModules.home-manager
               {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.users."${opts.username}" = import ./home;
-                home-manager.extraSpecialArgs = { inherit machine opts; };
+                home-manager.extraSpecialArgs = { inherit opts; machine = machine // { inherit hostDir; }; };
               }
             ];
           };
