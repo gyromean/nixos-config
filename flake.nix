@@ -12,7 +12,10 @@
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
   let
     opts = rec {
+      # --- change these options ---
       username = "pavel";
+      enableSymlinks = true;
+      # ----------------------------
 
       homeDirectory = "/home/${username}";
       configPath = "${homeDirectory}/.config/nixos-config";
