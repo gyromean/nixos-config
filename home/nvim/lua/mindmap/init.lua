@@ -137,8 +137,8 @@ end
 
 local function start_map_gui(map_name)
   local gui_path = string.match(debug.getinfo(1).source:sub(2), "^.*/") .. 'gui.py'
-  -- vim.system({'python', gui_path, M.maps[map_name].socket})
-  print(vim.inspect(vim.system({'alacritty', '-e', '/run/current-system/sw/bin/python',  gui_path, M.maps[map_name].socket})))
+  vim.system({'python', gui_path, M.maps[map_name].socket})
+  -- print(vim.inspect(vim.system({'alacritty', '-e', '/run/current-system/sw/bin/python',  gui_path, M.maps[map_name].socket})))
 end
 
 local function start_map(map_name)
