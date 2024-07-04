@@ -47,6 +47,8 @@ vim.keymap.set({"n"}, "<leader>mm", "<cmd>messages<CR>")
 vim.keymap.set({"n"}, "<leader>mc", "<cmd>messages clear<CR>")
 vim.keymap.set({"n", "x"}, "j", "gj")
 vim.keymap.set({"n", "x"}, "k", "gk")
+vim.keymap.set({"n"}, "<leader>ms", function() require'mindmap'.start() end)
+vim.keymap.set({"n"}, "<leader>me", function() require'mindmap'.stop() end)
 EOF
 
 " ----- SETS -----
