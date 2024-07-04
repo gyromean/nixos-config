@@ -310,6 +310,7 @@ in
     qrcp # servefile alternative
     imagemagick
     fx # json structure explorer
+    simplescreenrecorder # screen recorder
   ];
 
   # ----- FONTS -----
