@@ -309,6 +309,7 @@ in
     diff-pdf
     qrcp # servefile alternative
     imagemagick
+    fx # json structure explorer
   ];
 
   # ----- FONTS -----
