@@ -5,10 +5,7 @@
     autosuggestion.enable = false;
     syntaxHighlighting.enable = true;
     history.share = false;
-    oh-my-zsh = {
-      enable = true;
-      plugins = [ "copypath" "copyfile" ];
-    };
+    completionInit = "";
     shellAliases = {
       v = "vim";
       r = "ranger";
