@@ -311,6 +311,7 @@ in
     imagemagick
     fx # json structure explorer
     simplescreenrecorder # screen recorder
+    haruna # media player
   ];
 
   # ----- FONTS -----
