@@ -160,7 +160,7 @@ class Tree:
     for text in self.lines:
       spaces = len(text) - len(text.lstrip(' '))
       level = spaces
-      is_completed = text[spaces] == '-'
+      is_completed = text[spaces] == '.'
       text = text[spaces + is_completed:]
       self.entries.append((level, text, is_completed))
 
