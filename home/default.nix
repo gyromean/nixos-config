@@ -7,9 +7,16 @@ let
   );
 in
 {
-  imports = [
-    ./nvim.nix
-  ];
+  # import all .nix files from this directory except default.nix
+  imports =
+    (lib.mapAttrsToList
+      (name: type: ./${name})
+      (lib.attrsets.filterAttrs
+        (name: type: type == "regular" && name != "default.nix" && lib.hasSuffix ".nix" name)
+        (builtins.readDir ./.)
+      )
+    );
+
   home.username = opts.username;
   home.homeDirectory = opts.homeDirectory;
 
@@ -24,4 +31,35 @@ in
       (builtins.readDir ./.)
     )
   ) // { ".config/machine" = { source = linkFunc "${opts.configPath}/hosts/${machine.hostDir}/machine" ../hosts/${machine.hostDir}/machine; }; };
+
+  # ----- DEFAULT APPS -----
+  # V home manageru na to existuje primo `xdg.mimeApps.defaultApplications`, however tam je pak konflikt s uz existujicim konfiguracnim souborem. To resi nasledujici force, pak se to ale musi zapsat manualne pres `xdg.configFile."mimeapps.list".text`
+  xdg.configFile."mimeapps.list".force = true; # vyreseno pres https://github.com/nix-community/home-manager/issues/1213
+  xdg.configFile."mimeapps.list".text = ''
+[Default Applications]
+text/html=google-chrome.desktop
+x-scheme-handler/http=google-chrome.desktop
+x-scheme-handler/https=google-chrome.desktop
+x-scheme-handler/about=google-chrome.desktop
+x-scheme-handler/unknown=google-chrome.desktop
+x-scheme-handler/chrome=google-chrome.desktop
+application/x-extension-htm=google-chrome.desktop
+application/x-extension-html=google-chrome.desktop
+application/x-extension-shtml=google-chrome.desktop
+application/xhtml+xml=google-chrome.desktop
+application/x-extension-xhtml=google-chrome.desktop
+application/x-extension-xht=google-chrome.desktop
+
+[Added Associations]
+x-scheme-handler/http=firefox.desktop;
+x-scheme-handler/https=firefox.desktop;
+x-scheme-handler/chrome=firefox.desktop;
+text/html=firefox.desktop;
+application/x-extension-htm=firefox.desktop;
+application/x-extension-html=firefox.desktop;
+application/x-extension-shtml=firefox.desktop;
+application/xhtml+xml=firefox.desktop;
+application/x-extension-xhtml=firefox.desktop;
+application/x-extension-xht=firefox.desktop;
+  '';
 }
