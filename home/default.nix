@@ -62,4 +62,20 @@ application/xhtml+xml=firefox.desktop;
 application/x-extension-xhtml=firefox.desktop;
 application/x-extension-xht=firefox.desktop;
   '';
+
+  # adds desktop entries -> rofi can run them
+  xdg.desktopEntries = {
+    nixos = {
+      name = "Nix Packages";
+      genericName = "Website";
+      exec = "xdg-open https://search.nixos.org/packages";
+      terminal = false;
+    };
+    home-manager = {
+      name = "Home Manager";
+      genericName = "Website";
+      exec = "xdg-open https://home-manager-options.extranix.com/";
+      terminal = false;
+    };
+  };
 }
