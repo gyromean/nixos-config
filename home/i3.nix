@@ -5,6 +5,7 @@
     config = rec {
       modifier = "Mod4";
       terminal = "alacritty";
+      menu = "rofi -show drun";
       startup = [
         { command = machine.monitorSetup; notification = false; } # nastavi monitory na spravny poradi a spravny refresh rate; `--dpi 96` nastavi scaling UI elementu, ruzny aplikace na to berou ohled (treba chrome)
         { command = "feh --bg-fill ${../wallpaper.png}"; notification = false; } # nastaveni wallapper na startupu
