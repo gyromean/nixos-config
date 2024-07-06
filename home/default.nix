@@ -23,14 +23,15 @@ in
   home.stateVersion = "24.05";
   programs.home-manager.enable = true;
 
+  # link config files and machine config files
   home.file =
-  (lib.attrsets.mapAttrs'
-    (dir: type: lib.nameValuePair ".config/${dir}" { source = linkFunc "${opts.configPath}/home/${dir}" ./${dir}; })
-    (lib.attrsets.filterAttrs
-      (dir: type: type == "directory")
-      (builtins.readDir ./.)
-    )
-  ) // { ".config/machine" = { source = linkFunc "${opts.configPath}/hosts/${machine.hostDir}/machine" ../hosts/${machine.hostDir}/machine; }; };
+    (lib.attrsets.mapAttrs'
+      (dir: type: lib.nameValuePair ".config/${dir}" { source = linkFunc "${opts.configPath}/home/${dir}" ./${dir}; })
+      (lib.attrsets.filterAttrs
+        (dir: type: type == "directory")
+        (builtins.readDir ./.)
+      )
+    ) // { ".config/machine" = { source = linkFunc "${opts.configPath}/hosts/${machine.hostDir}/machine" ../hosts/${machine.hostDir}/machine; }; };
 
   # ----- DEFAULT APPS -----
   # V home manageru na to existuje primo `xdg.mimeApps.defaultApplications`, however tam je pak konflikt s uz existujicim konfiguracnim souborem. To resi nasledujici force, pak se to ale musi zapsat manualne pres `xdg.configFile."mimeapps.list".text`
