@@ -90,12 +90,12 @@ j()
   cmd="$1"
   case "$cmd" in
     'nx') dest=$HOME'/.config/nixos-config/';;
-    'con') dest=$HOME'/.config/nixos-config/common/nix-files/';;
-    'vim') dest=$HOME'/.config/nixos-config/common/dotfiles/nvim/';;
-    'ps') dest=$HOME'/.config/nixos-config/common/polybar-scripts/';;
-    'dot') dest=$HOME'/.config/nixos-config/common/dotfiles/';;
-    'km') dest=$HOME'/qmk_firmware/keyboards/lily58/keymaps/gyromean';;
-    'the') dest=$HOME'/skola/thesis-rename-later-bakalarka/thesis';;
+    'mo') dest=$HOME'/.config/nixos-config/modules/';;
+    'ho') dest=$HOME'/.config/nixos-config/home/';;
+    'hs') dest=$HOME'/.config/nixos-config/hosts/';;
+    'vim') dest=$HOME'/.config/nixos-config/home/nvim/';;
+    'ps') dest=$HOME'/.config/nixos-config/home/custom/polybar-scripts/';;
+    'sy') dest=$HOME'/sync/';;
     *) echo Unknown destination "$cmd"...; return;;
   esac
   cd "$dest"
