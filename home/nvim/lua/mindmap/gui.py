@@ -35,6 +35,9 @@ HORIZONTAL_MARGIN = 160
 VERTICAL_MARGIN = 40
 
 SCALE_FACTOR = 1.05
+KEYBOARD_SCALE_FACTOR = 1.25
+
+KEYBOARD_TRANSLATE = 100
 
 class RenderedNode:
   def __init__(self, text, scene, completed_state):
@@ -300,21 +303,29 @@ class GraphicsView(QGraphicsView):
     super().resizeEvent(event)
 
   def wheelEvent(self, event):
-    x = int(event.position().x())
-    y = int(event.position().y())
-    old_pos = self.mapToScene(x, y)
-
     if event.angleDelta().y() == 0:
       return
     elif event.angleDelta().y() > 0:
-      self.scale(SCALE_FACTOR, SCALE_FACTOR)
+      scale_by = SCALE_FACTOR
     else:
-      self.scale(1 / SCALE_FACTOR, 1 / SCALE_FACTOR)
+      scale_by = 1 / SCALE_FACTOR
+    x = event.position().x()
+    y = event.position().y()
+    self.scale_at(scale_by, x, y)
+    self.keep_centered = False
 
+  def scale_at(self, amount, x, y):
+    x = int(x)
+    y = int(y)
+    old_pos = self.mapToScene(x, y)
+    self.scale(amount, amount)
     new_pos = self.mapToScene(x, y)
     delta_pos = new_pos - old_pos
     self.translate(delta_pos.x(), delta_pos.y())
-    self.keep_centered = False
+
+  def translate_scaled(self, dx, dy):
+    scaled_by = self.transform().m11()
+    self.translate(dx / scaled_by, dy / scaled_by)
 
   def center(self):
     bounding_rect = self.scene.itemsBoundingRect()
@@ -323,20 +334,44 @@ class GraphicsView(QGraphicsView):
     self.keep_centered = True
 
   def keyPressEvent(self, event):
-    if event.key() == ord('R'):
-      self.center()
+    try:
+      match chr(event.key()):
+        case 'R':
+          self.center()
 
-    if event.key() == ord('Q'):
-      global app
-      app.exit()
+        case 'Q':
+          global app
+          app.exit()
+
+        case 'H':
+          self.translate_scaled(KEYBOARD_TRANSLATE, 0)
+          self.keep_centered = False
+        case 'J':
+          self.translate_scaled(0, -KEYBOARD_TRANSLATE)
+          self.keep_centered = False
+        case 'K':
+          self.translate_scaled(0, KEYBOARD_TRANSLATE)
+          self.keep_centered = False
+        case 'L':
+          self.translate_scaled(-KEYBOARD_TRANSLATE, 0)
+          self.keep_centered = False
+
+        case 'F':
+          self.scale_at(KEYBOARD_SCALE_FACTOR, self.width() / 2, self.height() / 2)
+          self.keep_centered = False
+        case 'D':
+          self.scale_at(1 / KEYBOARD_SCALE_FACTOR, self.width() / 2, self.height() / 2)
+          self.keep_centered = False
+
+    except ValueError:
+      pass
 
   def mouseMoveEvent(self, event):
     if not (event.buttons() & Qt.MouseButton.LeftButton):
       return
     pos_delta = event.pos() - self.prev_pos
     self.prev_pos = event.pos()
-    scaled_by = self.transform().m11()
-    self.translate(pos_delta.x() / scaled_by, pos_delta.y() / scaled_by)
+    self.translate_scaled(pos_delta.x(), pos_delta.y())
     self.keep_centered = False
 
 class MainWindow(QMainWindow):
