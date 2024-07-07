@@ -37,9 +37,9 @@ VERTICAL_MARGIN = 40
 SCALE_FACTOR = 1.05
 
 class RenderedNode:
-  def __init__(self, text, scene, is_completed):
+  def __init__(self, text, scene, completed_state):
     self.associated_items = []
-    self.color = active_color if not is_completed else completed_color
+    self.color = active_color if not completed_state else completed_color
     self.text = text
     self.lines = textwrap.wrap(text, LINE_CHAR_LIMIT)
     self.processed_text = '\n'.join(self.lines)
@@ -59,7 +59,11 @@ class RenderedNode:
 
     border_path = QPainterPath()
     border_path.addRoundedRect(x, y, w, h, CORNER_RADIUS, CORNER_RADIUS)
-    border_item = scene.addPath(border_path, pen=QPen(QColor(self.color), BORDER_WIDTH))
+    pen = QPen(QColor(self.color), BORDER_WIDTH)
+    if completed_state == 2:
+      pen.setCapStyle(Qt.PenCapStyle.FlatCap)
+      pen.setStyle(Qt.PenStyle.DashLine)
+    border_item = scene.addPath(border_path, pen=pen)
     self.group.addToGroup(border_item)
 
     self.width = w + BORDER_WIDTH
@@ -77,9 +81,9 @@ class RenderedNode:
     scene.addItem(self.group)
 
 class RenderedEdge:
-  def __init__(self, parent, child, is_completed):
-    self.is_completed = is_completed
-    self.color = active_color if not is_completed else completed_color
+  def __init__(self, parent, child, completed_state):
+    self.completed_state = completed_state
+    self.color = active_color if not completed_state else completed_color
     x_a = parent.x + parent.width + BORDER_OUTER_SPACE
     y_a = parent.y
     x_b = child.x - BORDER_OUTER_SPACE
@@ -90,14 +94,14 @@ class RenderedEdge:
 
   def render(self, scene):
     self.item = scene.addPath(self.path, pen=QPen(QColor(self.color), BORDER_WIDTH, cap=Qt.PenCapStyle.RoundCap))
-    if self.is_completed:
+    if self.completed_state:
       self.item.setZValue(1)
 
 class Tree:
   class Node:
-    def __init__(self, text, is_completed, parent=None):
+    def __init__(self, text, completed_state, parent=None):
       self.text = text
-      self.is_completed = is_completed
+      self.completed_state = completed_state
 
       self.parent = parent
       self.children = []
@@ -112,7 +116,7 @@ class Tree:
     def __repr__(self):
       ret = []
       ret.append(f'{self.text = }')
-      ret.append(f'{self.is_completed = }')
+      ret.append(f'{self.completed_state = }')
       ret.append(f'{self.parent is not None = }')
       ret.append(f'{len(self.children) = }')
       ret.append(f'{self.rendered_node = }')
@@ -131,17 +135,17 @@ class Tree:
     self.build_tree()
 
   def build_tree_rec(self, parent=None):
-    level, text, is_completed = self.entries[self.entry_index]
-    node = Tree.Node(text, is_completed, parent)
+    level, text, completed_state = self.entries[self.entry_index]
+    node = Tree.Node(text, completed_state, parent)
     self.entry_index += 1
     while self.entry_index < len(self.entries) \
         and self.entries[self.entry_index][0] > level:
       node.children.append(self.build_tree_rec(node))
     if len(node.children): # has children -> derive is_completed from them
-      node.is_completed = True
+      node.completed_state = 1
       for child in node.children:
-        if child.is_completed == False:
-          node.is_completed = False
+        if child.completed_state == 0:
+          node.completed_state = 0
           break
     self.nodes.append(node)
     return node
@@ -160,12 +164,16 @@ class Tree:
     for text in self.lines:
       spaces = len(text) - len(text.lstrip(' '))
       level = spaces
-      is_completed = text[spaces] == '.'
-      text = text[spaces + is_completed:]
-      self.entries.append((level, text, is_completed))
+      completed_state = 0
+      if text[spaces] == ';':
+        completed_state = 1
+      elif text[spaces] == ':':
+        completed_state = 2
+      text = text[spaces + bool(completed_state):]
+      self.entries.append((level, text, completed_state))
 
   def calculate_layout_rec(self, node, x, y):
-    node.rendered_node = RenderedNode(node.text, self.scene, node.is_completed)
+    node.rendered_node = RenderedNode(node.text, self.scene, node.completed_state)
     node.x = x
     node.y = y
     if len(node.children) == 0: # leaf
@@ -192,7 +200,7 @@ class Tree:
   def render_rec(self, node):
     node.rendered_node.render(self.scene, node.x, node.y + node.bb_height / 2)
     if node.parent:
-      node.rendered_edge = RenderedEdge(node.parent.rendered_node, node.rendered_node, node.is_completed)
+      node.rendered_edge = RenderedEdge(node.parent.rendered_node, node.rendered_node, node.completed_state)
       node.rendered_edge.render(self.scene)
     for child in node.children:
       self.render_rec(child)
