@@ -113,6 +113,7 @@ class Tree:
       self.rendered_edge = None
       self.x = 0 # top left corner of subtree bounding box
       self.y = 0
+      self.offset_y = 0
       self.bb_width = 0
       self.bb_height = 0
 
@@ -124,6 +125,11 @@ class Tree:
       ret.append(f'{len(self.children) = }')
       ret.append(f'{self.rendered_node = }')
       ret.append(f'{self.rendered_edge = }')
+      ret.append(f'{self.x = }')
+      ret.append(f'{self.y = }')
+      ret.append(f'{self.offset_y = }')
+      ret.append(f'{self.bb_width = }')
+      ret.append(f'{self.bb_height = }')
       return '\n'.join(ret)
 
   def __init__(self, lines, scene, view):
@@ -194,19 +200,22 @@ class Tree:
       bb_height += dy
       bb_width = max(bb_width, child.bb_width)
     bb_width += node.rendered_node.width + HORIZONTAL_MARGIN
+    if node.rendered_node.height > bb_height:
+      node.offset_y = (node.rendered_node.height - bb_height) / 2
+      bb_height = node.rendered_node.height
     node.bb_width = bb_width
     node.bb_height = bb_height
 
   def calculate_layout(self):
     self.calculate_layout_rec(self.root, 0, 0)
 
-  def render_rec(self, node):
-    node.rendered_node.render(self.scene, node.x, node.y + node.bb_height / 2)
+  def render_rec(self, node, offset_y=0):
+    node.rendered_node.render(self.scene, node.x, node.y + node.bb_height / 2 + offset_y)
     if node.parent:
       node.rendered_edge = RenderedEdge(node.parent.rendered_node, node.rendered_node, node.completed_state)
       node.rendered_edge.render(self.scene)
     for child in node.children:
-      self.render_rec(child)
+      self.render_rec(child, offset_y + node.offset_y)
 
   def render(self):
     if len(self.entries) == 0:
