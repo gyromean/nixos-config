@@ -52,11 +52,25 @@ local function start_socket_server(map_name)
   end
 end
 
-local function send(map_name, data)
-  if data == '' then
-    data = '\n' -- workaround for sending empty data
+local function number_to_bytes(number)
+  local bytes = {}
+  for i = 1, 4 do
+    bytes[i] = string.char(number % 256)
+    number = math.floor(number / 256)
   end
-  M.maps[map_name].client:write(data)
+  return table.concat(bytes)
+end
+
+local function send_data(map_name, data)
+  M.maps[map_name].client:write(number_to_bytes(#data) .. data)
+end
+
+local function send_tree(map_name, data)
+  send_data(map_name, 'T' .. data)
+end
+
+local function send_view(map_name, line_number)
+  send_data(map_name, 'V' .. number_to_bytes(line_number))
 end
 
 local function is_line_map_start(line)
@@ -75,6 +89,7 @@ send_maps_from_buf = function(buf)
   local data = ''
   local inside = false
   local map_name
+  local line_cnt = 0
   for i, line in ipairs(lines) do
     if not inside then -- outside
       map_name = is_line_map_start(line)
@@ -84,10 +99,13 @@ send_maps_from_buf = function(buf)
       end
     else -- inside
       if is_line_map_stop(line) then
-        send(map_name, data)
+        M.maps[map_name].line_cnt = line_cnt
+        send_tree(map_name, data)
         inside = false
+        line_cnt = 0
       else
         data = data .. line .. '\n'
+        line_cnt = line_cnt + 1
       end
     end
   end
@@ -138,7 +156,7 @@ end
 local function start_map_gui(map_name)
   local gui_path = string.match(debug.getinfo(1).source:sub(2), "^.*/") .. 'gui.py'
   vim.system({'python', gui_path, M.maps[map_name].socket})
-  -- print(vim.inspect(vim.system({'alacritty', '-e', '/run/current-system/sw/bin/python',  gui_path, M.maps[map_name].socket})))
+  -- print(vim.inspect(vim.system({'alacritty', '-e', 'bash', '-c', '/run/current-system/sw/bin/python ' .. gui_path .. ' ' .. M.maps[map_name].socket .. '; sleep 3'})))
 end
 
 local function start_map(map_name)
@@ -169,6 +187,21 @@ stop_map = function(map_name)
   print('Stopped mindmap', map_name)
 end
 
+local function get_above_map()
+  local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+  local cursor_line = vim.api.nvim_win_get_cursor(0)[1]
+  local map_name = nil
+  for i = cursor_line, 1, -1 do
+    map_name = is_line_map_start(lines[i])
+    if map_name ~= nil then
+      if M.maps[map_name] == nil then
+        return nil
+      end
+      return map_name, cursor_line - i
+    end
+  end
+end
+
 -- -----------------------------------------------------------
 
 function M.start()
@@ -187,6 +220,15 @@ function M.stop()
     return
   end
   stop_map(map_name)
+end
+
+function M.view()
+  local map_name, line = get_above_map()
+  if map_name == nil or line < 1 or line > M.maps[map_name].line_cnt then
+    print('Mindmap view not applicable')
+    return
+  end
+  send_view(map_name, line - 1)
 end
 
 return M

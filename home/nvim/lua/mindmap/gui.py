@@ -144,8 +144,9 @@ class Tree:
     self.build_tree()
 
   def build_tree_rec(self, parent=None):
-    level, text, completed_state = self.entries[self.entry_index]
+    level, text, completed_state, _ = self.entries[self.entry_index]
     node = Tree.Node(text, completed_state, parent)
+    self.entries[self.entry_index][3] = node
     self.entry_index += 1
     while self.entry_index < len(self.entries) \
         and self.entries[self.entry_index][0] > level:
@@ -179,7 +180,7 @@ class Tree:
       elif text[spaces] == ':':
         completed_state = 2
       text = text[spaces + bool(completed_state):]
-      self.entries.append((level, text, completed_state))
+      self.entries.append([level, text, completed_state, None])
 
   def calculate_layout_rec(self, node, x, y):
     node.rendered_node = RenderedNode(node.text, self.scene, node.completed_state)
@@ -336,9 +337,15 @@ class GraphicsView(QGraphicsView):
     scaled_by = self.transform().m11()
     self.translate(dx / scaled_by, dy / scaled_by)
 
-  def center(self):
+  def center_subtree(self, node, margin=100):
+    bounding_rect = QRectF(node.x, node.y, node.bb_width, node.bb_height)
+    bounding_rect.adjust(-margin, -margin, margin, margin)
+    self.fitInView(bounding_rect, Qt.AspectRatioMode.KeepAspectRatio)
+    self.keep_centered = False
+
+  def center(self, margin=100):
     bounding_rect = self.scene.itemsBoundingRect()
-    bounding_rect.adjust(-100, -100, 100, 100) # add some margins
+    bounding_rect.adjust(-margin, -margin, margin, margin)
     self.fitInView(bounding_rect, Qt.AspectRatioMode.KeepAspectRatio)
     self.keep_centered = True
 
@@ -407,20 +414,50 @@ class MySocket(QLocalSocket):
     super().__init__()
     self.scene = scene
     self.view = view
+    self.data = b''
+    self.data_len = -1
 
   def connect(self, name):
     self.connectToServer(name)
     self.readyRead.connect(self.read_handler)
     self.errorOccurred.connect(self.error_handler)
 
-  def read_handler(self):
-    data = self.readData(10000)
+  def process_tree_command(self, data):
     string = data.decode(encoding='UTF-8')
     new_t = Tree(string, self.scene, self.view)
     new_t.update(self.view.tree)
     if self.view.keep_centered:
       self.view.center()
     self.view.tree = new_t
+
+  def process_view_command(self, data):
+    line = data[0] + (data[1] << 8) + (data[2] << 16) + (data[3] << 24)
+    node = self.view.tree.entries[line][3]
+    self.view.center_subtree(node)
+
+  def process_command(self, data):
+    cmd = data[0]
+    data = data[1:]
+    match chr(cmd):
+      case 'T':
+        self.process_tree_command(data)
+      case 'V':
+        self.process_view_command(data)
+        pass
+
+  def read_handler(self):
+    self.data += self.readData(10000)
+    while True:
+      if self.data_len == -1 and len(self.data) >= 4: # process length (header)
+        self.data_len = self.data[0] + (self.data[1] << 8) + (self.data[2] << 16) + (self.data[3] << 24)
+        self.data = self.data[4:]
+
+      if self.data_len != -1 and len(self.data) >= self.data_len: # whole command ready
+        self.process_command(self.data[:self.data_len])
+        self.data = self.data[self.data_len:]
+        self.data_len = -1
+      else:
+        break
 
   def error_handler(self, socketError):
     if socketError == QLocalSocket.LocalSocketError.PeerClosedError:
