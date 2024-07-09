@@ -349,9 +349,27 @@ class GraphicsView(QGraphicsView):
     self.fitInView(bounding_rect, Qt.AspectRatioMode.KeepAspectRatio)
     self.keep_centered = True
 
+  def process_key_movement(self, key):
+    self.keep_centered = False
+    match key:
+      case 'H':
+        self.translate_scaled(KEYBOARD_TRANSLATE, 0)
+      case 'J':
+        self.translate_scaled(0, -KEYBOARD_TRANSLATE)
+      case 'K':
+        self.translate_scaled(0, KEYBOARD_TRANSLATE)
+      case 'L':
+        self.translate_scaled(-KEYBOARD_TRANSLATE, 0)
+
+      case 'F':
+        self.scale_at(KEYBOARD_SCALE_FACTOR, self.width() / 2, self.height() / 2)
+      case 'D':
+        self.scale_at(1 / KEYBOARD_SCALE_FACTOR, self.width() / 2, self.height() / 2)
+
   def keyPressEvent(self, event):
     try:
-      match chr(event.key()):
+      key = chr(event.key())
+      match key:
         case 'R':
           self.center()
 
@@ -359,25 +377,8 @@ class GraphicsView(QGraphicsView):
           global app
           app.exit()
 
-        case 'H':
-          self.translate_scaled(KEYBOARD_TRANSLATE, 0)
-          self.keep_centered = False
-        case 'J':
-          self.translate_scaled(0, -KEYBOARD_TRANSLATE)
-          self.keep_centered = False
-        case 'K':
-          self.translate_scaled(0, KEYBOARD_TRANSLATE)
-          self.keep_centered = False
-        case 'L':
-          self.translate_scaled(-KEYBOARD_TRANSLATE, 0)
-          self.keep_centered = False
-
-        case 'F':
-          self.scale_at(KEYBOARD_SCALE_FACTOR, self.width() / 2, self.height() / 2)
-          self.keep_centered = False
-        case 'D':
-          self.scale_at(1 / KEYBOARD_SCALE_FACTOR, self.width() / 2, self.height() / 2)
-          self.keep_centered = False
+        case 'H' | 'J' | 'K' | 'L' | 'F' | 'D':
+          self.process_key_movement(key)
 
     except ValueError:
       pass
