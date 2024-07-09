@@ -71,6 +71,7 @@ set signcolumn=yes " signs (z vim-gitgutter nebo lsp) se budou vzdy ukazovat v e
 set noshowmode " nebude dola ukazovat v jakym jsem modu, protoze to stejne vidim v airline (diky tomu muzu pouzivat `print` z lua v insert modu a bude to vide)
 set termguicolors
 set shortmess+=I " disable intro screen
+set smartindent
 
 " ----- REBINDS -----
 " save a close
