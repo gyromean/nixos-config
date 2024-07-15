@@ -28,7 +28,7 @@ in
     (lib.attrsets.mapAttrs'
       (dir: type: lib.nameValuePair ".config/${dir}" { source = linkFunc "${opts.configPath}/home/${dir}" ./${dir}; })
       (lib.attrsets.filterAttrs
-        (dir: type: type == "directory")
+        (dir: type: type == "directory" && dir != "nolink")
         (builtins.readDir ./.)
       )
     ) // { ".config/machine" = { source = linkFunc "${opts.configPath}/hosts/${machine.hostDir}/machine" ../hosts/${machine.hostDir}/machine; }; };
