@@ -15,7 +15,7 @@ ${machine.polybarI3Workspaces}
 done
 
 python ~/.config/custom/polybar-scripts/eyetimer.py &
-python ~/.config/custom/polybar-scripts/audio.py &
+python ~/.config/custom/polybar-scripts/audio.py ${machine.speakersSink} &
 
 python ~/.config/custom/scripts/i3-workspace-groups.py refresh-polybar
 '';
