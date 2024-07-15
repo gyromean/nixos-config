@@ -9,6 +9,8 @@ class Impl(PolybarIPC):
 
     self.items = [
       # FILL WITH STRINGS FOR POLYBAR, at least one must be present
+      'text',
+      sc('foreground', 'white ') + sc('blue', 'blue'),
     ]
     self.index = 0
 
