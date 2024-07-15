@@ -19,7 +19,6 @@ let
     ipympl
     pycryptodome
     pyqt6
-    manim-slides
   ];
 in
 {
@@ -97,7 +96,6 @@ in
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -204,7 +202,7 @@ in
       ranger # hezky, cli
       broot # zajimavy, CLI, ma to fuzzy searching nebo jak se to jmenuje
       cinnamon.nemo-with-extensions # OK, klasika
-      gnome.nautilus # asi moc simple, klasika
+      nautilus # asi moc simple, klasika
     ];
   };
 
@@ -232,7 +230,7 @@ in
     unzip # aby ranger umel unzip
     evince # PDF viewer
     vlc
-    gnome.eog # image viewer
+    eog # image viewer
     gdb
     ddcutil # komunikace s monitorem (nastaveni brightness)
     uxplay
@@ -250,7 +248,7 @@ in
     xdg-utils # for opening default programs when clicking links
     glib # gsettings
     dracula-theme # gtk theme
-    gnome3.adwaita-icon-theme  # default gnome cursors
+    adwaita-icon-theme  # default gnome cursors
     grim # screenshot functionality
     slurp # screenshot functionality
     #(xdg-desktop-portal-gnome.overrideAttrs (oldAttrs: rec { version = "43.1"; }))
@@ -304,7 +302,6 @@ in
     fast-downward # pddl planning system
     python312Packages.servefile # simple http server for serving file to download or providing file upload functionality
     python311Packages.debugpy # python debugger
-    manim-slides
     diff-pdf
     qrcp # servefile alternative
     imagemagick
