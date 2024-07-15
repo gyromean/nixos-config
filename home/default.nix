@@ -1,4 +1,4 @@
-{ config, pkgs, lib, machine, opts, ... }:
+{ config, pkgs, lib, machine, opts, ... }@inputs:
 let
   linkFunc = (soft: hard:
     if opts.enableSymlinks
@@ -10,7 +10,7 @@ in
   # import all .nix files from this directory except default.nix
   imports =
     (lib.mapAttrsToList
-      (name: type: ./${name})
+      (name: type: (import ./${name} (inputs // { inherit linkFunc; })))
       (lib.attrsets.filterAttrs
         (name: type: type == "regular" && name != "default.nix" && lib.hasSuffix ".nix" name)
         (builtins.readDir ./.)
