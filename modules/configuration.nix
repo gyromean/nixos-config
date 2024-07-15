@@ -51,15 +51,15 @@ in
   networking.networkmanager.enable = true;
   systemd.services.NetworkManager-wait-online.enable = false;
 
-  networking.interfaces.virtbr = {
-    useDHCP = true;
-  };
-  networking.bridges = {
-    "virtbr" = {
-      interfaces = [ machine.defaultInterface ];
-      # interfaces = [];
-    };
-  };
+  # networking.interfaces.virtbr = {
+  #   useDHCP = true;
+  # };
+  # networking.bridges = {
+  #   "virtbr" = {
+  #     interfaces = [ machine.defaultInterface ];
+  #     # interfaces = [];
+  #   };
+  # };
 
   # Set your time zone.
   time.timeZone = "Europe/Prague";
