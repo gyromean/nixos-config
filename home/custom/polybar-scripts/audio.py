@@ -234,8 +234,8 @@ class Impl(PolybarIPC):
       set_volume(BLUETOOTH_SINK, max(self.volume_bluetooth - 5, 0))
 
   def toggle_mute(self):
-    self.automute = False
     if self.enum != states.BLUETOOTH:
+      self.automute = False
       set_mute(SPEAKERS_SINK)
     else:
       set_mute(BLUETOOTH_SINK)
