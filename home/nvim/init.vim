@@ -169,3 +169,4 @@ luafile ~/.config/nvim/plugin-config/vimtex.lua
 luafile ~/.config/nvim/plugin-config/gitgutter.lua
 luafile ~/.config/nvim/plugin-config/harpoon.lua
 luafile ~/.config/nvim/plugin-config/oil.lua
+luafile ~/.config/nvim/plugin-config/hardtime.lua

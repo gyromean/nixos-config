@@ -34,6 +34,7 @@
       vimtex
       harpoon2
       oil-nvim
+      hardtime-nvim
     ];
   };
 }
