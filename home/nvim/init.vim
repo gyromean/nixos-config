@@ -45,8 +45,6 @@ vim.keymap.set({"n", "x"}, "<leader>ra", function() require'syns'.request_antony
 vim.keymap.set({"n", "x"}, "<leader>rt", function() require'syns'.request_translation() end)
 vim.keymap.set({"n"}, "<leader>mm", "<cmd>messages<CR>")
 vim.keymap.set({"n"}, "<leader>mc", "<cmd>messages clear<CR>")
-vim.keymap.set({"n", "x"}, "j", "gj")
-vim.keymap.set({"n", "x"}, "k", "gk")
 vim.keymap.set({"n"}, "<leader>ms", function() require'mindmap'.start() end, {desc = "Start closest Mindmap"})
 vim.keymap.set({"n"}, "<leader>me", function() require'mindmap'.stop() end, {desc = "Stop closest Mindmap"})
 vim.keymap.set({"n"}, "<leader>mv", function() require'mindmap'.view() end, {desc = "View Mindmap subtree"})
