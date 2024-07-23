@@ -1,10 +1,10 @@
-# for the harpoon state to be shared via syncthing, a symlink must be created, i.e. `ln -s ~/sync/harpoon.json ~/.local/share/nvim/harpoon.json`
+# for the harpoon state to be shared via syncthing, a symlink to a folder must be created, i.e. `ln -s ~/sync/harpoon ~/.local/share/nvim/harpoon`
 
 local harpoon = require'harpoon'
 
 harpoon:setup()
 
-vim.keymap.set("n", "<leader>ha", function() harpoon:list():append() end, {desc = "[H]arpoon [a]ppend"})
+vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end, {desc = "[H]arpoon [a]dd"})
 vim.keymap.set("n", "<leader>hs", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, {desc = "[H]arpoon [s]how"})
 
 vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end, {desc = "Harpoon select [1]. buffer"})
