@@ -1,11 +1,9 @@
 " ----- COLORSCHEME -----
-colorscheme nord
-" nastavit highlight na stejnou barvu jako Search (barvy muzu zobrazit pres `:hi`)
+" colorscheme nord
+colorscheme kanagawa-wave
+" colorscheme catppuccin-mocha
 hi! link TelescopeMatching Search
 hi! link TelescopePreviewLine Search
-hi @String guifg=#8fbcbb
-hi @Comment guifg=#677591
-hi VertSplit guifg=#434c5e
 hi LspDiagnosticsDefaultWarning guifg=#ebcb8b
 hi LspDiagnosticsVirtualTextWarning guifg=#ebcb8b
 hi LspDiagnosticsUnderlineWarning gui=undercurl guisp=#ebcb8b
