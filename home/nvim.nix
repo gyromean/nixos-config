@@ -37,6 +37,7 @@
       kanagawa-nvim
       catppuccin-nvim
       leap-nvim
+      lazydev-nvim
     ];
   };
 }

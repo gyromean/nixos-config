@@ -159,3 +159,4 @@ luafile ~/.config/nvim/plugin-config/oil.lua
 luafile ~/.config/nvim/plugin-config/hardtime.lua
 luafile ~/.config/nvim/plugin-config/surround.lua
 luafile ~/.config/nvim/plugin-config/leap.lua
+luafile ~/.config/nvim/plugin-config/lazydev.lua

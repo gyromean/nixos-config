@@ -10,6 +10,7 @@ cmp.setup({
     { name = 'path' },
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'lazydev' },
   }),
   window = {
     completion = cmp.config.window.bordered(),
