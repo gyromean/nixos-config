@@ -15,7 +15,6 @@
       vim-gitgutter # git stav jednotlivych radek vlevo; pridava do vim-airline countery zmen
       vim-commentary # keybind na toggle comment radku
       vim-surround # keybinds na zmenu uvozovek, zavorek, tagu, ...
-      vim-easymotion # rychla navigace v textu
       nvim-ts-autotag
       lsp-zero-nvim
       # dependencies pro lsp-zero-nvim:
@@ -37,6 +36,7 @@
       hardtime-nvim
       kanagawa-nvim
       catppuccin-nvim
+      leap-nvim
     ];
   };
 }

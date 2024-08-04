@@ -94,16 +94,6 @@ nnoremap <leader>tk :Telescope keymaps<CR>
 nnoremap <leader>tt :Telescope treesitter<CR>
 nnoremap <leader>tc :Telescope commands<CR>
 nnoremap <leader>th :Telescope help_tags<CR>
-" easymotion prebindovat na [ a ]
-nnoremap [[ <Plug>(easymotion-F)
-nnoremap ]] <Plug>(easymotion-f)
-xnoremap [[ <Plug>(easymotion-F)
-xnoremap ]] <Plug>(easymotion-f)
-" easymotion prebindovat na [ a ] i v pythonu, protoze u nej se to samo prebinduje
-autocmd FileType python nnoremap <buffer> [[ <Plug>(easymotion-F)
-autocmd FileType python nnoremap <buffer> ]] <Plug>(easymotion-f)
-autocmd FileType python xnoremap <buffer> [[ <Plug>(easymotion-F)
-autocmd FileType python xnoremap <buffer> ]] <Plug>(easymotion-f)
 " navigace uvnitr snippetu z autocompletu
 inoremap <C-h> <cmd>lua require'luasnip'.jump(-1)<CR>
 snoremap <C-h> <cmd>lua require'luasnip'.jump(-1)<CR>
@@ -151,7 +141,6 @@ EOF
 
 " ----- PLUGIN SETTINGS -----
 luafile ~/.config/nvim/plugin-config/commentary.lua
-luafile ~/.config/nvim/plugin-config/easymotion.lua
 luafile ~/.config/nvim/plugin-config/treesitter.lua
 luafile ~/.config/nvim/plugin-config/lsp-zero.lua
 luafile ~/.config/nvim/plugin-config/cmp.lua
@@ -169,3 +158,4 @@ luafile ~/.config/nvim/plugin-config/harpoon.lua
 luafile ~/.config/nvim/plugin-config/oil.lua
 luafile ~/.config/nvim/plugin-config/hardtime.lua
 luafile ~/.config/nvim/plugin-config/surround.lua
+luafile ~/.config/nvim/plugin-config/leap.lua
