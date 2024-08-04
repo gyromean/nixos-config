@@ -20,7 +20,9 @@ style = "Regular"
 
  # barvy z https://github.com/alacritty/alacritty-theme/blob/master/themes/nord.toml
 [colors.primary]
-background = '#2E3440'
+# background = '#2E3440' # nord
+background = '#1f1f28' # kanagawa
+# background = '#1e1e2e' # catppuccin
 foreground = '#D8DEE9'
 
 [colors.normal]
