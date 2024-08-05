@@ -7,16 +7,22 @@ from PyQt6.QtCore import Qt, QRectF, QPointF
 from PyQt6.QtNetwork import QLocalSocket
 
 colors = {name: QColor(*val) for name, val in {
+  # nord:
   'background': (0x2e, 0x34, 0x40),
-  'white': (0xec, 0xef, 0xf4),
-  'blue': (0x88, 0xc0, 0xd0),
+  'highlight': (0x88, 0xc0, 0xd0),
   'dim': (0x4c, 0x56, 0x6a),
+
+  # kanagawa:
+  'background': (0x1f, 0x1f, 0x28),
+  'highlight': (0xff, 0xa0, 0x66),
+  'dim': (0x54, 0x54, 0x6d),
+
   # 'yellow': (0xeb, 0xcb, 0x8b),
   # 'red': (0xbf, 0x61, 0x6a),
 }.items()}
 
 active_color = colors['dim']
-completed_color = colors['blue']
+completed_color = colors['highlight']
 
 LINE_CHAR_LIMIT = 40
 CORNER_RADIUS = 30
