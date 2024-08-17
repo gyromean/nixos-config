@@ -4,10 +4,14 @@ require'telescope'.setup{
       i = {
         ["<C-j>"] = 'move_selection_next',
         ["<C-k>"] = 'move_selection_previous',
-        ["<C-s>"] = 'select_horizontal'
+        ["<C-s>"] = 'select_horizontal',
+        ["<C-p>"] = require('telescope.actions.layout').toggle_preview,
       }
     },
-    path_display = { "truncate" } -- aby se ukazovala prava cast pathu pri hledani
+    path_display = { "truncate" }, -- aby se ukazovala prava cast pathu pri hledani
+    preview = {
+      hide_on_startup = true,
+    },
   },
   pickers = {
     find_files = {
