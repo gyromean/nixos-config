@@ -19,8 +19,8 @@ cmp.setup({
   mapping = {
     ['<CR>'] = cmp.config.disable,
     ['<C-P>'] = cmp.config.disable, -- for some reason to musi byt velky P
-    ['<C-d>'] = cmp.mapping(function(fallback) fallback() end, {"s"}), -- disablovat <C-d> v select modu, idk jestli je to dobre
-    ['<Tab>'] = cmp.mapping(function(fallback) fallback() end, {"s", "i"}), -- disablovat <C-d> v select modu, idk jestli je to dobre
+    ['<C-d>'] = cmp.mapping.scroll_docs(4),
+    ['<C-u>'] = cmp.mapping.scroll_docs(-4),
 
     ['<C-j>'] = cmp.mapping.select_next_item(),
     ['<C-k>'] = cmp.mapping.select_prev_item(),
