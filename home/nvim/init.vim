@@ -105,7 +105,10 @@ snoremap <C-y> <cmd>lua require'luasnip'.jump(1)<CR>
 nnoremap <leader>L <cmd>lua require'luasnip.loaders.from_lua'.load({ paths = "/home/pavel/.config/nvim/snippets" })<CR>
 
 " vlozeni slozenych zavorek
-inoremap <C-p> <end><CR>{<CR>}<up><end><CR>
+lua <<EOF
+vim.keymap.set("i", "<C-p>", "<end> {<CR>}<up><end><CR>");
+vim.keymap.set("i", "<C-S-p>", "<end><CR>{<CR>}<up><end><CR>");
+EOF
 " search results jsou vzdy uprostred obrazovky (ted to funguje jen smerem dopredu, <C-N> je for some reason MALE n)
 nnoremap <C-N> nzz
 " keybinds pro DAP
