@@ -293,6 +293,7 @@
     EDITOR = "nvim"; # nvim default editor; aby tohle zafungovalo, tak se musim relognout (nestaci `sudo nixos-rebuild switch`)
     PATH = [
       "/home/pavel/programy/path_links"
+      "/home/pavel/.cargo/bin"
     ];
   };
 
