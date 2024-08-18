@@ -184,7 +184,7 @@
       nnn # zajimavy, cli
       ranger # hezky, cli
       broot # zajimavy, CLI, ma to fuzzy searching nebo jak se to jmenuje
-      cinnamon.nemo-with-extensions # OK, klasika
+      nemo-with-extensions # OK, klasika
       nautilus # asi moc simple, klasika
     ];
   };
