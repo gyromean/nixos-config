@@ -100,7 +100,6 @@ in
     xdotool # simuluje keyboard input a mouse activity (je potreba kvuli interakci zathura a vimtex pluginu)
     texlab # LSP for LaTeX
     httpie # alternative to curl
-    wezterm # terminal emulator
     ltex-ls # grammar and spell checker language server
     lua
     slides # terminal based presentation tool
