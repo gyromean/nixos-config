@@ -120,5 +120,6 @@ in
     rustup
     wofi
     waybar
+    wl-clipboard
   ];
 }
