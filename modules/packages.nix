@@ -118,5 +118,6 @@ in
     simplescreenrecorder # screen recorder
     haruna # media player
     rustup
+    wofi
   ];
 }
