@@ -121,5 +121,6 @@ in
     wofi
     waybar
     wl-clipboard
+    wayvnc
   ];
 }
