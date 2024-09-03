@@ -33,7 +33,6 @@
       vimtex
       harpoon2
       oil-nvim
-      hardtime-nvim
       kanagawa-nvim
       catppuccin-nvim
       leap-nvim
