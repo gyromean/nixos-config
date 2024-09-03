@@ -108,6 +108,15 @@ nnoremap <leader>L <cmd>lua require'luasnip.loaders.from_lua'.load({ paths = "/h
 lua <<EOF
 vim.keymap.set("i", "<C-p>", "<end> {<CR>}<up><end><CR>");
 vim.keymap.set("i", "<C-S-p>", "<end><CR>{<CR>}<up><end><CR>");
+vim.keymap.set("n", "<leader>c", function()
+  if vim.opt.formatoptions:get().r ~= true then
+    print("Enabling automatic comment insertion")
+    vim.opt.formatoptions:append("ro")
+  else
+    print("Disabling automatic comment insertion")
+    vim.opt.formatoptions:remove({"r", "o"})
+  end
+end, { desc = "Toggle automatic [c]omment insertion" });
 EOF
 " search results jsou vzdy uprostred obrazovky (ted to funguje jen smerem dopredu, <C-N> je for some reason MALE n)
 nnoremap <C-N> nzz
