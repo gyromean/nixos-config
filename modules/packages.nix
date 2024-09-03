@@ -119,5 +119,6 @@ in
     haruna # media player
     rustup
     wofi
+    waybar
   ];
 }
