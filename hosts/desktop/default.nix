@@ -18,11 +18,10 @@
     modesetting.enable = true;
     powerManagement.enable = false;
     powerManagement.finegrained = false;
-    open = true;
+    open = false;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.latest; # tady bylo stable, ale to mi neslo zbuildit
+    package = config.boot.kernelPackages.nvidiaPackages.production;
   };
 
   boot.kernelModules = [ "nvidia" ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
 }
