@@ -124,5 +124,6 @@ in
     wayvnc
     ags
     typescript-language-server
+    inkscape
   ];
 }
