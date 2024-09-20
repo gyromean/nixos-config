@@ -125,5 +125,6 @@ in
     ags
     typescript-language-server
     inkscape
+    hyprpicker # color picker
   ];
 }
