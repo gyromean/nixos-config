@@ -127,5 +127,6 @@ in
     inkscape
     hyprpicker # color picker
     hyprpaper # wallpaper program for hyprland
+    gimp
   ];
 }
