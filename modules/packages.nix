@@ -126,5 +126,6 @@ in
     typescript-language-server
     inkscape
     hyprpicker # color picker
+    hyprpaper # wallpaper program for hyprland
   ];
 }
