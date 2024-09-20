@@ -15,6 +15,7 @@
       nv = "neovide";
       g = "git";
     };
+    history.append = true;
     # ty '' pred $ to escapujou v nixu, do relanyho .zshrc se nepropisou
     initExtra = ''
 # sourcenout git prompts pro igloo (nord) theme
