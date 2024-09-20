@@ -122,5 +122,6 @@ in
     waybar
     wl-clipboard
     wayvnc
+    ags
   ];
 }
