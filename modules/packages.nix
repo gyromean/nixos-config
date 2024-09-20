@@ -128,5 +128,6 @@ in
     hyprpicker # color picker
     hyprpaper # wallpaper program for hyprland
     gimp
+    grimblast # screenshot tool for hyprland
   ];
 }
