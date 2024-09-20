@@ -36,6 +36,7 @@ lspconfig.ltex.setup({
   },
 })
 lspconfig.rust_analyzer.setup({})
+lspconfig.tsserver.setup({})
 
 lsp_zero.set_sign_icons({ -- musi se volat az po lsp.setup()
   error = '◆',

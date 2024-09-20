@@ -123,5 +123,6 @@ in
     wl-clipboard
     wayvnc
     ags
+    typescript-language-server
   ];
 }
