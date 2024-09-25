@@ -28,13 +28,13 @@ lspconfig.pyright.setup({})
 lspconfig.lua_ls.setup({})
 lspconfig.bashls.setup({})
 lspconfig.texlab.setup({})
-lspconfig.ltex.setup({
-  settings = {
-    ltex = {
-      language = "en-US";
-    },
-  },
-})
+-- lspconfig.ltex.setup({
+--   settings = {
+--     ltex = {
+--       language = "en-US";
+--     },
+--   },
+-- })
 lspconfig.rust_analyzer.setup({})
 lspconfig.tsserver.setup({})
 
