@@ -129,5 +129,6 @@ in
     hyprpaper # wallpaper program for hyprland
     gimp
     grimblast # screenshot tool for hyprland
+    nodejs_22
   ];
 }
