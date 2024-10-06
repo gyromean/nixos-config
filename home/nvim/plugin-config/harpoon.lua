@@ -2,7 +2,12 @@
 
 local harpoon = require'harpoon'
 
-harpoon:setup()
+harpoon:setup({
+  settings = {
+    sync_on_ui_close = true,
+    save_on_toggle = true,
+  },
+})
 
 vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end, {desc = "[H]arpoon [a]dd"})
 vim.keymap.set("n", "<leader>hs", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, {desc = "[H]arpoon [s]how"})
