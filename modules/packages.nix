@@ -130,5 +130,6 @@ in
     gimp
     grimblast # screenshot tool for hyprland
     nodejs_22
+    busybox
   ];
 }
