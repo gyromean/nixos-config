@@ -131,5 +131,6 @@ in
     grimblast # screenshot tool for hyprland
     nodejs_22
     busybox
+    vesktop # discord client for wayland
   ];
 }
