@@ -132,5 +132,6 @@ in
     nodejs_22
     busybox
     vesktop # discord client for wayland
+    gparted
   ];
 }
