@@ -118,7 +118,6 @@ in
     simplescreenrecorder # screen recorder
     haruna # media player
     rustup
-    wofi
     waybar
     wl-clipboard
     wayvnc
