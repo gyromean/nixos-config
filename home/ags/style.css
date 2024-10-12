@@ -1,0 +1,106 @@
+/* ----- GENERAL ----- */
+
+@define-color blue #7E9CD8;
+@define-color green #96d87e;
+@define-color yellow #ebcb8b;
+@define-color red #e35858;
+
+@define-color separator-color #2c2c3a;
+@define-color text-color #babac5;
+@define-color icon-color #515173;
+@define-color background-color #1f1f28;
+
+* {
+  all: unset;
+  font-size: 15px;
+  font-family: monospace;
+  color: magenta; /* makes it easier to see and fix unstyled items */
+}
+
+separator {
+  background-color: @separator-color;
+  min-width: 2px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+label {
+  color: pink;
+}
+
+tooltip {
+  background-color: @background-color;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: @separator-color;
+  border-width: 2px;
+}
+
+tooltip label {
+  color: @text-color;
+}
+
+.section {
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-top: 0px;
+  padding-bottom: 10px;
+}
+
+.item {
+  padding-right: 12px;
+  padding-left: 12px;
+  padding-top: 15px;
+  padding-bottom: 5px;
+}
+
+revealer {
+  /* padding-left: -50px; */
+  color: pink;
+  background-color: pink;
+}
+
+/* ----- ICON ----- */
+
+.icon {
+  color: @icon-color;
+  transition-duration: 1s;
+}
+
+.item.blue .icon, .icon.blue { color: @blue; }
+.item.red .icon, .icon.red { color: @red; }
+.item.yellow .icon, .icon.yellow { color: @yellow; }
+.item.green .icon, .icon.green { color: @green; }
+
+/* ----- TEXT ----- */
+
+.text {
+  transition-duration: .5s;
+  padding-bottom: 0px;
+  color: @text-color;
+}
+
+.item.blue .text, .text.blue { color: @blue; }
+.item.red .text, .text.red { color: @red; }
+.item.yellow .text, .text.yellow { color: @yellow; }
+.item.green .text, .text.green { color: @green; }
+
+/* ----- PROGRESSION ----- */
+
+levelbar.progression block {
+  transition-duration: .5s;
+  border-radius: 2px; /* half of width */
+}
+
+levelbar.progression block.empty {
+  background-color: @separator-color;
+}
+
+levelbar.progression block.filled {
+  background-color: @icon-color;
+}
+
+.item.blue levelbar.progression block.filled, levelbar.progression.blue block.filled { background-color: @blue; }
+.item.green levelbar.progression block.filled, levelbar.progression.green block.filled { background-color: @green; }
+.item.yellow levelbar.progression block.filled, levelbar.progression.yellow block.filled { background-color: @yellow; }
+.item.red levelbar.progression block.filled, levelbar.progression.red block.filled { background-color: @red; }

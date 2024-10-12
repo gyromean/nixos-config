@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+while true; do
+  pkill ags
+  echo '--- STARTING ---'
+  ags -c ./laptop.js -b bar &
+  read
+done
