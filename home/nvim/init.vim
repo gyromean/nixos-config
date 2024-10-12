@@ -22,7 +22,6 @@ vim.opt.listchars:append "eol:↴"
 if vim.g.neovide then -- only executes inside neovide
   vim.g.neovide_floating_shadow = false
   vim.g.neovide_scale_factor = 1.0 -- see https://neovide.dev/faq.html#how-can-i-dynamically-change-the-scale-at-runtime
-  vim.o.guifont = "monospace:h11"
   local change_scale_factor = function(delta)
     vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
     vim.cmd'redraw!' -- without this the rescale will not be applied until some further user input which causes neovim to redraw
