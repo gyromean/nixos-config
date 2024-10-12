@@ -37,6 +37,10 @@ if vim.g.neovide then -- only executes inside neovide
     vim.g.neovide_scale_factor = 1.0
     change_scale_factor(1)
   end)
+  vim.keymap.set({'n', 'i', 'v', 's', 'c', 'o', 't'}, "<C-S-n>", function()
+    local cwd = vim.fn.getcwd()
+    vim.system({'bash', '-c', 'alacritty --working-directory ' .. cwd .. '&'}) -- workaround for hyprland window swallowing
+  end)
 end
 
 vim.keymap.set({"n", "x"}, "<leader>rs", function() require'syns'.request_synonyms() end)
