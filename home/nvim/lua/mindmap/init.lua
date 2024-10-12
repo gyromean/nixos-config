@@ -155,8 +155,7 @@ end
 
 local function start_map_gui(map_name)
   local gui_path = string.match(debug.getinfo(1).source:sub(2), "^.*/") .. 'gui.py'
-  vim.system({'python', gui_path, M.maps[map_name].socket})
-  -- print(vim.inspect(vim.system({'alacritty', '-e', 'bash', '-c', '/run/current-system/sw/bin/python ' .. gui_path .. ' ' .. M.maps[map_name].socket .. '; sleep 3'})))
+  vim.system({'bash', '-c', 'python ' .. gui_path .. ' ' .. M.maps[map_name].socket .. '&'}) -- this way the python gui will not be a descendant of the terminal, so it won't get swallowed by hyprland
 end
 
 local function start_map(map_name)
