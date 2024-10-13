@@ -1,4 +1,3 @@
-const battery = await Service.import("battery")
 import { Item, Icon, Text } from './utils.js'
 
 const date = Variable(['', ''], {
