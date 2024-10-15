@@ -1,8 +1,16 @@
 #!/usr/bin/env bash
 
+if [[ $(hostname) == *"pc" ]]; then
+  echo DESKTOP
+  script=./desktop.js
+else
+  echo LAPTOP
+  script=./laptop.js
+fi
+
 while true; do
   pkill ags
   echo '--- STARTING ---'
-  ags -c ./laptop.js -b bar &
+  ags -c "$script" -b bar &
   read
 done
