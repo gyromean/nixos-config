@@ -20,20 +20,20 @@ Utils.monitorFile(
 
 function make_bar(monitor = 0) {
   return new Bar({
-     monitor,
-     right: [
-       Eyetimer,
-       Diary,
-       Audio,
-       Cpu,
-       Memory,
-       Storage,
-       Network,
-       Battery,
-       Keyboard,
-       DateModule,
-     ],
-   }).get_widget()
+    monitor,
+    right: [
+      Eyetimer,
+      Diary,
+      Audio,
+      Cpu,
+      Memory,
+      Storage,
+      Network,
+      Battery,
+      Keyboard,
+      DateModule,
+    ],
+  }).get_widget()
 }
 
 App.config({

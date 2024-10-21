@@ -1,4 +1,4 @@
-import { Section, Item, Icon } from './src/utils.js'
+import { Section, Item, Icon, Bar } from './src/utils.js'
 import { DateModule } from './src/date.js'
 import { Audio } from './src/audio.js'
 import { Network } from './src/network.js'
@@ -17,44 +17,28 @@ Utils.monitorFile(
   }
 )
 
-function Left() {
-  return Section([
-  ], { hpack: 'start' })
-}
-
-function Right() {
-  return Section([
-    Eyetimer(),
-    Diary(),
-    Audio(),
-    Cpu(),
-    Memory(),
-    Storage(),
-    Network(),
-    Keyboard(),
-    DateModule(),
-  ], { hpack: 'end' })
-}
-
-function Bar(monitor = 0) {
-  return Widget.Window({
-    name: `bar-${monitor}`,
-    class_name: 'bar',
+function make_bar(monitor = 0) {
+  return new Bar({
     monitor,
-    anchor: ['top', 'left', 'right'],
-    exclusivity: 'exclusive',
-    child: Widget.CenterBox({
-      start_widget: Left(),
-      end_widget: Right(),
-    }),
-  })
+    right: [
+      Eyetimer,
+      Diary,
+      Audio,
+      Cpu,
+      Memory,
+      Storage,
+      Network,
+      Keyboard,
+      DateModule,
+    ],
+  }).get_widget()
 }
 
 App.config({
   style: './style.css',
   windows: [
-    Bar(0),
-    Bar(1),
-    Bar(2),
+    make_bar(0),
+    make_bar(1),
+    make_bar(2),
   ],
 })
