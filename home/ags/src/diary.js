@@ -47,8 +47,9 @@ function update() {
       color_manager.reset()
   })
 }
+update()
 
-export function Diary() {
+export function Diary(bar) {
   const icon = Icon({
     label: '',
   })
@@ -72,8 +73,7 @@ export function Diary() {
     }),
   ])
 
-  color_manager.add(item)
-  update()
+  bar.add_managed_item(color_manager, item)
 
   return Widget.EventBox({
     child: item,

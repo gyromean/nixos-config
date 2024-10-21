@@ -2,41 +2,48 @@ const audio = await Service.import("audio")
 import { Item, Icon, ClassManager, TooltipManager, Progression, Box, Revealer } from './utils.js'
 
 // DONE: dodelat zase hover, ktery mi rekne presny procenta
-// TODO: kdyz budu mit hlasitost vic jak 100%, tak 1) u toho levelbaru to manualne nastavit na min(val, 100), jinak to prestane byt rounded nahore, a 2) vysunout vpravo dalsi levelbar, ktery bude merit 100-200, atd.
-// TODO: udelat ten levelbar overall shorter?
+// DONE: kdyz budu mit hlasitost vic jak 100%, tak 1) u toho levelbaru to manualne nastavit na min(val, 100), jinak to prestane byt rounded nahore, a 2) vysunout vpravo dalsi levelbar, ktery bude merit 100-200, atd.
 
-export function Audio() {
-  const level_bar = Progression()
-  const level_bar_2 = Progression()
+const level_var = Variable(0)
+const level_var_2 = Variable(0)
+const revealer_var = Variable(false)
+const icon_var = Variable('󰕿')
+var is_muted = audio.speaker.is_muted || false
+
+const tooltip_manager = new TooltipManager()
+const color_manager = new ClassManager([], ['blue', 'green', 'yellow', 'red'])
+
+Utils.merge([audio.speaker.bind('volume')], (volume) => {
+  volume *= 100
+  level_var.value = Math.min(volume, 100)
+  level_var_2.value = Math.max(0, Math.min(volume - 100, 100))
+  tooltip_manager.set(Math.round(volume) + '%')
+  revealer_var.value = volume > 100
+  if(volume <= 200)
+    color_manager.set_with_timeout(is_muted ? 'yellow' : 'blue')
+  else
+    Utils.exec('pactl set-sink-volume @DEFAULT_SINK@ 200%')
+})
+
+Utils.merge([audio.speaker.bind('is_muted')], (m) =>  {
+  is_muted = m
+  color_manager.set_with_timeout(is_muted ? 'yellow' : 'blue')
+  icon_var.value = is_muted ? '󰸈' : '󰕿'
+})
+
+export function Audio(bar) {
+  const level_bar = Progression({ value: level_var.bind() })
+  const level_bar_2 = Progression({ value: level_var_2.bind() })
 
   const revealer = Revealer(level_bar_2, {
     css: 'padding-right: 1px;',
+    reveal_child: revealer_var.bind(),
   })
 
-  const icon_widget = Icon({ label: '󰕿' })
+  const icon_widget = Icon({ label: icon_var.bind() })
 
-  const color_manager = new ClassManager([level_bar, level_bar_2], ['blue', 'green', 'yellow', 'red'])
-  var is_muted = audio.speaker.is_muted || false
-
-  const tooltip_manager = new TooltipManager()
-
-  Utils.merge([audio.speaker.bind('volume')], (volume) => {
-    volume *= 100
-    level_bar.value = Math.min(volume, 100)
-    level_bar_2.value = Math.max(0, Math.min(volume - 100, 100))
-    tooltip_manager.set(Math.round(volume) + '%')
-    revealer.reveal_child = volume > 100
-    if(volume <= 200)
-      color_manager.set_with_timeout(is_muted ? 'yellow' : 'blue')
-    else
-      Utils.exec('pactl set-sink-volume @DEFAULT_SINK@ 200%')
-  })
-
-  Utils.merge([audio.speaker.bind('is_muted')], (m) =>  {
-    is_muted = m
-    color_manager.set_with_timeout(is_muted ? 'yellow' : 'blue')
-    icon_widget.label = is_muted ? '󰸈' : '󰕿'
-  })
+  bar.add_managed_item(color_manager, level_bar)
+  bar.add_managed_item(color_manager, level_bar_2)
 
   return Item([
     Box([
