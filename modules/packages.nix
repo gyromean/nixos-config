@@ -16,6 +16,7 @@ let
     ipympl
     pycryptodome
     pyqt6
+    seaborn
   ];
 in
 {
