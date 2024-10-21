@@ -6,7 +6,7 @@ const tooltip = new TooltipManager()
 const wired_color_manager = new ClassManager([], ['yellow'])
 const wifi_color_manager = new ClassManager([], ['red', 'yellow'])
 
-network.connect('changed', () => {
+function update() {
   if(network.wired.internet != 'connected')
     wired_color_manager.set('yellow')
   else
@@ -26,8 +26,10 @@ network.connect('changed', () => {
     tooltip.set(network.wifi.ssid)
     wifi_color_manager.reset()
   }
+}
 
-})
+network.connect('changed', update)
+update()
 
 // NOTE: wired is stuck on disconnect when the interface appears when ags is already running (e.g. usb ethernet dongle is connected)
 
