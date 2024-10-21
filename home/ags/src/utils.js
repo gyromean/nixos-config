@@ -46,8 +46,10 @@ export class ClassManager {
       this.objs = [objs]
     this.classes = classes
     this.timeout_handle = null
+    this.current_cls = null
   }
   set(cls_set, reset_ms = null) {
+    this.current_cls = cls_set
     this.#clear_classes()
     for(let obj of this.objs)
       obj.toggleClassName(cls_set, true)
@@ -63,9 +65,12 @@ export class ClassManager {
   reset() {
     this.#clear_classes()
     this.#kill_timeout()
+    this.current_cls = null
   }
   add(obj) {
     this.objs.push(obj)
+    if(this.current_cls !== null)
+      this.set(this.current_cls)
   }
   #clear_classes() {
     for(let obj of this.objs)
@@ -153,9 +158,12 @@ export class Bar {
     return this.widget
   }
 
-  // TODO: mozna to i nejak jinak pojmenovat
-  add_class() {
-    // TODO: implement
+  add_managed_item(manager, item) {
+    manager.add(item)
+    this.managed_classes.push({
+      manager,
+      item,
+    })
   }
 
   remove_class() {
