@@ -116,6 +116,57 @@ export function repr_memory(val) {
 
 ///////////////////////////
 
+export class Bar {
+  constructor(data) {
+    this.monitor = data.monitor
+    this.left = data.left || []
+    this.center = data.center || []
+    this.right = data.right || []
+
+    this.managed_classes = []
+
+    this.#construct_widget()
+  }
+
+  #section_builder(items, hpack) {
+    // TODO: je tady ten this vpohode
+    // TODO: bacha, aby se tohle volalo v moment, kdy uz jsou vsechny ostatni udaje ready, protoze ty widgety tam muzou connectit ty classy (a nebo to mozna actually nevadi? hlavne aby byly ty fieldy pro class managery uz ready
+    return Section(items.map(f => f(this)), { hpack })
+  }
+
+  #construct_widget() {
+    this.widget = Widget.Window({
+      name: `bar-${this.monitor}`,
+      class_name: 'bar',
+      monitor: this.monitor,
+      anchor: ['top', 'left', 'right'],
+      exclusivity: 'exclusive',
+      child: Widget.CenterBox({
+        start_widget: this.#section_builder(this.left, 'start'),
+        center_widget: this.#section_builder(this.center, 'center'),
+        end_widget: this.#section_builder(this.right, 'end'),
+      }),
+    })
+  }
+
+  get_widget() {
+    return this.widget
+  }
+
+  // TODO: mozna to i nejak jinak pojmenovat
+  add_class() {
+    // TODO: implement
+  }
+
+  remove_class() {
+    // TODO: implement
+  }
+
+  // TODO: funkce na removal (neco jako destruktor), ktera odlinkuje vsechny managed classy
+}
+
+///////////////////////////
+
 export function Item(items, opts = {}) {
   return Widget.Box(merge({
     children: items,
