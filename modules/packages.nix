@@ -133,5 +133,6 @@ in
     busybox
     vesktop # discord client for wayland
     gparted
+    mpv
   ];
 }
