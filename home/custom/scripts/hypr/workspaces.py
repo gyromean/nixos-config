@@ -11,15 +11,10 @@ def run_cmd(args, timeout=None):
 
 def _workspace(cmd):
   workspace = sys.argv[2]
-  print(f'{workspace = }')
   active_workspace_id = json.loads(run_cmd(['hyprctl', '-j', 'activeworkspace']))['id']
-  print(f'{active_workspace_id = }')
   w, m, g = unpack_id(active_workspace_id)
-  print(f'{(w, m, g) = }')
   w = int(workspace)
-  print(f'{w = }')
   target_workspace_id = pack_to_id(w, m, g)
-  print(f'{target_workspace_id = }')
   run_cmd(['hyprctl', 'dispatch', cmd, f'{target_workspace_id}'])
 
 def _monitor(cmd):
@@ -31,10 +26,7 @@ def _monitor(cmd):
   monitors = json.loads(run_cmd(['hyprctl', '-j', 'monitors']))
   for monitor in monitors:
     id_ = monitor['activeWorkspace']['id']
-    print(f'{id_ = }')
     _, m, _ = unpack_id(id_)
-    print(f'{m = }')
-    print(f'{monitor_id = }')
     if m == monitor_id:
       run_cmd(['hyprctl', 'dispatch', cmd, f'{id_}'])
       return
