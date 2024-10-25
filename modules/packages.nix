@@ -18,6 +18,16 @@ let
     pyqt6
     seaborn
   ];
+
+  fhs = (
+    let base = pkgs.appimageTools.defaultFhsEnvArgs; in
+    pkgs.buildFHSUserEnv (base // {
+      name = "fhs";
+      targetPkgs = pkgs: (base.targetPkgs pkgs) ++ [pkgs.pkg-config];
+      profile = "export FHS=1";
+      runScript = "zsh";
+    })
+  );
 in
 {
   # List packages installed in system profile. To search, run:
@@ -25,6 +35,7 @@ in
   # ----- GLOBAL PACKAGES -----
   environment.systemPackages = with pkgs; [
     (python3.withPackages my-python-packages) # nainstaluje python packages, jejich seznam se definuje nekde nahore
+    fhs
     nix
     neovim
     vim
