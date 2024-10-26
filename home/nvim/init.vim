@@ -50,6 +50,7 @@ vim.keymap.set({"n"}, "<leader>mc", "<cmd>messages clear<CR>")
 vim.keymap.set({"n"}, "<leader>ms", function() require'mindmap'.start() end, {desc = "Start closest Mindmap"})
 vim.keymap.set({"n"}, "<leader>me", function() require'mindmap'.stop() end, {desc = "Stop closest Mindmap"})
 vim.keymap.set({"n"}, "<leader>mv", function() require'mindmap'.view() end, {desc = "View Mindmap subtree"})
+vim.keymap.set({"x"}, "<c-p>", "y1vgcO<esc>P", { remap = true, desc = "Duplicate selection and comment original" })
 EOF
 
 " ----- SETS -----
