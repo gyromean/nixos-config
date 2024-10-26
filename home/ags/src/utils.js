@@ -85,17 +85,24 @@ export class ClassManager {
 
 export class TooltipManager {
   constructor(default_tooltip = '') {
-    default_tooltip = String(default_tooltip)
+    if(!Array.isArray(default_tooltip))
+      default_tooltip = [default_tooltip]
+    default_tooltip = default_tooltip.map(String)
     this.tooltip = default_tooltip
-    this.var = Variable(this.tooltip)
+    this.var = Variable(this.repr())
   }
   set(tooltip = '') {
-    tooltip = String(tooltip)
+    if(!Array.isArray(tooltip))
+      tooltip = [tooltip]
+    tooltip = tooltip.map(String)
     this.tooltip = tooltip
-    this.var.value = this.tooltip
+    this.var.value = this.repr()
+  }
+  repr() {
+    return this.tooltip.map(val => ` ${val} `).join('\n')
   }
   get() {
-    return this.var.bind().as(val => ` ${val} `)
+    return this.var.bind()
   }
 }
 
