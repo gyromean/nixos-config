@@ -1,7 +1,15 @@
 #!/usr/bin/env python
 
 import subprocess, json, time, os, itertools, sys
-from utils import pack_to_id, unpack_id
+from utils import pack_to_id, unpack_id, send_socket
+
+def refresh_ags_bar():
+  active_group = get_active_group()
+  groups = get_groups()
+  for name, num in groups.items():
+    if num == active_group:
+      j = json.dumps([int(active_group), name, len(groups)])
+      send_socket('workspace-group', j)
 
 def rofi_query(options, use_nums=False):
   options_dict = {}
@@ -235,8 +243,7 @@ def show_menu(cmd=None):
       return;
     case _:
       rofi_notification('Unknown option')
-  # refresh_polybar()
-  # FIXME: dodelat update do AGS; na zacatku si tam AGS natvrdo vypise Main -> bude se tam posilat aktualni nazev; kolik je celkem groups; id aktualni (aby mohl ags zobrazovat jen workspaces z tyhle skupinky)
+  refresh_ags_bar()
 
 def main():
   match sys.argv:
