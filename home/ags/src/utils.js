@@ -83,18 +83,29 @@ export class ClassManager {
   }
 }
 
+function center(str, len) {
+  const spaces = len - str.length
+  const left = Math.floor(spaces / 2)
+  const right = Math.ceil(spaces / 2)
+  return ' '.repeat(left) + str + ' '.repeat(right)
+}
+
+function center_array(array) {
+  const max_len = Math.max(...array.map(s => s.length))
+  return array.map(s => center(s, max_len))
+}
+
 export class TooltipManager {
-  constructor(default_tooltip = '') {
-    if(!Array.isArray(default_tooltip))
-      default_tooltip = [default_tooltip]
-    default_tooltip = default_tooltip.map(String)
-    this.tooltip = default_tooltip
-    this.var = Variable(this.repr())
+  constructor(default_tooltip = '', center = true) {
+    this.var = Variable('')
+    this.set(default_tooltip, center)
   }
-  set(tooltip = '') {
+  set(tooltip = '', center = true) {
     if(!Array.isArray(tooltip))
       tooltip = [tooltip]
     tooltip = tooltip.map(String)
+    if(center)
+      tooltip = center_array(tooltip)
     this.tooltip = tooltip
     this.var.value = this.repr()
   }
