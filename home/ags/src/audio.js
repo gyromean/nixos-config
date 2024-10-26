@@ -45,7 +45,7 @@ export function Audio(bar) {
   bar.add_managed_item(color_manager, level_bar)
   bar.add_managed_item(color_manager, level_bar_2)
 
-  return Item([
+  const item = Item([
     Box([
       icon_widget,
       level_bar,
@@ -55,6 +55,19 @@ export function Audio(bar) {
     }),
   ], {
     tooltip_text: tooltip_manager.get(),
+  })
+
+  return Widget.EventBox({
+    child: item,
+    on_primary_click: _ =>  {
+      Utils.execAsync('pactl set-sink-mute @DEFAULT_SINK@ toggle')
+    },
+    on_scroll_up: _ =>  {
+      Utils.execAsync('pactl set-sink-volume @DEFAULT_SINK@ +5%')
+    },
+    on_scroll_down: _ =>  {
+      Utils.execAsync('pactl set-sink-volume @DEFAULT_SINK@ -5%')
+    },
   })
 }
 

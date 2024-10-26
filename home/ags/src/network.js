@@ -40,7 +40,7 @@ export function Network(bar) {
   bar.add_managed_item(wifi_color_manager, wifi)
   bar.add_managed_item(wired_color_manager, wired)
 
-  return Item([
+  const item = Item([
     Widget.Stack({
       children: {
         wifi,
@@ -52,5 +52,12 @@ export function Network(bar) {
     })
   ], {
     tooltip_text: tooltip.get(),
+  })
+
+  return Widget.EventBox({
+    child: item,
+    on_primary_click: _ =>  {
+      Utils.execAsync(['alacritty', '-e', 'nmtui'])
+    },
   })
 }

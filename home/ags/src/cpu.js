@@ -31,7 +31,7 @@ export function Cpu(bar) {
 
   bar.add_managed_item(color_manager, progression_widget)
 
-  return Item([
+  const item = Item([
     Box([
       Icon({ label: '' }),
       progression_widget,
@@ -40,5 +40,12 @@ export function Cpu(bar) {
     })
   ], {
     tooltip_text: usage_manager.get(),
+  })
+
+  return Widget.EventBox({
+    child: item,
+    on_primary_click: _ =>  {
+      Utils.execAsync(['alacritty', '-e', 'btop'])
+    },
   })
 }

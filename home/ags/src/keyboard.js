@@ -13,10 +13,22 @@ hyprland.connect('keyboard-layout', () => set_lang())
 export function Keyboard() {
   const lang_widget = Text(lang_var.bind())
 
-  return Item([
+  const item = Item([
     Icon({
       label: '󰌓',
     }),
     lang_widget,
   ])
+
+  return Widget.EventBox({
+    child: item,
+    on_primary_click: _ => {
+      Utils.execAsync(['hyprctl', 'devices', '-j']).then(out => {
+        const keyboard_name = JSON.parse(out)['keyboards']
+          .filter(({ main }) => main == true)
+          .map(({ name }) => name)[0]
+        Utils.execAsync(['hyprctl', 'switchxkblayout', keyboard_name, 'next'])
+      })
+    },
+  })
 }

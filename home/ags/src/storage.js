@@ -21,7 +21,7 @@ export function Storage() {
     value: usage.bind(),
   })
 
-  return Item([
+  const item = Item([
     Box([
       Icon({ label: '󰋊' }),
       progression_widget,
@@ -30,5 +30,12 @@ export function Storage() {
     })
   ], {
     tooltip_text: usage_manager.get(),
+  })
+
+  return Widget.EventBox({
+    child: item,
+    on_primary_click: _ =>  {
+      Utils.execAsync(['alacritty', '-e', 'btop'])
+    },
   })
 }
