@@ -171,6 +171,23 @@ class Socket {
 
 export const socket = new Socket()
 
+export function pack_to_id(workspace, monitor = 1, group = 0) {
+  workspace--
+  monitor--
+  let id_ = workspace + 10 * monitor + 100 * group
+  id_ += 1
+  return id_
+}
+export function unpack_id(id_) {
+  id_ -= 1
+  let workspace = id_ % 10 + 1
+  id_ = Math.floor(id_ / 10)
+  let monitor = id_ % 10 + 1
+  id_ = Math.floor(id_ / 10)
+  let group = id_ % 10
+  return [workspace, monitor, group]
+}
+
 ///////////////////////////
 
 export class Bar {

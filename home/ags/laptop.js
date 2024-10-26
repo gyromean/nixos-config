@@ -9,6 +9,7 @@ import { Memory } from './src/memory.js'
 import { Storage } from './src/storage.js'
 import { Eyetimer } from './src/eyetimer.js'
 import { Diary } from './src/diary.js'
+import { Workspaces } from './src/workspaces.js'
 import { WorkspaceGroups } from './src/workspace-groups.js'
 
 Utils.monitorFile(
@@ -23,6 +24,7 @@ function make_bar(monitor = 0) {
   return new Bar({
     monitor,
     left: [
+      Workspaces,
       WorkspaceGroups,
     ],
     right: [
