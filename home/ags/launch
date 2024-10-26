@@ -12,5 +12,8 @@ while true; do
   pkill ags
   echo '--- STARTING ---'
   bash -c "ags -c '$script' -b bar &"
-  read
+  read -r -n 1 cmd
+  if [ "${cmd}" == "a" ]; then
+    break
+  fi
 done
