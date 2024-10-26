@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import socket
+
 # workspace indexed from 1
 # monitor indexed from 1
 # group indexed from 0
@@ -21,3 +23,8 @@ def unpack_id(id_):
   id_ //= 10
   group = id_ % 10
   return (workspace, monitor, group)
+
+def send_socket(cmd, data, socket_path='/tmp/ags-bar.sock'):
+  with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as client_socket:
+    client_socket.connect(socket_path)
+    client_socket.sendall((cmd + ' ' + data + '\n').encode('utf-8'))

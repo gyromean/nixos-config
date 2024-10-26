@@ -137,6 +137,40 @@ export function repr_memory(val) {
     return `${round_to_decimals(val)} B`
 }
 
+class Socket {
+  constructor(socket_path = '/tmp/ags-bar.sock') {
+    this.path = socket_path
+    this.callbacks = []
+    Utils.exec(['rm', this.path])
+    this.proc = Utils.subprocess(
+      ['nc', '-lkU', socket_path],
+      msg => {
+        this.#process_message(msg)
+      },
+      err => logError(err),
+    )
+  }
+
+  #process_message(msg) {
+    const index = msg.indexOf(' ')
+    let msg_processed
+    if(index == -1)
+      msg_processed = ''
+    else
+      msg_processed = msg.substr(index + 1)
+
+    for(const [string_match, callback] of this.callbacks)
+      if(msg.startsWith(string_match))
+        callback(msg_processed)
+  }
+
+  add(string_match, callback) {
+    this.callbacks.push([string_match, callback])
+  }
+}
+
+export const socket = new Socket()
+
 ///////////////////////////
 
 export class Bar {
