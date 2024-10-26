@@ -6,13 +6,20 @@ const tooltip = new TooltipManager()
 const wired_color_manager = new ClassManager([], ['yellow'])
 const wifi_color_manager = new ClassManager([], ['red', 'yellow'])
 
+// https://stackoverflow.com/questions/13322485/how-to-get-the-primary-ip-address-of-the-local-machine-on-linux-and-os-x
+const get_ip = () => JSON.parse(Utils.exec('ip -j route get 1'))[0]['prefsrc']
+
 function update() {
+  const tooltip_content = []
+  let connected = false
+
   if(network.wired.internet != 'connected')
     wired_color_manager.set('yellow')
-  else
+  else {
     wired_color_manager.reset()
+    connected = true
+  }
 
-  tooltip.set()
   if(network.wifi.enabled != true) {
     wifi_label.value = '󰤮'
     wifi_color_manager.set('red')
@@ -23,9 +30,17 @@ function update() {
   }
   else {
     wifi_label.value = select_icon(['󰤯', '󰤟', '󰤢', '󰤥', '󰤨'], 0, 100, network.wifi.strength)
-    tooltip.set(network.wifi.ssid)
+    tooltip_content.push(network.wifi.ssid)
     wifi_color_manager.reset()
+    connected = true
   }
+
+  if(connected == false)
+    tooltip_content.push('Disconnected')
+  else
+    tooltip_content.push(get_ip())
+
+  tooltip.set(tooltip_content)
 }
 
 network.connect('changed', update)
