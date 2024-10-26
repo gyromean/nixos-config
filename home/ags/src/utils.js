@@ -228,7 +228,7 @@ export function Progression(opts = {}) {
 export function Box(items, opts = {}) {
   return Widget.Box(merge({
     children: items,
-    spacing: 2,
+    spacing: 0,
   }, opts))
 }
 
