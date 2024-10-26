@@ -11,6 +11,6 @@ fi
 while true; do
   pkill ags
   echo '--- STARTING ---'
-  ags -c "$script" -b bar &
+  bash -c "ags -c '$script' -b bar &"
   read
 done
