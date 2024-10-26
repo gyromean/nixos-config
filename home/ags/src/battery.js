@@ -25,9 +25,7 @@ Utils.merge([battery.bind('percent'), battery.bind('charging'), battery.bind('ch
 })
 
 export function Battery(bar) {
-  const icon_widget = Icon({
-    label: icon_char,
-  })
+  const icon_widget = Icon(icon_char)
 
   const item = Item([
     icon_widget,

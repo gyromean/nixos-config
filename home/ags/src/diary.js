@@ -50,9 +50,7 @@ function update() {
 update()
 
 export function Diary(bar) {
-  const icon = Icon({
-    label: '',
-  })
+  const icon = Icon('')
   const rev = Revealer(Text(
     days_var.bind().as(v => String(Math.max(v, 1))) // max so that there is no visible 0 during the transition of reveal_child: false
   ), {

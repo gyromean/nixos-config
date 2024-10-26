@@ -33,7 +33,7 @@ export function Cpu(bar) {
 
   const item = Item([
     Box([
-      Icon({ label: '' }),
+      Icon(''),
       progression_widget,
     ], {
       spacing: 5,

@@ -14,9 +14,7 @@ export function Keyboard() {
   const lang_widget = Text(lang_var.bind())
 
   const item = Item([
-    Icon({
-      label: '󰌓',
-    }),
+    Icon('󰌓'),
     lang_widget,
   ])
 

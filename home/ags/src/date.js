@@ -7,14 +7,9 @@ const date = Variable(['', ''], {
 // TODO: dodelat ikonu hodin kde se to bude fr otacet?
 export function DateModule() {
   return Item([
-    Icon({
-      label: '',
-    }),
+    Icon(''),
     Text(date.bind().as(item => item[0])),
-    Icon({
-      // label: '',
-      label: '',
-    }),
+    Icon(''),
     Text(date.bind().as(item => item[1])),
   ])
 }

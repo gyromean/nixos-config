@@ -274,8 +274,9 @@ export function Separator() {
   })
 }
 
-export function Icon(opts = {}) {
+export function Icon(icon, opts = {}) {
   return Widget.Label(merge({
+    label: icon,
     class_names: ['icon'],
   }, opts))
 }

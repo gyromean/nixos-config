@@ -23,7 +23,7 @@ export function Storage() {
 
   const item = Item([
     Box([
-      Icon({ label: '󰋊' }),
+      Icon('󰋊'),
       progression_widget,
     ], {
       spacing: 4,

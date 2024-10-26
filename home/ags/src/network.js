@@ -49,8 +49,8 @@ update()
 // NOTE: wired is stuck on disconnect when the interface appears when ags is already running (e.g. usb ethernet dongle is connected)
 
 export function Network(bar) {
-  const wired = Icon({ label: '󰈀' })
-  const wifi = Icon({ label: wifi_label.bind() })
+  const wired = Icon('󰈀')
+  const wifi = Icon(wifi_label.bind())
 
   bar.add_managed_item(wifi_color_manager, wifi)
   bar.add_managed_item(wired_color_manager, wired)

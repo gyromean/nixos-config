@@ -40,7 +40,7 @@ export function Audio(bar) {
     reveal_child: revealer_var.bind(),
   })
 
-  const icon_widget = Icon({ label: icon_var.bind() })
+  const icon_widget = Icon(icon_var.bind())
 
   bar.add_managed_item(color_manager, level_bar)
   bar.add_managed_item(color_manager, level_bar_2)

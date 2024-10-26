@@ -47,16 +47,7 @@ export function Eyetimer(bar) {
     max_value: minutes,
   })
 
-  const icon = Icon({
-    // label: '󱎫',
-    // label: '󱎴',
-    // label: '󰔱',
-    // label: '󱇛',
-    // label: '󰞏',
-    // label: '',
-    label: '',
-    // label: '󱁕',
-  })
+  const icon = Icon('')
 
   const item = Item([
     Box([

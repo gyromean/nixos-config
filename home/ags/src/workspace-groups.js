@@ -16,9 +16,7 @@ socket.add('workspace-group', msg => {
 })
 
 export function WorkspaceGroups(bar) {
-  const icon = Icon({
-    label: '󰍺',
-  })
+  const icon = Icon('󰍺')
 
   const additional_workspaces = Text(additional_workspaces_var.bind().as(num => `+${Math.max(num, 1)}`))
 
