@@ -130,7 +130,7 @@ prompt_igloo_help() {
      - ...with 3 commits ahead of the upstream
      - ...with an configured upstream
      - ...with the latest commit ID
- 
+
    %F{8}┌─╼[%F{4}arcticicestudio%f@%F{4}polarbear%F{8}]╾─╼[%F{1}1%f%F{8}][%F{4}3%F{8}]╾─╼[%F{4}12:32:04%F{8}]%f
    %F{8}└─╼[%F{4}~/code/igloo%F{8}]%f
     %F{8}╰╼[%F{6}master *+%%\$ u+3 origin/master%f%F{8}]╾─╼[%F{6}d808e72%F{8}]%f
@@ -147,7 +147,7 @@ prompt_igloo_help() {
   %B+----------------+%b
 
   Set the following environment variables to customize the prompt style and behavior.
-  
+
   %F{6}IGLOO_ZSH_PROMPT_THEME_ALWAYS_SHOW_USER%f
     Set to %F{4}true%f to always show the prompt segment that contains the name of the current user.
     By default this is set to %F{4}false%f.
