@@ -145,5 +145,6 @@ in
     vesktop # discord client for wayland
     gparted
     mpv
+    hyprlock
   ];
 }
