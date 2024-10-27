@@ -51,6 +51,9 @@ vim.keymap.set({"n"}, "<leader>ms", function() require'mindmap'.start() end, {de
 vim.keymap.set({"n"}, "<leader>me", function() require'mindmap'.stop() end, {desc = "Stop closest Mindmap"})
 vim.keymap.set({"n"}, "<leader>mv", function() require'mindmap'.view() end, {desc = "View Mindmap subtree"})
 vim.keymap.set({"x"}, "<c-p>", "y1vgcO<esc>P", { remap = true, desc = "Duplicate selection and comment original" })
+
+vim.api.nvim_set_hl(0, "TrailingWhitespace", { ctermbg = "red", bg = "red" })
+vim.fn.matchadd("TrailingWhitespace", "\\s\\+$")
 EOF
 
 " ----- SETS -----
