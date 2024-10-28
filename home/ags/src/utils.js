@@ -47,8 +47,10 @@ export class ClassManager {
     this.classes = classes
     this.timeout_handle = null
     this.current_cls = null
+    this.current_timeout = null
   }
   set(cls_set, reset_ms = null) {
+    this.current_timeout = reset_ms
     this.current_cls = cls_set
     this.#clear_classes()
     for(let obj of this.objs)
@@ -70,7 +72,7 @@ export class ClassManager {
   add(obj) {
     this.objs.push(obj)
     if(this.current_cls !== null)
-      this.set(this.current_cls)
+      this.set(this.current_cls, this.current_timeout)
   }
   #clear_classes() {
     for(let obj of this.objs)
