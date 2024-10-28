@@ -1,15 +1,18 @@
-import { Item, Icon, Progression, Box, TooltipManager, ClassManager, repr_memory, Revealer, Text } from './utils.js'
+import { Item, Icon, Progression, Box, TooltipManager, ClassManager, repr_memory, Revealer, Text, socket } from './utils.js'
 
 var day, month, year
 
 const days_var = Variable(0)
-const hours_var = Variable(24)
+const hours_var = Variable(0)
 
 setInterval(update, 60 * 60 * 1000) // every hour
 Utils.monitorFile(
   '/home/pavel/sync/denik.txt',
   () => update(),
 ) // every time the diary is updated
+socket.add('sleep-wake', () => {
+  update()
+})
 
 const color_manager = new ClassManager([], ['yellow'])
 
