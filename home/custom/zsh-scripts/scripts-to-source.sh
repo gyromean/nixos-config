@@ -96,6 +96,9 @@ j()
     'vim') dest=$HOME'/.config/nixos-config/home/nvim/';;
     'ps') dest=$HOME'/.config/nixos-config/home/custom/polybar-scripts/';;
     'sy') dest=$HOME'/sync/';;
+    'ag') dest=$HOME'/.config/nixos-config/home/ags/';;
+    'hy') dest=$HOME'/.config/nixos-config/home/hypr/';;
+    'hys') dest=$HOME'/.config/nixos-config/home/custom/scripts/hypr/';;
     *) echo Unknown destination "$cmd"...; return;;
   esac
   cd "$dest"
