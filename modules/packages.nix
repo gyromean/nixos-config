@@ -146,5 +146,6 @@ in
     gparted
     mpv
     hyprlock
+    hypridle
   ];
 }
