@@ -11,6 +11,7 @@ import { Diary } from './src/diary.js'
 import { Workspaces } from './src/workspaces.js'
 import { WorkspaceGroups } from './src/workspace-groups.js'
 import { ActionDisplay } from './src/action-display.js'
+import { BrightnessDesktop } from './src/brightness-desktop.js'
 
 Utils.monitorFile(
   '/home/pavel/.config/ags/style.css',
@@ -33,6 +34,7 @@ function make_bar(monitor = 0) {
     right: [
       Eyetimer,
       Diary,
+      BrightnessDesktop,
       Audio,
       Cpu,
       Memory,
