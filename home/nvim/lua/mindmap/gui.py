@@ -108,8 +108,9 @@ class RenderedEdge:
 
 class Tree:
   class Node:
-    def __init__(self, text, completed_state, parent=None):
+    def __init__(self, text, complete_text, completed_state, parent=None):
       self.text = text
+      self.complete_text = complete_text
       self.completed_state = completed_state
 
       self.parent = parent
@@ -149,14 +150,15 @@ class Tree:
 
     self.build_tree()
 
-  def build_tree_rec(self, parent=None):
+  def build_tree_rec(self, complete_text='', parent=None):
     level, text, completed_state, _ = self.entries[self.entry_index]
-    node = Tree.Node(text, completed_state, parent)
+    complete_text += text
+    node = Tree.Node(text, complete_text, completed_state, parent)
     self.entries[self.entry_index][3] = node
     self.entry_index += 1
     while self.entry_index < len(self.entries) \
         and self.entries[self.entry_index][0] > level:
-      node.children.append(self.build_tree_rec(node))
+      node.children.append(self.build_tree_rec(complete_text, node))
     if len(node.children): # has children -> derive is_completed from them
       node.completed_state = 1
       for child in node.children:
@@ -271,7 +273,7 @@ class Tree:
     original.remove()
     for original_node in original.nodes_sorted_from_center(self.view):
       for new_node in self.nodes:
-        if new_node.text == original_node.text:
+        if new_node.complete_text == original_node.complete_text:
           orig_x = original_node.x
           orig_y = original_node.y + original_node.bb_height / 2
           new_x = new_node.x
