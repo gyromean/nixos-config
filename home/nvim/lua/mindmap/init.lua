@@ -94,7 +94,7 @@ send_maps_from_buf = function(buf)
     if not inside then -- outside
       map_name = is_line_map_start(line)
       if map_name ~= nil and M.maps[map_name] ~= nil then
-        data = ''
+        data = map_name .. '\n'
         inside = true
       end
     else -- inside
@@ -104,7 +104,7 @@ send_maps_from_buf = function(buf)
         inside = false
         line_cnt = 0
       else
-        data = data .. line .. '\n'
+        data = data .. ' ' .. line .. '\n' -- add space of indentation because map_name is root
         line_cnt = line_cnt + 1
       end
     end
@@ -155,6 +155,7 @@ end
 
 local function start_map_gui(map_name)
   local gui_path = string.match(debug.getinfo(1).source:sub(2), "^.*/") .. 'gui.py'
+  -- vim.system({'alacritty', '-e', 'python', gui_path, M.maps[map_name].socket}) -- for debugging purposes, displays terminal of gui process as well; must disable window swallowing to work
   vim.system({'bash', '-c', 'python ' .. gui_path .. ' ' .. M.maps[map_name].socket .. '&'}) -- this way the python gui will not be a descendant of the terminal, so it won't get swallowed by hyprland
 end
 
@@ -223,11 +224,11 @@ end
 
 function M.view()
   local map_name, line = get_above_map()
-  if map_name == nil or line < 1 or line > M.maps[map_name].line_cnt then
+  if map_name == nil or line < 0 or line > M.maps[map_name].line_cnt then
     print('Mindmap view not applicable')
     return
   end
-  send_view(map_name, line - 1)
+  send_view(map_name, line)
 end
 
 return M
