@@ -19,6 +19,7 @@ let
     seaborn
     grequests
     selenium
+    scipy
   ];
 
   fhs = (
