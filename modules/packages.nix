@@ -153,5 +153,6 @@ in
     burpsuite
     chromium
     wireshark
+    anydesk
   ];
 }
