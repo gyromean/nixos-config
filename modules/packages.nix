@@ -150,5 +150,6 @@ in
     mpv
     hyprlock
     hypridle
+    burpsuite
   ];
 }
