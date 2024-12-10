@@ -17,6 +17,7 @@ let
     pycryptodome
     pyqt6
     seaborn
+    grequests
   ];
 
   fhs = (
