@@ -18,6 +18,7 @@ let
     pyqt6
     seaborn
     grequests
+    selenium
   ];
 
   fhs = (
