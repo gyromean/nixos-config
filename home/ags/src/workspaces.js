@@ -28,6 +28,10 @@ function id_to_item(id) {
   let class_names = ['workspace-indicator']
   if(active_id == id)
     class_names.push('active')
+  else
+    for(let { 'activeWorkspace': { 'id': active_id }} of hyprland.monitors)
+      if(active_id == id)
+        class_names.push('active-on-idle-monitor')
   const text = Text(String(id_to_number(id)), {
     class_names,
   })

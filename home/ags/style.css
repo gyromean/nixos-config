@@ -119,3 +119,8 @@ levelbar.progression block.filled {
   color: black;
   background-color: @blue;
 }
+
+.workspace-indicator.active-on-idle-monitor {
+  color: black;
+  background-color: @icon-color;
+}
