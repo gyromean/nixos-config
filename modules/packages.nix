@@ -156,5 +156,6 @@ in
     anydesk
     chromedriver
     mitmproxy
+    mkvtoolnix
   ];
 }
