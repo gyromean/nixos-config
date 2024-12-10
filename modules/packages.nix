@@ -155,5 +155,6 @@ in
     wireshark
     anydesk
     chromedriver
+    mitmproxy
   ];
 }
