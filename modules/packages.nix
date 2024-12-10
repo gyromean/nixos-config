@@ -151,5 +151,6 @@ in
     hyprlock
     hypridle
     burpsuite
+    chromium
   ];
 }
