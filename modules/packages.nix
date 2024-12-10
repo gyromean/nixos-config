@@ -152,5 +152,6 @@ in
     hypridle
     burpsuite
     chromium
+    wireshark
   ];
 }
