@@ -154,5 +154,6 @@ in
     chromium
     wireshark
     anydesk
+    chromedriver
   ];
 }
