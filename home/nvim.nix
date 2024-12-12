@@ -38,6 +38,7 @@
       leap-nvim
       lazydev-nvim
       aerial-nvim
+      nvim-web-devicons
     ];
   };
 }
