@@ -37,6 +37,7 @@
       catppuccin-nvim
       leap-nvim
       lazydev-nvim
+      aerial-nvim
     ];
   };
 }
