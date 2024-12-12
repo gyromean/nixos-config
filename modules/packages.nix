@@ -157,5 +157,6 @@ in
     chromedriver
     mitmproxy
     mkvtoolnix
+    clang
   ];
 }
