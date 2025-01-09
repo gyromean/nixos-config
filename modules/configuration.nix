@@ -79,7 +79,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -202,7 +202,7 @@
     # enableDefaultFonts = true;
     packages = with pkgs; [
       powerline-fonts
-      (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+      nerd-fonts.fira-code
     ];
     fontconfig.defaultFonts.monospace = [
       "Source Code Pro for Powerline"
