@@ -202,7 +202,7 @@
     # enableDefaultFonts = true;
     packages = with pkgs; [
       powerline-fonts
-      nerd-fonts.fira-code
+      nerd-fonts.symbols-only
     ];
     fontconfig.defaultFonts.monospace = [
       "Source Code Pro for Powerline"
