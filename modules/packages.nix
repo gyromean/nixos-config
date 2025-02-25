@@ -158,5 +158,6 @@ in
     mkvtoolnix
     clang
     hplipWithPlugin # printer
+    gedit
   ];
 }
