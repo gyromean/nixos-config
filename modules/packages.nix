@@ -159,5 +159,6 @@ in
     clang
     hplipWithPlugin # printer
     gedit
+    stack # tool for haskell
   ];
 }
