@@ -77,6 +77,8 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.printing.drivers = [ pkgs.hplipWithPlugin ];
+  # lpadmin -p predsin -E -v dnssd://HP%20LaserJet%20M1120n%20MFP._pdl-datastream._tcp.local/ -m drv:///hp/hpcups.drv/hp-laserjet_m1120n_mfp.ppd
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;

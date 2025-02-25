@@ -157,5 +157,6 @@ in
     mitmproxy
     mkvtoolnix
     clang
+    hplipWithPlugin # printer
   ];
 }
