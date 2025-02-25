@@ -1,18 +1,19 @@
+" disable these functions, as they are specific to using X11
 " funkce na autoamticky switchnuti zpatky do viku po zavolani vimtex-view
-if !exists("g:vim_window_id")
-  let g:vim_window_id = system("xdotool getactivewindow")
-endif
+" if !exists("g:vim_window_id")
+"   let g:vim_window_id = system("xdotool getactivewindow")
+" endif
 
-function! s:TexFocusVim() abort
-  sleep 150m
-  silent execute "!xdotool windowfocus " . expand(g:vim_window_id)
-  redraw!
-endfunction
+" function! s:TexFocusVim() abort
+"   sleep 150m
+"   silent execute "!xdotool windowfocus " . expand(g:vim_window_id)
+"   redraw!
+" endfunction
 
-augroup vimtex_event_focus
-  au!
-  au User VimtexEventView call s:TexFocusVim()
-augroup END
+" augroup vimtex_event_focus
+"   au!
+"   au User VimtexEventView call s:TexFocusVim()
+" augroup END
 
 " --------------
 
