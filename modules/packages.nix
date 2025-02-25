@@ -131,7 +131,6 @@ in
     imagemagick
     fx # json structure explorer
     simplescreenrecorder # screen recorder
-    haruna # media player
     rustup
     waybar
     wl-clipboard
@@ -147,7 +146,7 @@ in
     busybox
     vesktop # discord client for wayland
     gparted
-    mpv
+    mpv # media player
     hyprlock
     hypridle
     burpsuite
