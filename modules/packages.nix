@@ -160,5 +160,6 @@ in
     hplipWithPlugin # printer
     gedit
     stack # tool for haskell
+    ghc # haskell compiler
   ];
 }
