@@ -37,6 +37,9 @@ lspconfig.texlab.setup({})
 -- })
 lspconfig.rust_analyzer.setup({})
 lspconfig.ts_ls.setup({})
+lspconfig.hls.setup({
+  filetypes = { 'haskell', 'lhaskell', 'cabal' },
+})
 
 lsp_zero.set_sign_icons({ -- musi se volat az po lsp.setup()
   error = '◆',
