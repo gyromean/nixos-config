@@ -160,6 +160,7 @@ in
     hplipWithPlugin # printer
     gedit
     stack # tool for haskell
-    ghc # haskell compiler
+    haskell.compiler.ghc948 # haskell compiler
+    (haskell-language-server.override { supportedGhcVersions = [ "948" ]; })
   ];
 }
