@@ -45,6 +45,7 @@ lsp_zero.set_sign_icons({ -- musi se volat az po lsp.setup()
   error = '◆',
   warn = '▲',
   hint = '■',
+  info = '■',
 })
 
 vim.diagnostic.config({ virtual_text = true }) -- ukaze inline diagnostics (musi se volat az po setupu lsp-zero)
