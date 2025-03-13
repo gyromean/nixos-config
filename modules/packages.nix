@@ -20,6 +20,7 @@ let
     grequests
     selenium
     scipy
+    scapy # packet manipulation library
   ];
 
   fhs = (
