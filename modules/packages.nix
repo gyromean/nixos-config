@@ -21,6 +21,7 @@ let
     selenium
     scipy
     scapy # packet manipulation library
+    jupyter
   ];
 
   fhs = (
