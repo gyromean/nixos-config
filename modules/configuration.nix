@@ -302,6 +302,7 @@
       "/home/pavel/programy/path_links"
       "/home/pavel/.cargo/bin"
     ];
+    MANPAGER = "nvim +Man!";
   };
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
