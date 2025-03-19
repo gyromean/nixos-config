@@ -164,5 +164,6 @@ in
     stack # tool for haskell
     haskell.compiler.ghc948 # haskell compiler
     (haskell-language-server.override { supportedGhcVersions = [ "948" ]; })
+    kooha # simple screen recorder
   ];
 }
