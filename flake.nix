@@ -31,7 +31,7 @@
           name = machine.hostname;
           value = lib.nixosSystem {
             system = "x86_64-linux";
-            specialArgs = { inherit opts; machine = machine // { inherit hostDir; }; };
+            specialArgs = inputs // { inherit opts; machine = machine // { inherit hostDir; }; };
             modules = [
               ./hosts/${hostDir}
               home-manager.nixosModules.home-manager
@@ -39,7 +39,7 @@
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.users."${opts.username}" = import ./home;
-                home-manager.extraSpecialArgs = { inherit opts; machine = machine // { inherit hostDir; }; };
+                home-manager.extraSpecialArgs = inputs // { inherit opts; machine = machine // { inherit hostDir; }; };
               }
             ];
           };

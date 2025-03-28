@@ -1,5 +1,5 @@
 
-{ config, pkgs, lib, machine, opts, ... }:
+{ config, pkgs, lib, machine, opts, ... }@inputs:
 let
   # ----- PYTHON PACKAGES -----
   my-python-packages = ps: with ps; [
