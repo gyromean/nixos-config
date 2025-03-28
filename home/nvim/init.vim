@@ -9,6 +9,7 @@ hi LspDiagnosticsVirtualTextWarning guifg=#ebcb8b
 hi LspDiagnosticsUnderlineWarning gui=undercurl guisp=#ebcb8b
 hi LspDiagnosticsFloatingWarning guifg=#ebcb8b
 hi LspDiagnosticsSignWarning guifg=#ebcb8b
+hi CursorLine guibg=#252530
 " disablovani semantic highlight tokenu od lsp klienta, viz `:help lsp-semantic-highlight`
 let mapleader = " "
 lua << EOF
@@ -76,6 +77,7 @@ set noshowmode " nebude dola ukazovat v jakym jsem modu, protoze to stejne vidim
 set termguicolors
 set shortmess+=I " disable intro screen
 set smartindent
+set cursorline
 
 " ----- REBINDS -----
 " save a close
