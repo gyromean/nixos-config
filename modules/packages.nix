@@ -166,5 +166,6 @@ in
     (haskell-language-server.override { supportedGhcVersions = [ "948" ]; })
     kooha # simple screen recorder
     pandoc
+    inputs.zen-browser.packages."${system}".default
   ];
 }
