@@ -21,6 +21,7 @@ let
     scipy
     scapy # packet manipulation library
     jupyter
+    tabulate
   ];
 
   fhs = (
