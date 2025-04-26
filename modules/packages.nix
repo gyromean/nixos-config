@@ -167,5 +167,6 @@ in
     kooha # simple screen recorder
     pandoc
     inputs.zen-browser.packages."${system}".default
+    usbimager
   ];
 }
