@@ -9,7 +9,7 @@ hi LspDiagnosticsVirtualTextWarning guifg=#ebcb8b
 hi LspDiagnosticsUnderlineWarning gui=undercurl guisp=#ebcb8b
 hi LspDiagnosticsFloatingWarning guifg=#ebcb8b
 hi LspDiagnosticsSignWarning guifg=#ebcb8b
-hi CursorLine guibg=#252530
+hi CursorLine guibg=#2a2a37
 " disablovani semantic highlight tokenu od lsp klienta, viz `:help lsp-semantic-highlight`
 let mapleader = " "
 lua << EOF
