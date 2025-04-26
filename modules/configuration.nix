@@ -135,6 +135,7 @@
         "Sync" = shareFolder "/home/pavel/sync";
         "School" = shareFolder "/home/pavel/skola";
         "Programs" = shareFolder "/home/pavel/programy";
+        "Work" = shareFolder "/home/pavel/prace";
       };
     };
   };
