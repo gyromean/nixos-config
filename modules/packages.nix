@@ -168,5 +168,6 @@ in
     pandoc
     inputs.zen-browser.packages."${system}".default
     usbimager
+    sshfs # mount filesystem via ssh
   ];
 }
