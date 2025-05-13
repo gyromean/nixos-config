@@ -169,5 +169,6 @@ in
     inputs.zen-browser.packages."${system}".default
     usbimager
     sshfs # mount filesystem via ssh
+    pdftk # for uncompressing and compressing pdfs
   ];
 }
