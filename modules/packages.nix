@@ -170,5 +170,6 @@ in
     usbimager
     sshfs # mount filesystem via ssh
     pdftk # for uncompressing and compressing pdfs
+    translate-shell # trans script
   ];
 }
