@@ -44,7 +44,8 @@ binds['normal'] = {
   'D': 'tab-close -n',
   'o': 'cmd-set-text -s :open -t',
   'O': 'cmd-set-text -s :open',
-  '<space>c': 'config-source',
+  '<space>c': userscript('courses 1'),
+  '<space>C': userscript('courses 0'),
 }
 
 ## Binds for command mode
