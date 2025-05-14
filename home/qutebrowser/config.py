@@ -10,6 +10,7 @@ c.tabs.background = False
 c.auto_save.session = True
 c.tabs.select_on_remove = 'last-used'
 c.editor.command = ['alacritty', '-e', 'nvim', '{file}']
+c.completion.quick = False
 
 # Binds
 binds = {}
