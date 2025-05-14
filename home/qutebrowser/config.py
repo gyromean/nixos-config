@@ -5,10 +5,10 @@ config.load_autoconfig(False)
 config.source('colortheme.py')
 
 # Settings
-c.tabs.position = "left"
+c.tabs.position = 'left'
 c.tabs.background = False
 c.auto_save.session = True
-c.tabs.select_on_remove = "last-used"
+c.tabs.select_on_remove = 'last-used'
 
 # Binds
 binds = {}
