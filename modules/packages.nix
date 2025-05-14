@@ -172,5 +172,6 @@ in
     pdftk # for uncompressing and compressing pdfs
     translate-shell # trans script
     libqalculate # qalc
+    qutebrowser
   ];
 }
