@@ -38,21 +38,21 @@ in
   xdg.configFile."mimeapps.list".force = true; # vyreseno pres https://github.com/nix-community/home-manager/issues/1213
   xdg.configFile."mimeapps.list".text = ''
 [Default Applications]
-text/html=firefox.desktop
-x-scheme-handler/http=firefox.desktop
-x-scheme-handler/https=firefox.desktop
-x-scheme-handler/about=firefox.desktop
-x-scheme-handler/unknown=firefox.desktop
-x-scheme-handler/chrome=firefox.desktop
-application/x-extension-htm=firefox.desktop
-application/x-extension-html=firefox.desktop
-application/x-extension-shtml=firefox.desktop
-application/xhtml+xml=firefox.desktop
-application/x-extension-xhtml=firefox.desktop
-application/x-extension-xht=firefox.desktop
-image/png=firefox.desktop
-image/jpeg=firefox.desktop
-image/svg+xml=firefox.desktop
+text/html=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/http=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/https=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/about=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/unknown=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/chrome=org.qutebrowser.qutebrowser.desktop
+application/x-extension-htm=org.qutebrowser.qutebrowser.desktop
+application/x-extension-html=org.qutebrowser.qutebrowser.desktop
+application/x-extension-shtml=org.qutebrowser.qutebrowser.desktop
+application/xhtml+xml=org.qutebrowser.qutebrowser.desktop
+application/x-extension-xhtml=org.qutebrowser.qutebrowser.desktop
+application/x-extension-xht=org.qutebrowser.qutebrowser.desktop
+image/png=org.qutebrowser.qutebrowser.desktop
+image/jpeg=org.qutebrowser.qutebrowser.desktop
+image/svg+xml=org.qutebrowser.qutebrowser.desktop
   '';
 
   # adds desktop entries -> rofi can run them
