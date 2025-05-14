@@ -52,7 +52,7 @@ binds['normal'] = {
 binds['command'] = {
   '<Ctrl-J>': 'completion-item-focus next',
   '<Ctrl-K>': 'completion-item-focus prev',
-
+  '<Ctrl-y>': 'completion-item-focus next ;; command-accept',
 }
 
 ## Binds for passthrough mode
