@@ -48,6 +48,11 @@ binds['passthrough'] = {
   '<Shift-Space>': 'mode-leave',
 }
 
+## Binds for insert mode
+binds['insert'] = {
+  '<Escape>': 'mode-leave ;; jseval -q document.activeElement.blur()', # see https://github.com/qutebrowser/qutebrowser/discussions/7044
+}
+
 for mode in binds:
   for key, val in binds[mode].items():
     config.bind(key, val, mode=mode)
