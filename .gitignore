@@ -3,3 +3,5 @@ __pycache__
 home/ags/types
 home/ags/tsconfig.json
 home/qutebrowser/bookmarks
+home/qutebrowser/qsettings
+home/qutebrowser/autoconfig.yml
