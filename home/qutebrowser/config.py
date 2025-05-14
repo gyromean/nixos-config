@@ -1,3 +1,12 @@
+# Helper functions
+def userscript(content, editable=True):
+  ret = []
+  if editable:
+    ret.append('cmd-set-text -s')
+  ret.append(':spawn --userscript')
+  ret.append(content)
+  return ' '.join(ret)
+
 # Disable autoconfig loading
 config.load_autoconfig(False)
 
