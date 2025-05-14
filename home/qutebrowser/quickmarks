@@ -1,3 +1,4 @@
+gl https://gitlab.fit.cvut.cz/
 ym https://music.youtube.com/
 ms https://messenger.com/
 ig https://instagram.com/
@@ -8,3 +9,5 @@ cl https://calendar.google.com/
 pk https://search.nixos.org/packages?channel=unstable
 hm https://home-manager-options.extranix.com/?release=master
 ol https://outlook.office365.com/mail/
+tm https://teams.microsoft.com/
+gh https://github.com/gyromean/nixos-config/
