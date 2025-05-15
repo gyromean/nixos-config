@@ -49,6 +49,15 @@ binds['normal'] = {
   'gs': 'navigate strip',
   'gS': 'navigate -t strip',
   ';p': 'hint links userscript pdf',
+  '<space>1': 'tab-focus 1',
+  '<space>2': 'tab-focus 2',
+  '<space>3': 'tab-focus 3',
+  '<space>4': 'tab-focus 4',
+  '<space>5': 'tab-focus 5',
+  '<space>6': 'tab-focus 6',
+  '<space>7': 'tab-focus 7',
+  '<space>8': 'tab-focus 8',
+  '<space>9': 'tab-focus -1',
 }
 
 ## Binds for command mode
