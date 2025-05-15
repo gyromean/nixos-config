@@ -174,5 +174,6 @@ in
     libqalculate # qalc
     qutebrowser
     mdcat # simple markdown tools (mdless)
+    sqlite
   ];
 }
