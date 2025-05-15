@@ -48,6 +48,7 @@ binds['normal'] = {
   '<space>C': userscript('courses 0'),
   'gs': 'navigate strip',
   'gS': 'navigate -t strip',
+  ';p': 'hint links userscript pdf',
 }
 
 ## Binds for command mode

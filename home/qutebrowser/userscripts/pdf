@@ -1,0 +1,35 @@
+#!/run/current-system/sw/bin/python
+# can't use env, because that will use different python, which does not have directory with installed libraries in sys.path ($PATH is different when invoking from userscript)
+# issues with existing solutions:
+# - clicking on pdf link and pressing <ctrl-x> - leaves entry in download list, must clean via `cd`
+# - calling download on the link from usersript - does not pass cookies, so links behind authentication won't download
+
+import os
+import requests
+import json
+from urllib.parse import urlparse
+from utils import *
+
+# prepare variables
+download_url = os.environ.get('QUTE_URL')
+domain = urlparse(download_url).netloc
+qute_data_path = os.environ.get('QUTE_DATA_DIR')
+cookies_path = qute_data_path + '/webengine/Cookies'
+temp_fname = run_cmd("mktemp -u --suffix=.pdf")
+
+# extract cookies from browser
+cookies_json = json.loads(run_cmd(['sqlite3', '-json', cookies_path, f"SELECT name, value FROM cookies WHERE cookies.host_key LIKE '%{domain}%'"]))
+cookies = {cookie['name']: cookie['value'] for cookie in cookies_json}
+
+# download pdf
+pdf_content = requests.get(download_url, cookies=cookies).content
+
+# save pdf
+with open(temp_fname, 'wb') as f:
+  f.write(pdf_content)
+
+# open pdf
+run_cmd(['zathura', temp_fname])
+
+# delete pdf
+os.remove(temp_fname)
