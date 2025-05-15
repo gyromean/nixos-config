@@ -46,6 +46,8 @@ binds['normal'] = {
   'O': 'cmd-set-text -s :open',
   '<space>c': userscript('courses 1'),
   '<space>C': userscript('courses 0'),
+  'gs': 'navigate strip',
+  'gS': 'navigate -t strip',
 }
 
 ## Binds for command mode
