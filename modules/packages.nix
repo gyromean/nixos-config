@@ -173,5 +173,6 @@ in
     translate-shell # trans script
     libqalculate # qalc
     qutebrowser
+    mdcat # simple markdown tools (mdless)
   ];
 }
