@@ -1,6 +1,7 @@
-#!/usr/bin/env python
+#!/run/current-system/sw/bin/python
 
-import sys, os
+import sys
+from utils import *
 
 if len(sys.argv) != 3:
   exit()
@@ -10,11 +11,10 @@ arg = sys.argv[2].upper()
 if '-' not in arg:
   arg = 'NI-' + arg
 
-qute_fifo = os.environ.get('QUTE_FIFO')
-with open(qute_fifo, 'a') as f:
-  args = []
-  args.append('open')
-  if new_tab:
-    args.append('-t')
-  args.append(f'courses.fit.cvut.cz/{arg}')
-  print(' '.join(args), file=f)
+args = []
+args.append('open')
+if new_tab:
+  args.append('-t')
+args.append(f'courses.fit.cvut.cz/{arg}')
+
+send(args)
