@@ -53,6 +53,8 @@ application/x-extension-xht=org.qutebrowser.qutebrowser.desktop
 image/png=org.qutebrowser.qutebrowser.desktop
 image/jpeg=org.qutebrowser.qutebrowser.desktop
 image/svg+xml=org.qutebrowser.qutebrowser.desktop
+
+application/pdf=org.pwmt.zathura.desktop
   '';
 
   # adds desktop entries -> rofi can run them
