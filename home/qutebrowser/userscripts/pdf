@@ -18,7 +18,8 @@ cookies_path = qute_data_path + '/webengine/Cookies'
 temp_fname = run_cmd("mktemp -u --suffix=.pdf")
 
 # extract cookies from browser
-cookies_json = json.loads(run_cmd(['sqlite3', '-json', cookies_path, f"SELECT name, value FROM cookies WHERE cookies.host_key LIKE '%{domain}%'"]))
+res = run_cmd(['sqlite3', '-json', cookies_path, f"SELECT name, value FROM cookies WHERE cookies.host_key LIKE '%{domain}%'"]) or '[]'
+cookies_json = json.loads(res)
 cookies = {cookie['name']: cookie['value'] for cookie in cookies_json}
 
 # download pdf
