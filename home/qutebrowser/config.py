@@ -20,6 +20,7 @@ c.auto_save.session = True
 c.tabs.select_on_remove = 'last-used'
 c.editor.command = ['alacritty', '-e', 'nvim', '{file}']
 c.completion.quick = False
+c.tabs.last_close = 'close'
 
 # Key aliases for Czech language
 c.bindings.key_mappings = {
