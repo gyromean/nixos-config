@@ -58,6 +58,8 @@ binds['normal'] = {
   '<space>7': 'tab-focus 7',
   '<space>8': 'tab-focus 8',
   '<space>9': 'tab-focus -1',
+  'gd': 'tab-give',
+  'gD': 'cmd-set-text -s :tab-give',
 }
 
 ## Binds for command mode
