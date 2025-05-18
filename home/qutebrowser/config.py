@@ -21,6 +21,21 @@ c.tabs.select_on_remove = 'last-used'
 c.editor.command = ['alacritty', '-e', 'nvim', '{file}']
 c.completion.quick = False
 
+# Key aliases for Czech language
+c.bindings.key_mappings = {
+  'ů': ';',
+  '"': ':',
+  'ú': '[',
+  ')': ']',
+  '§': "'",
+
+  # original bindings
+  '<Ctrl-Enter>': '<Ctrl-Return>',
+  '<Enter>': '<Return>',
+  '<Shift-Enter>': '<Return>',
+  '<Shift-Return>': '<Return>'
+}
+
 # Binds
 binds = {}
 unbinds = {}
