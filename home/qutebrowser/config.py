@@ -76,6 +76,8 @@ binds['normal'] = {
   '<space>9': 'tab-focus -1',
   'gd': 'tab-give',
   'gD': 'cmd-set-text -s :tab-give',
+  't': 'hint inputs',
+  ';t': 'cmd-set-text -s :tab-select',
 }
 
 ## Binds for command mode
