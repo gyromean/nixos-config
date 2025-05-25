@@ -44,6 +44,7 @@ unbinds = {}
 ## Binds for normal mode
 unbinds['normal'] = [
   'T',
+  '<Ctrl-V>',
 ]
 binds['normal'] = {
   '<Ctrl-O>': 'tab-focus stack-prev',
@@ -78,6 +79,7 @@ binds['normal'] = {
   'gD': 'cmd-set-text -s :tab-give',
   't': 'hint inputs',
   ';t': 'cmd-set-text -s :tab-select',
+  '<Shift-Space>': 'mode-enter passthrough',
 }
 
 ## Binds for command mode
@@ -88,6 +90,9 @@ binds['command'] = {
 }
 
 ## Binds for passthrough mode
+unbinds['passthrough'] = [
+  '<Shift-Escape>',
+]
 binds['passthrough'] = {
   '<Shift-Space>': 'mode-leave',
 }
