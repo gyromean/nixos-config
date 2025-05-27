@@ -18,7 +18,7 @@
     };
     history.append = true;
     # ty '' pred $ to escapujou v nixu, do relanyho .zshrc se nepropisou
-    initExtra = ''
+    initContent = ''
 # sourcenout git prompts pro igloo (nord) theme
 . ${pkgs.git.outPath}/share/git/contrib/completion/git-prompt.sh
 
