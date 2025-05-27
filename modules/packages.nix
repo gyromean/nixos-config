@@ -33,6 +33,17 @@ let
       runScript = "zsh";
     })
   );
+
+  # use when multiple packages contain binary with the same name, e.g. (mkAlias ags "ags" "ags2")
+  mkAlias = (package: orig_name: new_name: pkgs.stdenv.mkDerivation {
+    name = "my-alias-${orig_name}-${new_name}";
+    buildInputs = [ package ];
+    unpackPhase = "true";
+    installPhase = ''
+      mkdir -p $out/bin
+      ln -s ${package}/bin/${orig_name} $out/bin/${new_name}
+    '';
+  });
 in
 {
   # List packages installed in system profile. To search, run:
