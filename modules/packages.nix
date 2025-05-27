@@ -148,7 +148,8 @@ in
     waybar
     wl-clipboard
     wayvnc
-    ags
+    (mkAlias ags "ags" "ags2")
+    (mkAlias ags_1 "ags" "ags1")
     typescript-language-server
     inkscape
     hyprpicker # color picker
