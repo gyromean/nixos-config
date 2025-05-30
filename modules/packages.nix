@@ -187,5 +187,6 @@ in
     qutebrowser
     mdcat # simple markdown tools (mdless)
     sqlite
+    rose-pine-hyprcursor
   ];
 }
