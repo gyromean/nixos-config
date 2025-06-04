@@ -188,5 +188,6 @@ in
     mdcat # simple markdown tools (mdless)
     sqlite
     rose-pine-hyprcursor
+    inputs.pala.packages."${system}".default
   ];
 }
