@@ -20,9 +20,11 @@ vim.lsp.enable('hls')
 -- --   },
 -- -- })
 
+local virtual_lines_enabled = false
+
 vim.diagnostic.config({
-  virtual_lines = true,
-  -- virtual_text = true,
+  -- virtual_lines = true,
+  virtual_text = true,
   underline = true,
   severity_sort = true,
   -- update_in_insert = true,
@@ -51,6 +53,20 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('n', 'gd', vim.lsp.buf.definition, 'Go to definition')
     map('n', 'gD', vim.lsp.buf.declaration, 'Go to declaration')
     map('n', 'gt', vim.lsp.buf.type_definition, 'Go to type definition')
+    map('n', 'grd', function()
+      if virtual_lines_enabled then
+        vim.diagnostic.config{
+          virtual_lines = false,
+          virtual_text = true,
+        }
+      else
+        vim.diagnostic.config{
+          virtual_lines = true,
+          virtual_text = false,
+        }
+      end
+      virtual_lines_enabled = not virtual_lines_enabled
+    end, 'Toggle between virtual lines and virtual text')
   end
 })
 
