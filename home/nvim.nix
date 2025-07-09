@@ -16,15 +16,13 @@
       vim-commentary # keybind na toggle comment radku
       vim-surround # keybinds na zmenu uvozovek, zavorek, tagu, ...
       nvim-ts-autotag
-      lsp-zero-nvim
-      # dependencies pro lsp-zero-nvim:
+      # dependencies pro lsp
         nvim-lspconfig
         nvim-cmp
         cmp-nvim-lsp
         luasnip
         cmp_luasnip
         cmp-path # autocomplete pathu
-      lspsaga-nvim
       nvim-dap
       nvim-dap-ui
       nvim-dap-virtual-text

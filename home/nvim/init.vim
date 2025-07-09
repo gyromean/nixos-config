@@ -165,9 +165,7 @@ EOF
 " ----- PLUGIN SETTINGS -----
 luafile ~/.config/nvim/plugin-config/commentary.lua
 luafile ~/.config/nvim/plugin-config/treesitter.lua
-luafile ~/.config/nvim/plugin-config/lsp-zero.lua
 luafile ~/.config/nvim/plugin-config/cmp.lua
-luafile ~/.config/nvim/plugin-config/lspsaga.lua
 luafile ~/.config/nvim/plugin-config/treesitter-context.lua
 luafile ~/.config/nvim/plugin-config/telescope.lua
 luafile ~/.config/nvim/plugin-config/dap.lua
@@ -183,3 +181,4 @@ luafile ~/.config/nvim/plugin-config/surround.lua
 luafile ~/.config/nvim/plugin-config/leap.lua
 luafile ~/.config/nvim/plugin-config/lazydev.lua
 luafile ~/.config/nvim/plugin-config/aerial.lua
+luafile ~/.config/nvim/plugin-config/lsp.lua
