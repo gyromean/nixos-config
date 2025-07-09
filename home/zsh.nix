@@ -15,6 +15,7 @@
       nv = "neovide";
       g = "git";
       e = "eog -n";
+      lg = "lazygit";
     };
     history.append = true;
     # ty '' pred $ to escapujou v nixu, do relanyho .zshrc se nepropisou
