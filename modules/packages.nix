@@ -22,6 +22,7 @@ let
     scapy # packet manipulation library
     jupyter
     tabulate
+    posix-ipc
   ];
 
   fhs = (
