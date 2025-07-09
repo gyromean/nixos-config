@@ -5,4 +5,7 @@ require('todo-comments').setup({
       color = '#a3be8c',
     },
   },
+  highlight = {
+    multiline = false,
+  };
 })
