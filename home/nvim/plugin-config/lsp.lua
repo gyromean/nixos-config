@@ -54,7 +54,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('n', 'gD', vim.lsp.buf.declaration, 'Go to declaration')
     map('n', 'gt', vim.lsp.buf.type_definition, 'Go to type definition')
     map('n', 'gs', vim.lsp.buf.signature_help, 'Show signature help')
-    map('n', 'grd', function()
+    map('n', 'go', function()
       if virtual_lines_enabled then
         vim.diagnostic.config{
           virtual_lines = false,
@@ -68,6 +68,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
       end
       virtual_lines_enabled = not virtual_lines_enabled
     end, 'Toggle between virtual lines and virtual text')
+    map('n', 'gO', vim.diagnostic.open_float, 'Open diagnostic')
   end
 })
 
