@@ -23,6 +23,7 @@ let
     jupyter
     tabulate
     posix-ipc
+    pytest
   ];
 
   fhs = (
