@@ -34,9 +34,10 @@ require'aerial'.setup{
   nav = {
     keymaps = {
       ["q"] = "actions.close",
+      ["<esc>"] = "actions.close",
     },
   },
 }
 
-vim.keymap.set("n", "<leader>a", "<cmd>AerialOpen<CR>")
-vim.keymap.set("n", "<leader>A", "<cmd>AerialNavToggle<CR>")
+vim.keymap.set("n", "<leader>A", "<cmd>AerialOpen<CR>")
+vim.keymap.set("n", "<leader>a", "<cmd>AerialNavToggle<CR>")
