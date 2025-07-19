@@ -69,6 +69,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
       virtual_lines_enabled = not virtual_lines_enabled
     end, 'Toggle between virtual lines and virtual text')
     map('n', 'gO', vim.diagnostic.open_float, 'Open diagnostic')
+    map('n', 'grr', function ()
+      require'telescope.builtin'.lsp_references({
+        jump_type = 'never' -- do not autojump if only one targat is available
+      })
+    end, 'Open references')
   end
 })
 
