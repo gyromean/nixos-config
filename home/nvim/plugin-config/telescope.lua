@@ -26,7 +26,12 @@ require'telescope'.setup{
 require'telescope'.load_extension('fzf') -- kvuli extensionu, musi se to volat az po volani require'telescope'.setup, https://github.com/nvim-telescope/telescope-fzf-native.nvim
 require'telescope'.load_extension('ui-select') -- prettier code actions
 
-vim.keymap.set('x', '<leader>tg', function()
+vim.keymap.set('n', '<leader>tf', require'telescope.builtin'.find_files, { desc = 'Telescope file search' })
+vim.keymap.set('n', '<leader>tg', require'telescope.builtin'.git_files, { desc = 'Telescope file search' })
+vim.keymap.set('n', '<leader>tk', require'telescope.builtin'.keymaps, { desc = 'Telescope keymap search' })
+vim.keymap.set('n', '<leader>th', require'telescope.builtin'.help_tags, { desc = 'Telescope help search' })
+vim.keymap.set('n', '<leader>tt', require'telescope.builtin'.live_grep, { desc = 'Telescope text grep' })
+vim.keymap.set('x', '<leader>tt', function()
   local start_pos = vim.fn.getpos('v')
   local end_pos = vim.fn.getpos('.')
 

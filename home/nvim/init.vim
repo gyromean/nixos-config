@@ -99,12 +99,6 @@ nnoremap <C-l> :wincmd l<CR>
 noremap <leader>d "_d
 " otevre Undotree, do nej preskocim jako do jinyho okna, takze <C-h>
 nnoremap <leader>u :UndotreeToggle<CR>
-nnoremap <leader>tf :Telescope find_files<CR>
-nnoremap <leader>tg :Telescope live_grep<CR>
-nnoremap <leader>tk :Telescope keymaps<CR>
-nnoremap <leader>tt :Telescope treesitter<CR>
-nnoremap <leader>tc :Telescope commands<CR>
-nnoremap <leader>th :Telescope help_tags<CR>
 " navigace uvnitr snippetu z autocompletu
 inoremap <C-h> <cmd>lua require'luasnip'.jump(-1)<CR>
 snoremap <C-h> <cmd>lua require'luasnip'.jump(-1)<CR>
