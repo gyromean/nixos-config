@@ -24,3 +24,4 @@ require'telescope'.setup{
   }
 }
 require'telescope'.load_extension('fzf') -- kvuli extensionu, musi se to volat az po volani require'telescope'.setup, https://github.com/nvim-telescope/telescope-fzf-native.nvim
+require'telescope'.load_extension('ui-select') -- prettier code actions
