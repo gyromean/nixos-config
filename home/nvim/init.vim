@@ -55,11 +55,17 @@ vim.keymap.set({"x"}, "<c-p>", "y1vgcO<esc>P", { remap = true, desc = "Duplicate
 vim.keymap.set({"i"}, "<c-return>", "<return><esc>==\"xyy\"xP_\"xC<tab>", { desc = "Enter when inside brackets/tags" })
 
 vim.api.nvim_set_hl(0, "TrailingWhitespace", { bg = "#7E9CD8", fg = "black" })
-local trailing_whitespace = function() vim.fn.matchadd("TrailingWhitespace", "\\s\\+$") end
+local trailing_whitespace = function() vim.fn.matchadd("TrailingWhitespace", [[\s\+$]]) end
 vim.api.nvim_create_autocmd("WinNew", {
   callback = trailing_whitespace,
 })
 trailing_whitespace() -- WinNew does not get called in the first window, must call manually
+
+vim.keymap.set("n", "<leader>rw", function()
+  local view = vim.fn.winsaveview()
+  vim.cmd([[%s/\v\s+$//g]])
+  vim.fn.winrestview(view)
+end, { desc = "Remove trailing whitespaces" })
 EOF
 
 " ----- SETS -----
