@@ -38,6 +38,7 @@
       aerial-nvim
       nvim-web-devicons
       telescope-ui-select-nvim
+      snacks-nvim
     ];
   };
 }
