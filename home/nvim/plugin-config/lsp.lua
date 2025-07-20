@@ -74,6 +74,19 @@ vim.api.nvim_create_autocmd('LspAttach', {
         jump_type = 'never' -- do not autojump if only one targat is available
       })
     end, 'Open references')
+    map('n', 'grn', function()
+      local curent_symbol = vim.fn.expand('<cword>')
+      local opts = {
+        prompt = 'New symbol name',
+        default = curent_symbol,
+      }
+      local callback = function(new_name)
+        if new_name and #new_name > 0 then
+          vim.lsp.buf.rename(new_name)
+        end
+      end
+      require'snacks'.input(opts, callback)
+    end, 'Rename symbol')
   end
 })
 
