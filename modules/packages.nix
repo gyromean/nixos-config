@@ -193,5 +193,6 @@ in
     inputs.pala.packages."${system}".default
     lazygit
     rquickshare
+    scrcpy # mirror android screen
   ];
 }
