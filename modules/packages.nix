@@ -192,5 +192,6 @@ in
     rose-pine-hyprcursor
     inputs.pala.packages."${system}".default
     lazygit
+    rquickshare
   ];
 }
