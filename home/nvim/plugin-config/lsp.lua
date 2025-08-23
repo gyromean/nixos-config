@@ -50,6 +50,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
       })
     end
 
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      buffer = bufnr,
+      callback = function(args)
+        if vim.bo.filetype == "rust" then
+          vim.lsp.buf.format()
+        end
+      end
+    })
+
     map('n', 'gd', vim.lsp.buf.definition, 'Go to definition')
     map('n', 'gD', vim.lsp.buf.declaration, 'Go to declaration')
     map('n', 'gt', vim.lsp.buf.type_definition, 'Go to type definition')
