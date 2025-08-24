@@ -70,7 +70,7 @@ EOF
 
 " ----- SETS -----
 set nu rnu
-set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 set ignorecase " musi byt, aby smartcase fungoval
 set smartcase " search je case-insensitive az do momentu, kdy dam neco velkejma
 set clipboard=unnamedplus " nastavi clipboard na systemovej clipboard
