@@ -13,6 +13,7 @@ import { Workspaces } from './src/workspaces.js'
 import { WorkspaceGroups } from './src/workspace-groups.js'
 import { ActionDisplay } from './src/action-display.js'
 import { BrightnessLaptop } from './src/brightness-laptop.js'
+import { Macrotracker } from './src/macrotracker.js'
 
 Utils.monitorFile(
   '/home/pavel/.config/ags/style.css',
@@ -35,6 +36,7 @@ function make_bar(monitor = 0) {
     right: [
       Eyetimer,
       Diary,
+      Macrotracker,
       BrightnessLaptop,
       Audio,
       Cpu,
