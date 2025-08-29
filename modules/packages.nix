@@ -194,5 +194,6 @@ in
     lazygit
     rquickshare
     scrcpy # mirror android screen
+    evcxr # rust repl
   ];
 }
