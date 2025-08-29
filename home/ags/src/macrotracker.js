@@ -55,9 +55,9 @@ function update() {
 
         // create tooltip
         const tooltip_content = []
-        tooltip_content.push(`Proteins: ${(proteins_var.value * 100).toFixed()}%`)
-        tooltip_content.push(`Calories: ${(calories_var.value * 100).toFixed()}%`)
-        tooltip_content.push(`${peak_var_repr.value}: ${(peak_var.value * 100).toFixed()}%`)
+        tooltip_content.push(`Proteins: ${(macros_relative.proteins * 100).toFixed()}%`)
+        tooltip_content.push(`Calories: ${(macros_relative.calories * 100).toFixed()}%`)
+        tooltip_content.push(`${peak_repr}: ${(peak_val * 100).toFixed()}%`)
         tooltip.set(tooltip_content)
     })
 }
