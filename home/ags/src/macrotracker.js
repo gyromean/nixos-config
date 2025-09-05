@@ -39,8 +39,8 @@ function update() {
             sugar: macros_today.sugar / macros_target.sugar,
             salt: macros_today.salt / macros_target.salt,
         }
-        proteins_var.value = clamp(macros_relative.proteins)
-        calories_var.value = clamp(macros_relative.calories)
+        proteins_var.value = macros_relative.proteins
+        calories_var.value = macros_relative.calories
 
         // calculate peak metric and store its name and value
         const peak_variants = [
@@ -50,7 +50,7 @@ function update() {
             [macros_relative.salt, "Salt"],
         ]
         const [peak_val, peak_repr] = peak_variants.reduce((acc, curr) => curr[0] > acc[0] ? curr : acc)
-        peak_var.value = clamp(peak_val)
+        peak_var.value = peak_val
         peak_var_repr.value = peak_repr
 
         // create tooltip
@@ -80,14 +80,19 @@ export function Macrotracker(bar) {
     // const icon = Icon('') // mozna
     // const icon = Icon('󱡊')
     // const icon = Icon('󰘗')
-    const prog_calories = Progression({ value: calories_var.bind(), max_value: 1 })
-    const prog_proteins = Progression({ value: proteins_var.bind(), max_value: 1 })
-    const prog_peak = Progression({ value: peak_var.bind(), max_value: 1 })
+    const prog_calories = Progression({ value: calories_var.bind().as(v => clamp(v)), max_value: 1 })
+    const prog_proteins = Progression({ value: proteins_var.bind().as(v => clamp(v)), max_value: 1 })
+    const prog_peak = Progression({ value: peak_var.bind().as(v => clamp(v)), max_value: 1 })
+    const prog_peak_2 = Progression({ value: peak_var.bind().as(v => clamp(v - 1)), max_value: 1 })
+    const prog_revealer = Revealer(prog_peak_2, {
+        reveal_child: peak_var.bind().as(v => v > 1),
+    })
 
     const prog_box = Box([
         prog_proteins,
         prog_calories,
         prog_peak,
+        prog_revealer,
     ], {
         spacing: 2,
     })
