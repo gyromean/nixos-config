@@ -195,5 +195,6 @@ in
     rquickshare
     scrcpy # mirror android screen
     evcxr # rust repl
+    typst
   ];
 }
