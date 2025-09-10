@@ -21,6 +21,9 @@ c.tabs.select_on_remove = 'last-used'
 c.editor.command = ['alacritty', '-e', 'nvim', '{file}']
 c.completion.quick = False
 c.tabs.last_close = 'close'
+c.content.javascript.clipboard = 'access'
+c.content.register_protocol_handler = False
+c.content.tls.certificate_errors = 'load-insecurely'
 
 # Key aliases for Czech language
 c.bindings.key_mappings = {
