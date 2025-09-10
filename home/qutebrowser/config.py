@@ -24,6 +24,9 @@ c.tabs.last_close = 'close'
 c.content.javascript.clipboard = 'access'
 c.content.register_protocol_handler = False
 c.content.tls.certificate_errors = 'load-insecurely'
+c.url.searchengines = {
+  'DEFAULT': 'https://www.google.com/search?q={}',
+}
 
 # Key aliases for Czech language
 c.bindings.key_mappings = {
