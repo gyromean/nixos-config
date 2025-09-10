@@ -123,15 +123,43 @@ nnoremap <leader>L <cmd>lua require'luasnip.loaders.from_lua'.load({ paths = "/h
 lua <<EOF
 vim.keymap.set("i", "<C-p>", "<end> {<CR>}<up><end><CR>");
 vim.keymap.set("i", "<C-S-p>", "<end><CR>{<CR>}<up><end><CR>");
-vim.keymap.set("n", "<leader>c", function()
+-- Toggle automatic comment insertion
+vim.keymap.set("n", "<leader>oc", function()
   if vim.opt.formatoptions:get().r ~= true then
     print("Enabling automatic comment insertion")
     vim.opt.formatoptions:append("ro")
   else
     print("Disabling automatic comment insertion")
-    vim.opt.formatoptions:remove({"r", "o"})
+    vim.opt.formatoptions:remove({ "r", "o" })
   end
-end, { desc = "Toggle automatic [c]omment insertion" });
+end, { desc = "Toggle [o]ption automatic [c]omment insertion" })
+
+-- Toggle virtualedit=all
+vim.keymap.set("n", "<leader>ov", function()
+  if #vim.opt.virtualedit:get() == 0 then
+    vim.opt.virtualedit = "all"
+    print("Enabling virtualedit")
+  else
+    vim.opt.virtualedit = ""
+    print("Disabling virtualedit")
+  end
+end, { desc = "Toggle [o]ption [v]irtualedit" })
+
+-- Toggle j/k remap for wrapped lines
+local wrapped_nav_enabled = false
+vim.keymap.set({ "n", "v" }, "<leader>ow", function()
+  if wrapped_nav_enabled then
+    vim.keymap.del({ "n", "v" }, "j")
+    vim.keymap.del({ "n", "v" }, "k")
+    wrapped_nav_enabled = false
+    print("Disabling wrapped line navigation")
+  else
+    vim.keymap.set({ "n", "v" }, "j", "gj", { silent = true })
+    vim.keymap.set({ "n", "v" }, "k", "gk", { silent = true })
+    wrapped_nav_enabled = true
+    print("Enabling wrapped line navigation")
+  end
+end, { desc = "Toggle [o]ption [w]rapped line navigation" })
 EOF
 " search results jsou vzdy uprostred obrazovky (ted to funguje jen smerem dopredu, <C-N> je for some reason MALE n)
 nnoremap <C-N> nzz
