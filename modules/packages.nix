@@ -196,5 +196,6 @@ in
     scrcpy # mirror android screen
     evcxr # rust repl
     typst
+    spotify
   ];
 }
