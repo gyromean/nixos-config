@@ -24,6 +24,7 @@ let
     tabulate
     posix-ipc
     pytest
+    systemd
   ];
 
   fhs = (
