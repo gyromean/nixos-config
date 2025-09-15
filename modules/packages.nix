@@ -198,5 +198,6 @@ in
     evcxr # rust repl
     typst
     spotify
+    ruff # python formatter
   ];
 }
