@@ -39,6 +39,7 @@
       nvim-web-devicons
       telescope-ui-select-nvim
       snacks-nvim
+      conform-nvim
     ];
   };
 }

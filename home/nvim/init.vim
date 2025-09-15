@@ -215,3 +215,4 @@ luafile ~/.config/nvim/plugin-config/lazydev.lua
 luafile ~/.config/nvim/plugin-config/aerial.lua
 luafile ~/.config/nvim/plugin-config/lsp.lua
 luafile ~/.config/nvim/plugin-config/snacks.lua
+luafile ~/.config/nvim/plugin-config/conform.lua
