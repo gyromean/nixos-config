@@ -1,2 +1,25 @@
 git:
   autoFetch: False
+gui:
+  nerdFontsVersion: 3
+  theme:
+    activeBorderColor:
+      - '#ff9e3b'
+      - bold
+    cherryPickedCommitBgColor:
+      - '#e6c384'
+    cherryPickedCommitFgColor:
+      - '#7e9cd8'
+    defaultFgColor:
+      - '#dcd7ba'
+    inactiveBorderColor:
+      - '#54546d'
+    optionsTextColor:
+      - '#7e9cd8'
+    searchingActiveBorderColor:
+      - '#ff9e3b'
+      - bold
+    selectedLineBgColor:
+      - '#223249'
+    unstagedChangesColor:
+      - '#e82424'
