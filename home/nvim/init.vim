@@ -91,8 +91,6 @@ set smartindent
 set cursorline
 
 " ----- REBINDS -----
-" save a close
-nnoremap <C-w> :x<CR>
 " save
 nnoremap <C-s> :w<CR>
 " jednorazove vypne highlight ze search commandu
