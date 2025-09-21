@@ -200,5 +200,6 @@ in
     spotify
     ruff # python formatter
     xorg.xev
+    obsidian
   ];
 }
