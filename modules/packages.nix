@@ -199,5 +199,6 @@ in
     typst
     spotify
     ruff # python formatter
+    xorg.xev
   ];
 }
