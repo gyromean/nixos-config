@@ -201,5 +201,6 @@ in
     ruff # python formatter
     xorg.xev
     obsidian
+    cmake
   ];
 }
