@@ -3,6 +3,7 @@ require'conform'.setup{
         python = { "ruff_format", "ruff_organize_imports" },
         c = { "clang-format" },
         cpp = { "clang-format" },
+        go = { "gofmt" },
     },
     format_on_save = {
         timeout_ms = 2000,
