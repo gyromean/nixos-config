@@ -202,5 +202,6 @@ in
     xorg.xev
     obsidian
     cmake
+    go
   ];
 }
