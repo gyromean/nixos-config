@@ -203,5 +203,6 @@ in
     obsidian
     cmake
     go
+    gopls
   ];
 }
