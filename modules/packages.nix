@@ -206,5 +206,6 @@ in
     cmake
     go
     gopls
+    stable.sageWithDoc
   ];
 }
