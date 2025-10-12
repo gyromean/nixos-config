@@ -15,6 +15,7 @@
       url = "github:gyromean/pala";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:

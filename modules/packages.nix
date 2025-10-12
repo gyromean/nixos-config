@@ -47,6 +47,8 @@ let
       ln -s ${package}/bin/${orig_name} $out/bin/${new_name}
     '';
   });
+
+  stable = inputs.nixpkgs-stable.legacyPackages."${pkgs.system}";
 in
 {
   # List packages installed in system profile. To search, run:
