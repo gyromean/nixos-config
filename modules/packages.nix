@@ -207,5 +207,6 @@ in
     go
     gopls
     stable.sageWithDoc
+    stylua
   ];
 }

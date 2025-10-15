@@ -4,6 +4,7 @@ require'conform'.setup{
         c = { "clang-format" },
         cpp = { "clang-format" },
         go = { "gofmt" },
+        lua = { "stylua" },
     },
     format_on_save = {
         timeout_ms = 2000,
@@ -14,6 +15,9 @@ require'conform'.setup{
         },
         ["ruff_format"] = {
             prepend_args = { "format", "--line-length", "120" },
+        },
+        ["stylua"] = {
+            prepend_args = { "--indent-type", "Spaces" },
         },
     },
 }
