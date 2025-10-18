@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, machine, opts, ... }:
+{ config, pkgs, lib, machine, opts, ... }@inputs:
 {
   imports =
   [ # Include the results of the hardware scan.
@@ -18,6 +18,8 @@
     useOSProber = true;
     efiSupport = true;
   };
+
+  boot.kernelPackages = inputs.nixpkgs-kernel-6-17.legacyPackages."${pkgs.system}".linuxPackages_6_17; # TODO: use kernel from normal packages once I flake update and remove this flake input
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
