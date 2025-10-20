@@ -20,6 +20,7 @@
   };
 
   boot.kernelPackages = inputs.nixpkgs-kernel-6-17.legacyPackages."${pkgs.system}".linuxPackages_6_17; # TODO: use kernel from normal packages once I flake update and remove this flake input
+  services.power-profiles-daemon.enable = true; # powerprofilesctl
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
