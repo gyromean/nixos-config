@@ -141,7 +141,7 @@ class PowermenuClass {
             Utils.execAsync('systemctl reboot')
             break
           case 'sleep':
-            Utils.execAsync(['bash', '-c', 'hyprlock & sleep 1; systemctl suspend']) // delay for hyprlock animation to finish
+            Utils.execAsync(['bash', '-c', 'systemctl suspend && hyprlock']) // delay for hyprlock animation to finish
             break
           case 'logout':
             hyprland.messageAsync('dispatch exit')
