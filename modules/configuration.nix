@@ -156,11 +156,16 @@
   };
   services.blueman.enable = true;
 
-  virtualisation.libvirtd.enable = true;
   virtualisation.docker.enable = true;
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "pavel" ];
+
+  virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true; # virt-manager requires dconf to remember settings
+
+  boot.blacklistedKernelModules = [ "kvm_amd" "kvm_intel" "kvm" ]; # kvm must be blacklisted for VirtualBox to work
+  virtualisation.virtualbox.host = {
+    enable = true;
+  };
+  users.extraGroups.vboxusers.members = [ "pavel" ];
 
   services.upower.enable = true; # vypsat moznosti pres `upower -e`, potom stav treba pres `upower -i /org/freedesktop/UPower/devices/battery_BAT0`
 
