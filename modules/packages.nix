@@ -208,5 +208,6 @@ in
     gopls
     stable.sageWithDoc
     stylua
+    mosquitto
   ];
 }
