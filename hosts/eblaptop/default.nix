@@ -5,4 +5,6 @@
     ../../modules/configuration.nix
     ./hardware-configuration.nix
   ];
+
+  services.fprintd.enable = true;
 }
