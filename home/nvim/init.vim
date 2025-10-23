@@ -200,7 +200,7 @@ luafile ~/.config/nvim/plugin-config/treesitter-context.lua
 luafile ~/.config/nvim/plugin-config/telescope.lua
 luafile ~/.config/nvim/plugin-config/dap.lua
 luafile ~/.config/nvim/plugin-config/lualine.lua
-luafile ~/.config/nvim/plugin-config/ts-autotag.lua
+" luafile ~/.config/nvim/plugin-config/ts-autotag.lua
 luafile ~/.config/nvim/plugin-config/luasnip.lua
 luafile ~/.config/nvim/plugin-config/todo-comments.lua
 luafile ~/.config/nvim/plugin-config/vimtex.lua
