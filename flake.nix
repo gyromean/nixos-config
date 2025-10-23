@@ -58,6 +58,6 @@
       )
     );
   in {
-    nixosConfigurations = mkNixosConfigs [ "desktop" "laptop" "eblaptop" "hplaptop" ];
+    nixosConfigurations = mkNixosConfigs [ "desktop" "laptop" ];
   };
 }
