@@ -72,4 +72,6 @@ application/pdf=org.pwmt.zathura.desktop
       terminal = false;
     };
   };
+
+  services.polkit-gnome.enable = true; # authentication agent (gui password thing)
 }
