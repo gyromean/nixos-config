@@ -209,5 +209,6 @@ in
     stable.sageWithDoc
     stylua
     mosquitto
+    signal-desktop
   ];
 }
