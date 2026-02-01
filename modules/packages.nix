@@ -210,5 +210,6 @@ in
     stylua
     mosquitto
     signal-desktop
+    sqlite
   ];
 }
