@@ -72,6 +72,7 @@ export function Network(bar) {
   return Widget.EventBox({
     child: item,
     on_primary_click: _ =>  {
+      Utils.execAsync(['nmcli', 'device', 'wifi', 'rescan'])
       Utils.execAsync(['alacritty', '-e', 'nmtui'])
     },
   })
