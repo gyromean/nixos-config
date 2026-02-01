@@ -211,5 +211,6 @@ in
     mosquitto
     signal-desktop
     sqlite
+    sshpass # non-interactive ssh password auth
   ];
 }
