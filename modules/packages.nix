@@ -25,6 +25,7 @@ let
     posix-ipc
     pytest
     systemd-python
+    mplcursors
   ];
 
   fhs = (
