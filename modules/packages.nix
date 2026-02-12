@@ -48,7 +48,7 @@ let
     '';
   });
 
-  stable = inputs.nixpkgs-stable.legacyPackages."${pkgs.stdenv.hostPlatform.system}";
+  unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.stdenv.hostPlatform.system}";
 in
 {
   # List packages installed in system profile. To search, run:
@@ -153,8 +153,8 @@ in
     waybar
     wl-clipboard
     wayvnc
-    (mkAlias ags "ags" "ags2")
-    (mkAlias inputs.nixpkgs-ags-1.legacyPackages."${pkgs.stdenv.hostPlatform.system}".ags_1 "ags" "ags1")
+    (mkAlias ags "ags" "ags2") # for pala (my application launcher)
+    (mkAlias inputs.nixpkgs-ags-1.legacyPackages."${pkgs.stdenv.hostPlatform.system}".ags_1 "ags" "ags1") # for top bar
     typescript-language-server
     inkscape
     hyprpicker # color picker
@@ -205,7 +205,7 @@ in
     cmake
     go
     gopls
-    stable.sageWithDoc
+    sageWithDoc
     stylua
     mosquitto
     signal-desktop

@@ -12,7 +12,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pala.url = "github:gyromean/pala"; # must NOT follow nixpkgs, use its own locked nixpkgs
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-ags-1.url = "github:nixos/nixpkgs/d0fc30899600b9b3466ddb260fd83deb486c32f1";
   };
 
