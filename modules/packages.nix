@@ -214,5 +214,6 @@ in
     sshpass # non-interactive ssh password auth
     exfatprogs # enables formatting to exfat in gparted
     codex
+    thunderbird
   ];
 }
