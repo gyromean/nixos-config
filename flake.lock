@@ -118,22 +118,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-kernel-6-17": {
-      "locked": {
-        "lastModified": 1770562336,
-        "narHash": "sha256-ub1gpAONMFsT/GU2hV6ZWJjur8rJ6kKxdm9IlCT0j84=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "d6c71932130818840fc8fe9509cf50be8c64634f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1767313136,
@@ -190,7 +174,6 @@
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixpkgs-ags-1": "nixpkgs-ags-1",
-        "nixpkgs-kernel-6-17": "nixpkgs-kernel-6-17",
         "nixpkgs-stable": "nixpkgs-stable",
         "pala": "pala",
         "zen-browser": "zen-browser"

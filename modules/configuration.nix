@@ -20,7 +20,7 @@
     efiSupport = true;
   };
 
-  # boot.kernelPackages = inputs.nixpkgs-kernel-6-17.legacyPackages."${pkgs.system}".linuxPackages_6_17; # TODO: use kernel from normal packages once I flake update and remove this flake input
+  boot.kernelPackages = pkgs.linuxPackages_6_18; # audio does not work on elitebook on kernels older than 6.17 and 6.17 is no longer supported, so we use 6.18; can remove once this is the default
   services.power-profiles-daemon.enable = true; # powerprofilesctl
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
