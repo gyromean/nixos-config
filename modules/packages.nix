@@ -215,5 +215,6 @@ in
     exfatprogs # enables formatting to exfat in gparted
     codex
     thunderbird
+    distrobox
   ];
 }

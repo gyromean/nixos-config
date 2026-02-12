@@ -157,7 +157,7 @@
   };
   services.blueman.enable = true;
 
-  virtualisation.docker.enable = true;
+  # virtualisation.docker.enable = true; # must be disabled for podman (distrobox) to work
 
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true; # virt-manager requires dconf to remember settings
@@ -167,6 +167,18 @@
     enable = true;
   };
   users.extraGroups.vboxusers.members = [ "pavel" ];
+
+  # ----- PODMAN START (distrobox) -------
+  virtualisation.containers.enable = true; # This creates the policy.json file
+
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true; # Makes podman respond to 'docker' commands
+  };
+
+  # Optional: Allows pulling by short names like 'ubuntu:24.04'
+  virtualisation.containers.registries.search = [ "docker.io" "quay.io" ];
+  # ----- PODMAN END -------
 
   services.upower.enable = true; # vypsat moznosti pres `upower -e`, potom stav treba pres `upower -i /org/freedesktop/UPower/devices/battery_BAT0`
 
