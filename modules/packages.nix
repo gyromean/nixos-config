@@ -24,7 +24,7 @@ let
     tabulate
     posix-ipc
     pytest
-    systemd
+    systemd-python
   ];
 
   fhs = (
@@ -48,7 +48,7 @@ let
     '';
   });
 
-  stable = inputs.nixpkgs-stable.legacyPackages."${pkgs.system}";
+  stable = inputs.nixpkgs-stable.legacyPackages."${pkgs.stdenv.hostPlatform.system}";
 in
 {
   # List packages installed in system profile. To search, run:
@@ -122,7 +122,7 @@ in
     man-pages # man pages treba pro Ceckovy veci
     man-pages-posix # idk taky nejaky man pages
     moreutils # dalsi veci, treba `errno -l` vypise, co ktery errno znamena
-    (hiPrio parallel) # viz https://discourse.nixos.org/t/why-is-parallel-overwritten-by-moreutils-s-parallel/36979/2
+    (lib.hiPrio parallel) # viz https://discourse.nixos.org/t/why-is-parallel-overwritten-by-moreutils-s-parallel/36979/2
     pavucontrol # audio
     qpwgraph # audio
     ffmpeg
@@ -140,7 +140,7 @@ in
     gef # frontend for gdb
     screenkey # display pressed keys in gui overlay
     pdfgrep # grep in pdf files
-    poppler_utils # contains pdfseparate for splitting pdf to multiple pdfs
+    poppler-utils # contains pdfseparate for splitting pdf to multiple pdfs
     fast-downward # pddl planning system
     python312Packages.servefile # simple http server for serving file to download or providing file upload functionality
     python311Packages.debugpy # python debugger
@@ -180,10 +180,9 @@ in
     gedit
     stack # tool for haskell
     haskell.compiler.ghc948 # haskell compiler
-    (haskell-language-server.override { supportedGhcVersions = [ "948" ]; })
     kooha # simple screen recorder
     pandoc
-    inputs.zen-browser.packages."${system}".default
+    inputs.zen-browser.packages."${stdenv.hostPlatform.system}".default
     usbimager
     sshfs # mount filesystem via ssh
     pdftk # for uncompressing and compressing pdfs
@@ -193,7 +192,7 @@ in
     mdcat # simple markdown tools (mdless)
     sqlite
     rose-pine-hyprcursor
-    inputs.pala.packages."${system}".default
+    # inputs.pala.packages."${stdenv.hostPlatform.system}".default
     lazygit
     rquickshare
     scrcpy # mirror android screen
