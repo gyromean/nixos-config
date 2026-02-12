@@ -16,6 +16,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs-ags-1.url = "github:nixos/nixpkgs/d0fc30899600b9b3466ddb260fd83deb486c32f1";
     nixpkgs-kernel-6-17.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
