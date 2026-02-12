@@ -192,7 +192,7 @@ in
     mdcat # simple markdown tools (mdless)
     sqlite
     rose-pine-hyprcursor
-    # inputs.pala.packages."${stdenv.hostPlatform.system}".default
+    inputs.pala.packages."${stdenv.hostPlatform.system}".default
     lazygit
     rquickshare
     scrcpy # mirror android screen
