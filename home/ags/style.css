@@ -105,6 +105,19 @@ levelbar.progression block.filled {
 .item.yellow levelbar.progression block.filled, levelbar.progression.yellow block.filled { background-color: @yellow; }
 .item.red levelbar.progression block.filled, levelbar.progression.red block.filled { background-color: @red; }
 
+.pulsating-a levelbar.progression block, .pulsating-b levelbar.progression block {
+  margin-left: 5px;
+  border-radius: 5px;
+}
+
+.pulsating-a levelbar.progression block {
+  padding-right: 24px;
+}
+
+.pulsating-b levelbar.progression block {
+  padding-right: 72px;
+}
+
 /* ----- WORKSPACE INDICATOR ----- */
 
 .workspace-indicator {
