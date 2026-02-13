@@ -196,7 +196,7 @@
   users.users.pavel = {
     isNormalUser = true;
     description = "Pavel Holy";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" "i2c" ];
     shell = pkgs.zsh; # nastavit zsh jako vychozi shell
     packages = with pkgs; [
       # web browsers:
