@@ -216,5 +216,6 @@ in
     codex
     thunderbird
     distrobox
+    bitwarden-desktop
   ];
 }
