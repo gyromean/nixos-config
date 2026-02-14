@@ -217,5 +217,6 @@ in
     thunderbird
     distrobox
     bitwarden-desktop
+    datovka
   ];
 }
