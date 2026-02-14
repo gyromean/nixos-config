@@ -146,6 +146,7 @@
         "Programs" = shareFolder "/home/pavel/programy";
         "Work" = shareFolder "/home/pavel/prace";
         "Obsidian vaults" = shareFolder "/home/pavel/vaults";
+        "Repos" = shareFolder "/home/pavel/repos";
       };
     };
   };
