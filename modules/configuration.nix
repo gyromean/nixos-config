@@ -40,6 +40,23 @@
     plugins = with pkgs; [
       networkmanager-openvpn
     ];
+    dispatcherScripts = [
+      {
+        type = "basic";
+        source = pkgs.writeShellScript "auto-vpn" ''
+          IFACE="$1"
+          STATUS="$2"
+          VPN_NAME="vrtacka"
+
+          if [ "$STATUS" = "up" ]; then
+            if ! ${pkgs.networkmanager}/bin/nmcli -t -f NAME connection show --active | \
+                 ${pkgs.gnugrep}/bin/grep -qx "$VPN_NAME"; then
+              ${pkgs.networkmanager}/bin/nmcli connection up "$VPN_NAME"
+            fi
+          fi
+        '';
+      }
+    ];
   };
   systemd.services.NetworkManager-wait-online.enable = false;
 
@@ -150,6 +167,24 @@
       };
     };
   };
+
+  security.pki.certificates = [
+    ''
+    Vaultwarden
+    ===========
+    -----BEGIN CERTIFICATE-----
+    MIIBozCCAUmgAwIBAgIQOGZSpd5JY0FO3qMYomkCUDAKBggqhkjOPQQDAjAwMS4w
+    LAYDVQQDEyVDYWRkeSBMb2NhbCBBdXRob3JpdHkgLSAyMDI2IEVDQyBSb290MB4X
+    DTI2MDIxMzE5MzQwN1oXDTM1MTIyMzE5MzQwN1owMDEuMCwGA1UEAxMlQ2FkZHkg
+    TG9jYWwgQXV0aG9yaXR5IC0gMjAyNiBFQ0MgUm9vdDBZMBMGByqGSM49AgEGCCqG
+    SM49AwEHA0IABGDIqCSG7YukYU0VCYCiR+/N2CTts2gRBEAVM5EslzRdWI0IYTxv
+    POfI6asxPYG7rgx2Siw8I3a23YSoJC/gKRijRTBDMA4GA1UdDwEB/wQEAwIBBjAS
+    BgNVHRMBAf8ECDAGAQH/AgEBMB0GA1UdDgQWBBSYT8wbnTkHV4pBAXspt8l2RZbj
+    FTAKBggqhkjOPQQDAgNIADBFAiAwFMgRa1HsK2jTaJnkxEDJbZaGvnpDR3kHk+p9
+    hOhoWwIhAL2+aTDgxEAi9pahn0yEOtqcxc9ngrQwXWiI2CQeuv1W
+    -----END CERTIFICATE-----
+    ''
+  ];
 
   # enable bluetooth
   hardware.bluetooth = {
