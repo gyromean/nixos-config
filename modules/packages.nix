@@ -49,6 +49,8 @@ let
     '';
   });
 
+  flakePackage = (flake: inputs.${flake}.packages."${pkgs.stdenv.hostPlatform.system}".default);
+
   unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.stdenv.hostPlatform.system}";
 in
 {
@@ -183,7 +185,7 @@ in
     haskell.compiler.ghc948 # haskell compiler
     kooha # simple screen recorder
     pandoc
-    inputs.zen-browser.packages."${stdenv.hostPlatform.system}".default
+    (flakePackage "zen-browser")
     usbimager
     sshfs # mount filesystem via ssh
     pdftk # for uncompressing and compressing pdfs
@@ -193,7 +195,7 @@ in
     mdcat # simple markdown tools (mdless)
     sqlite
     rose-pine-hyprcursor
-    inputs.pala.packages."${stdenv.hostPlatform.system}".default
+    (flakePackage "pala")
     lazygit
     rquickshare
     scrcpy # mirror android screen
@@ -218,6 +220,6 @@ in
     distrobox
     bitwarden-desktop
     datovka
-    inputs.hywoma.packages."${stdenv.hostPlatform.system}".default
+    (flakePackage "hywoma")
   ];
 }
