@@ -3,17 +3,20 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-ags-1.url = "github:nixos/nixpkgs/d0fc30899600b9b3466ddb260fd83deb486c32f1";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     pala.url = "github:gyromean/pala"; # must NOT follow nixpkgs, use its own locked nixpkgs
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-ags-1.url = "github:nixos/nixpkgs/d0fc30899600b9b3466ddb260fd83deb486c32f1";
+    hywoma.url = "github:gyromean/hywoma";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:

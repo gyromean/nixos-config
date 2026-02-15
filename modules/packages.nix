@@ -218,5 +218,6 @@ in
     distrobox
     bitwarden-desktop
     datovka
+    inputs.hywoma.packages."${stdenv.hostPlatform.system}".default
   ];
 }
