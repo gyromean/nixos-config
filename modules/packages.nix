@@ -221,5 +221,6 @@ in
     bitwarden-desktop
     datovka
     (flakePackage "hywoma")
+    rofi-rbw-wayland
   ];
 }
