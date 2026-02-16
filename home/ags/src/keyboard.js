@@ -4,7 +4,10 @@ import { Item, Icon, Text } from './utils.js'
 const lang_var = Variable('')
 
 function set_lang() {
-  Utils.execAsync(['bash', '-c', "hyprctl -j devices | jq '.keyboards[] | select(.main == true) | .active_keymap'"]).then(out => lang_var.value = out.slice(1, 3).toLowerCase())
+  Utils.execAsync(['bash', '-c', "hyprctl -j devices | jq -r '.keyboards[] | select(.main == true) | .active_keymap'"]).then(out => {
+    if(out != "error")
+      lang_var.value = out.slice(0, 2).toLowerCase()
+  })
 }
 
 set_lang()
