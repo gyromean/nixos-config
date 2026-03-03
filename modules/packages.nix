@@ -222,5 +222,6 @@ in
     datovka
     (flakePackage "hywoma")
     rofi-rbw-wayland
+    prettierd
   ];
 }
