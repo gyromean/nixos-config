@@ -232,7 +232,7 @@
   users.users.pavel = {
     isNormalUser = true;
     description = "Pavel Holy";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" "i2c" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" "i2c" "dialout" ]; # dialout - accessing /dev/ttyUSB without sudo
     shell = pkgs.zsh; # nastavit zsh jako vychozi shell
     packages = with pkgs; [
       # web browsers:
