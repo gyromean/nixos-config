@@ -26,6 +26,7 @@ let
     pytest
     systemd-python
     mplcursors
+    jsonschema
   ];
 
   fhs = (
