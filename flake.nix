@@ -17,6 +17,9 @@
 
     pala.url = "github:gyromean/pala"; # must NOT follow nixpkgs, use its own locked nixpkgs
     hywoma.url = "github:gyromean/hywoma";
+    opencode = {
+      url = "github:anomalyco/opencode?ref=v1.2.21";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
