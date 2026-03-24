@@ -7,6 +7,11 @@
   ];
 
   services.fprintd.enable = true;
+  services.logind.settings.Login = {
+    HandleLidSwitch = "ignore";
+    HandleLidSwitchDocked = "ignore";
+    HandleLidSwitchExternalPower = "ignore";
+  };
 
   # Zram swap
   zramSwap = {
