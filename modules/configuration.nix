@@ -221,6 +221,7 @@
   programs.zsh.enable = true; # musi to byt enabled i tady i presto ze to mam primarne v home-manageru, jinak to nemuzu nastavit jako home shell
 
   programs.steam.enable = true;
+  programs.wireshark.enable = true;
 
   programs.hyprland.enable = true;
 
@@ -232,7 +233,7 @@
   users.users.pavel = {
     isNormalUser = true;
     description = "Pavel Holy";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" "i2c" "dialout" ]; # dialout - accessing /dev/ttyUSB without sudo
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" "i2c" "dialout" "wireshark" ]; # dialout - accessing /dev/ttyUSB without sudo
     shell = pkgs.zsh; # nastavit zsh jako vychozi shell
     packages = with pkgs; [
       # web browsers:
