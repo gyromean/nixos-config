@@ -1,13 +1,15 @@
-import { Item, Icon, Text, Progression, ClassManager, TooltipManager, Box } from './utils.js'
+import { Item, Icon, Text, Progression, ClassManager, TooltipManager, Box, Revealer } from './utils.js'
 
 const minutes = 20
 const pulsating_period_s = 4
 const v = Variable(0)
+const person_visible = Variable(false)
 
 var interval_handle = null
 var pulsating_handle = null
 var state // idle, running, completed
-const color_manager = new ClassManager([], ['yellow', 'red'])
+var completed_iterations = 0
+const color_manager = new ClassManager([], ['blue', 'yellow', 'red'])
 const pulsating_manager = new ClassManager([], ['pulsating-a', 'pulsating-b'])
 start()
 
@@ -35,6 +37,7 @@ function stop_pulsating() {
 function start() {
   state = 'running'
   v.value = 0
+  person_visible.value = false
   // tooltip_manager.set(`${minutes - v.value} min`)
   // icon.label = '󱎫',
   color_manager.reset()
@@ -52,6 +55,7 @@ function start() {
 function cancel() {
   state = 'idle'
   v.value = 0
+  person_visible.value = false
   // tooltip_manager.set('Idle')
   // icon.label = '󱫎'
   color_manager.set('yellow')
@@ -62,9 +66,11 @@ function cancel() {
 
 function completed() {
   state = 'completed'
+  completed_iterations++
+  person_visible.value = completed_iterations % 3 === 0
   // tooltip_manager.set('Completed')
   // icon.label = '󱫌'
-  color_manager.set('red')
+  color_manager.set(completed_iterations % 3 === 0 ? 'blue' : 'red')
   start_pulsating()
 }
 
@@ -75,13 +81,23 @@ export function Eyetimer(bar) {
   })
 
   const icon = Icon('')
+  const person = Revealer(Icon(''), {
+    reveal_child: person_visible.bind(),
+    transition: 'slide_right',
+  })
+  const icons = Box([
+    icon,
+    person,
+  ], {
+    spacing: 4,
+  })
 
   const item = Item([
     Box([
-      icon,
+      icons,
       prog,
     ], {
-      spacing: 4,
+      spacing: 0,
     }),
   ], {
     // tooltip_text: tooltip_manager.get(),
