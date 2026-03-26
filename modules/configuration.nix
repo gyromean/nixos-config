@@ -122,7 +122,7 @@
     #media-session.enable = true;
   };
 
-  services.syncthing = let
+  services.syncthing = lib.mkIf machine.syncthingEnabled (let
     devices =
       (builtins.listToAttrs
         (builtins.map
@@ -131,7 +131,10 @@
             in { name = vars.hostname; value = { id = vars.syncthingId; }; }
           )
           (builtins.filter
-            (path: builtins.pathExists path)
+            (path:
+              builtins.pathExists path &&
+              (import path).syncthingEnabled
+            )
             (lib.attrsets.mapAttrsToList
               (path: type: ../hosts/${path}/vars.nix)
               (lib.attrsets.filterAttrs
@@ -166,7 +169,7 @@
         "Repos" = shareFolder "/home/pavel/repos";
       };
     };
-  };
+  });
 
   security.pki.certificates = [
     ''
