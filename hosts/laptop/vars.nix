@@ -10,4 +10,5 @@
   defaultInterface = "";
   syncthingEnabled = true;
   syncthingId = "QFXFPTZ-QHCM7D4-K6X34FS-6FGS464-C4FVMFJ-LXBSWIA-A3A7FMM-LFUJUQ3";
+  wireguardEnabled = true;
 }

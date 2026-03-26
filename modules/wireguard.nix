@@ -1,6 +1,6 @@
 { config, pkgs, lib, machine, opts, ... }@inputs:
 {
-  networking.wireguard.interfaces = let
+  networking.wireguard.interfaces = lib.mkIf machine.wireguardEnabled (let
     server_ip = "213.220.196.186";
   in {
     wg0 = { # home
@@ -29,5 +29,5 @@
         }
       ];
     };
-  };
+  });
 }

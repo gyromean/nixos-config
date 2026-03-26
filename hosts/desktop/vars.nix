@@ -12,4 +12,5 @@
   defaultInterface = "enp8s0";
   syncthingEnabled = true;
   syncthingId = "UDT2VMQ-ZO3ADZK-3S4PKYD-KACHGD2-E4H7S6C-CNIN7GZ-OEFD25L-X3IR3QN";
+  wireguardEnabled = false;
 }
