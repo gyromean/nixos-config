@@ -321,16 +321,6 @@
   # ----- i3 ----- # https://nixos.wiki/wiki/I3#Enabling
   environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw
   services.xserver = {
-    #enable = true; # protoze uz je to enabled nekde nahore
-
-    desktopManager = {
-      xterm.enable = false;
-    };
-
-    #displayManager = {
-    #    defaultSession = "none+i3";
-    #};
-
     windowManager.i3 = {
       enable = true;
       extraPackages = with pkgs; [
