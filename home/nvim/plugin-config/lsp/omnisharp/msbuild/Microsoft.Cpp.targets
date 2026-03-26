@@ -1,0 +1,11 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TargetPath Condition="'$(TargetPath)' == ''">$(MSBuildProjectDirectory)/dummy-cpp-output.dll</TargetPath>
+  </PropertyGroup>
+
+  <Target Name="GetTargetPath">
+    <ItemGroup>
+      <TargetPathWithTargetPlatformMoniker Include="$(TargetPath)" />
+    </ItemGroup>
+  </Target>
+</Project>

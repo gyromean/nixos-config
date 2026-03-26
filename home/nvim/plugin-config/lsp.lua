@@ -1,3 +1,7 @@
+local omnisharp = dofile(vim.fn.expand("~/.config/nvim/plugin-config/lsp/omnisharp/init.lua"))
+
+omnisharp.setup()
+
 vim.lsp.config("hls", {
     filetypes = { "haskell", "lhaskell", "cabal" },
 })
@@ -42,6 +46,9 @@ vim.diagnostic.config({
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
         local bufnr = args.buf
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        local nav = omnisharp.get_navigation_overrides(client)
+
         local function map(mode, lhs, rhs, desc)
             vim.keymap.set(mode, lhs, rhs, {
                 noremap = true,
@@ -60,9 +67,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
             end,
         })
 
-        map("n", "gd", vim.lsp.buf.definition, "Go to definition")
+        map("n", "gd", nav.definition, "Go to definition")
         map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
-        map("n", "gt", vim.lsp.buf.type_definition, "Go to type definition")
+        map("n", "gt", nav.type_definition, "Go to type definition")
         map("n", "gs", vim.lsp.buf.signature_help, "Show signature help")
         map("n", "go", function()
             if virtual_lines_enabled then

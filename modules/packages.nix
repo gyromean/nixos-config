@@ -106,6 +106,8 @@ in
     pyright
     lua-language-server
     nodePackages.bash-language-server
+    dotnet-sdk
+    omnisharp-roslyn
     ntfs3g
     inotify-tools # pro inotifywait
     gnumake
