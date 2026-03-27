@@ -13,6 +13,12 @@ hi CursorLine guibg=#2a2a37
 " disablovani semantic highlight tokenu od lsp klienta, viz `:help lsp-semantic-highlight`
 let mapleader = " "
 lua << EOF
+vim.filetype.add({
+  extension = {
+    xaml = "xml",
+  },
+})
+
 for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
   vim.api.nvim_set_hl(0, group, {})
 end
