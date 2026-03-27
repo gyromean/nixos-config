@@ -228,5 +228,6 @@ in
     prettierd
     usbutils # lsusb (better one; not the one from busybox)
     (flakePackage "opencode")
+    unison
   ];
 }
