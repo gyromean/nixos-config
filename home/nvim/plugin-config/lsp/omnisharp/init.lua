@@ -4,7 +4,8 @@ local util = require("lspconfig.util")
 local omnisharp_extended_ok, omnisharp_extended = pcall(require, "omnisharp_extended")
 local default_capabilities = require("cmp_nvim_lsp").default_capabilities()
 local uv = vim.uv
-local csharp_settings_filename = ".nvim-csharp-settings.json"
+local csharp_settings_filename = ".nvim-csharp.json"
+local csharp_local_settings_filename = ".nvim-csharp-local.json"
 
 if omnisharp_extended_ok then
     local location_utils = require("location_utils")
@@ -117,8 +118,47 @@ local function write_json_file(path, value)
     return true
 end
 
+local function get_default_configuration(root_dir, solution_path)
+    local full_solution_path = root_dir .. "/" .. solution_path
+    local solution = read_file(full_solution_path)
+    if not solution then
+        return "Debug"
+    end
+
+    local configurations = {}
+    for name in solution:gmatch('<BuildType Name="([^"]+)"') do
+        table.insert(configurations, name)
+    end
+
+    for _, name in ipairs(configurations) do
+        if name == "Debug" then
+            return name
+        end
+    end
+
+    return configurations[1] or "Debug"
+end
+
 local function get_git_root(fname)
     return util.root_pattern(".git")(fname)
+end
+
+local function get_shared_settings_path(fname)
+    local git_root = get_git_root(fname)
+    if not git_root then
+        return nil
+    end
+
+    return git_root .. "/" .. csharp_settings_filename
+end
+
+local function get_local_settings_path(fname)
+    local git_root = get_git_root(fname)
+    if not git_root then
+        return nil
+    end
+
+    return git_root .. "/" .. csharp_local_settings_filename
 end
 
 local function get_repo_csharp_settings(fname)
@@ -127,11 +167,10 @@ local function get_repo_csharp_settings(fname)
         return nil
     end
 
-    -- A repo-local settings file can point to the canonical nested solution while
-    -- keeping the actual LSP workspace at the repository root for cross-project navigation.
-    local settings_path = git_root .. "/" .. csharp_settings_filename
-    local settings = read_json_file(settings_path)
-    if not settings then
+    -- A committed repo settings file points to the canonical nested solution while
+    -- a local settings file holds transient machine-specific options like the variant.
+    local settings = read_json_file(get_shared_settings_path(fname))
+    if type(settings) ~= "table" then
         return nil
     end
 
@@ -142,8 +181,16 @@ local function get_repo_csharp_settings(fname)
 
     solution_path = vim.trim(solution_path)
     if path_exists(git_root .. "/" .. solution_path) then
+        local local_settings_path = get_local_settings_path(fname)
+        local local_settings = read_json_file(local_settings_path) or {}
+        if type(local_settings.configuration) ~= "string" or vim.trim(local_settings.configuration) == "" then
+            local_settings.configuration = get_default_configuration(git_root, solution_path)
+            write_json_file(local_settings_path, local_settings)
+        end
+
         settings.root_dir = git_root
         settings.solution = solution_path
+        settings.configuration = vim.trim(local_settings.configuration)
         return settings
     end
 
@@ -162,15 +209,6 @@ local function get_csharp_settings(fname)
             or util.root_pattern("omnisharp.json", "global.json", "Directory.Build.props", ".git")(fname),
         configuration = nil,
     }
-end
-
-local function get_settings_path(fname)
-    local git_root = get_git_root(fname)
-    if not git_root then
-        return nil
-    end
-
-    return git_root .. "/" .. csharp_settings_filename
 end
 
 local function build_cmd(root_dir, configuration)
@@ -611,12 +649,12 @@ function M.setup()
 
     vim.api.nvim_create_user_command("OmniSharpVariant", function(opts)
         local current_file = vim.api.nvim_buf_get_name(0)
-        local settings_path = get_settings_path(current_file)
+        local settings_path = get_local_settings_path(current_file)
         local settings = get_csharp_settings(current_file)
         local variant = vim.trim(opts.args)
 
         if not settings_path or not settings.root_dir or not settings.solution then
-            vim.notify("No repo-local C# settings file found", vim.log.levels.ERROR)
+            vim.notify("No committed C# repo settings file found", vim.log.levels.ERROR)
             return
         end
 
@@ -625,8 +663,7 @@ function M.setup()
             return
         end
 
-        settings.configuration = variant
-        settings.root_dir = nil
+        settings = { configuration = variant }
 
         if not write_json_file(settings_path, settings) then
             vim.notify("Failed to write OmniSharp settings", vim.log.levels.ERROR)
