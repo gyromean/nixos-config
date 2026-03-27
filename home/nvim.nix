@@ -12,7 +12,7 @@
       nvim-treesitter-context
       telescope-nvim
       telescope-fzf-native-nvim
-      vim-gitgutter # git stav jednotlivych radek vlevo; pridava do vim-airline countery zmen
+      gitsigns-nvim
       vim-commentary # keybind na toggle comment radku
       vim-surround # keybinds na zmenu uvozovek, zavorek, tagu, ...
       nvim-ts-autotag

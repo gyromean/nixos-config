@@ -86,8 +86,8 @@ set tildeop " ted kdyz se da ~ aby se menil case pisma, tak to jeste potrebuje m
 set scrolloff=8 " pri scrollovani bude nahore a dole vzdycky aspon 8 radek (pokud teda nejsem uplne na zacatku nebo na konci souboru)
 set undofile " bude existovat perzistentni historie zmen, ty pak muzu pouzivat jak z vimu tak z undo tree
 set noswapfile " nebude se zakladat a pouzivat swap file
-set updatetime=100 " mimo jine se bude vim-gitgutter updatovat kazdych 100 ms
-set signcolumn=yes " signs (z vim-gitgutter nebo lsp) se budou vzdy ukazovat v extra sloupecku
+set updatetime=100 " mimo jine se budou git signs a dalsi async updaty obnovovat svizne
+set signcolumn=yes " signs (z gitsigns nebo lsp) se budou vzdy ukazovat v extra sloupecku
 set noshowmode " nebude dola ukazovat v jakym jsem modu, protoze to stejne vidim v airline (diky tomu muzu pouzivat `print` z lua v insert modu a bude to vide)
 set termguicolors
 set shortmess+=I " disable intro screen
@@ -208,7 +208,7 @@ luafile ~/.config/nvim/plugin-config/lualine.lua
 luafile ~/.config/nvim/plugin-config/luasnip.lua
 luafile ~/.config/nvim/plugin-config/todo-comments.lua
 luafile ~/.config/nvim/plugin-config/vimtex.lua
-luafile ~/.config/nvim/plugin-config/gitgutter.lua
+luafile ~/.config/nvim/plugin-config/gitsigns.lua
 luafile ~/.config/nvim/plugin-config/harpoon.lua
 luafile ~/.config/nvim/plugin-config/oil.lua
 luafile ~/.config/nvim/plugin-config/surround.lua
