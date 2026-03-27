@@ -253,29 +253,55 @@ local function set_inactive_preproc_highlight()
     })
 end
 
-local function get_define_constants(root_dir, configuration)
-    local props = read_file(root_dir .. "/Directory.Build.props")
-    if not props then
+local define_constants_cache = {}
+
+local function get_project_file(fname, root_dir)
+    local dir = vim.fs.dirname(fname)
+    while dir and dir ~= "" do
+        local matches = vim.fn.glob(dir .. "/*.csproj", false, true)
+        if matches[1] then
+            return matches[1]
+        end
+        if dir == root_dir then
+            break
+        end
+        local parent = vim.fs.dirname(dir)
+        if not parent or parent == dir then
+            break
+        end
+        dir = parent
+    end
+end
+
+local function get_define_constants(project_file, configuration)
+    if not project_file then
         return {}
     end
 
+    local cache_key = project_file .. "\n" .. (configuration or "")
+    if define_constants_cache[cache_key] then
+        return vim.deepcopy(define_constants_cache[cache_key])
+    end
+
+    local result = vim.system({
+        "dotnet",
+        "msbuild",
+        project_file,
+        "-getProperty:DefineConstants",
+        "-property:Configuration=" .. (configuration or "Debug"),
+    }, { text = true }):wait()
+
     local defines = {}
-    local pattern = "<PropertyGroup Condition=\"[^\"]*%$%(Configuration%)' == '" .. vim.pesc(configuration or "")
-        .. "'[^\"]*\">(.-)</PropertyGroup>"
-    local group = props:match(pattern)
-    if not group then
-        return defines
+    if result.code == 0 and result.stdout then
+        for constant in result.stdout:gmatch("[^;\r\n]+") do
+            constant = vim.trim(constant)
+            if constant ~= "" then
+                defines[constant] = true
+            end
+        end
     end
 
-    local constants = group:match("<DefineConstants>(.-)</DefineConstants>")
-    if not constants then
-        return defines
-    end
-
-    for constant in constants:gmatch("[^;]+") do
-        defines[vim.trim(constant)] = true
-    end
-
+    define_constants_cache[cache_key] = vim.deepcopy(defines)
     return defines
 end
 
@@ -375,7 +401,8 @@ local function mark_inactive_preproc(bufnr)
         return
     end
 
-    local defines = get_define_constants(settings.root_dir, settings.configuration)
+    local project_file = get_project_file(vim.api.nvim_buf_get_name(bufnr), settings.root_dir)
+    local defines = get_define_constants(project_file, settings.configuration)
     local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
     local stack = {}
     local current_active = true
@@ -439,6 +466,7 @@ local function mark_inactive_preproc(bufnr)
 end
 
 local function refresh_inactive_preproc(root_dir)
+    define_constants_cache = {}
     for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
         if vim.api.nvim_buf_is_loaded(bufnr) then
             local bufname = vim.api.nvim_buf_get_name(bufnr)
