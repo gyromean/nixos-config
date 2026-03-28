@@ -257,7 +257,6 @@
       mate.caja # taky jako nemo
       xfce.thunar # OK, lehce uglier nemo
       nnn # zajimavy, cli
-      ranger # hezky, cli
       broot # zajimavy, CLI, ma to fuzzy searching nebo jak se to jmenuje
       nemo-with-extensions # OK, klasika
       nautilus # asi moc simple, klasika
