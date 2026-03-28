@@ -28,6 +28,7 @@ require("telescope").load_extension("ui-select") -- prettier code actions
 
 vim.keymap.set("n", "<leader>tf", require("telescope.builtin").find_files, { desc = "Telescope file search" })
 vim.keymap.set("n", "<leader>tg", require("telescope.builtin").git_files, { desc = "Telescope file search" })
+vim.keymap.set("n", "<leader>tG", require("telescope.builtin").git_status, { desc = "Telescope changed file search" })
 vim.keymap.set("n", "<leader>tk", require("telescope.builtin").keymaps, { desc = "Telescope keymap search" })
 vim.keymap.set("n", "<leader>th", require("telescope.builtin").help_tags, { desc = "Telescope help search" })
 vim.keymap.set("n", "<leader>tt", require("telescope.builtin").live_grep, { desc = "Telescope text grep" })
