@@ -36,6 +36,7 @@
       leap-nvim
       lazydev-nvim
       aerial-nvim
+      nvim-scrollview
       nvim-web-devicons
       telescope-ui-select-nvim
       omnisharp-extended-lsp-nvim

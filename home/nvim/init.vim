@@ -104,7 +104,7 @@ set cursorline
 " save
 nnoremap <C-s> :w<CR>
 " jednorazove vypne highlight ze search commandu
-nnoremap <leader>n :noh<CR>
+nnoremap <leader>n :noh<Bar>silent! ScrollViewRefresh<CR>
 " paste v insert modu pres ctrl+v; `:h i_CTRL-R_CTRL-O`, ten <C-p> vypne to automaticky vim formatovani ktery to vetsinou posere, viz komentar pod dotazem zde https://vi.stackexchange.com/questions/12049/how-to-set-up-crtl-v-map-that-works-in-insert-mode (v tom komentu je to <C-r><C-p>, ale lepsi je <C-r><C-o> jak pouzivam ja)
 inoremap <C-v> <C-r><C-o>+
 " na wincmd, takze treba `space+w+s` splitne okno horizontalne, `space+w+v` splitne okno vertikalne atd.
@@ -224,3 +224,4 @@ luafile ~/.config/nvim/plugin-config/aerial.lua
 luafile ~/.config/nvim/plugin-config/lsp.lua
 luafile ~/.config/nvim/plugin-config/snacks.lua
 luafile ~/.config/nvim/plugin-config/conform.lua
+luafile ~/.config/nvim/plugin-config/scrollview.lua
