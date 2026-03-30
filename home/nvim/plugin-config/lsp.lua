@@ -91,6 +91,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 jump_type = "never", -- do not autojump if only one targat is available
             })
         end, "Open references")
+        map("n", "gri", function()
+            require("telescope.builtin").lsp_implementations({
+                jump_type = "auto",
+            })
+        end, "Go to implementation")
         map("n", "grn", function()
             local curent_symbol = vim.fn.expand("<cword>")
             local opts = {
