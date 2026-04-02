@@ -113,8 +113,6 @@ nnoremap <C-h> :wincmd h<CR>
 nnoremap <C-j> :wincmd j<CR>
 nnoremap <C-k> :wincmd k<CR>
 nnoremap <C-l> :wincmd l<CR>
-" mazani aniz by se prepsal obsah clipboardu
-noremap <leader>d "_d
 " otevre Undotree, do nej preskocim jako do jinyho okna, takze <C-h>
 nnoremap <leader>u :UndotreeToggle<CR>
 " navigace uvnitr snippetu z autocompletu
