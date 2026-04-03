@@ -1,5 +1,6 @@
 git:
   autoFetch: False
+promptToReturnFromSubprocess: false
 gui:
   nerdFontsVersion: 3
   theme:
