@@ -1,6 +1,5 @@
 {
   "$schema": "https://opencode.ai/tui.json",
-  "timestamps": "show",
   "keybinds": {
     "editor_open": "ctrl+e"
   }
