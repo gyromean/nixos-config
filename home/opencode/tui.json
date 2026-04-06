@@ -1,6 +1,11 @@
 {
   "$schema": "https://opencode.ai/tui.json",
   "keybinds": {
-    "editor_open": "ctrl+e"
+    "editor_open": "ctrl+e",
+    "messages_undo": "ctrl+u",
+    "messages_redo": "ctrl+r",
+    "session_fork": "ctrl+f",
+    "session_list": "ctrl+l",
+    "session_rename": "leader+r"
   }
 }
