@@ -167,6 +167,7 @@
         "Work" = shareFolder "/home/pavel/prace";
         "Obsidian vaults" = shareFolder "/home/pavel/vaults";
         "Repos" = shareFolder "/home/pavel/repos";
+        "OpenCode" = shareFolder "/home/pavel/.local/share/opencode";
       };
     };
   });
