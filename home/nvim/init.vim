@@ -151,6 +151,9 @@ vim.keymap.set("n", "<leader>ov", function()
   end
 end, { desc = "Toggle [o]ption [v]irtualedit" })
 
+-- Toggle scrollview
+vim.keymap.set("n", "<leader>os", "<cmd>ScrollViewToggle<CR>", { desc = "Toggle [o]ption [s]crollview" })
+
 -- Toggle j/k remap for wrapped lines
 local wrapped_nav_enabled = false
 vim.keymap.set({ "n", "v" }, "<leader>ow", function()
