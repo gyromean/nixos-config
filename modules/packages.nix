@@ -51,6 +51,8 @@ let
   });
 
   flakePackage = (flake: inputs.${flake}.packages."${pkgs.stdenv.hostPlatform.system}".default);
+  # Previously this was just `(flakePackage "opencode")`, but upstream currently
+  # needs a couple of local fixes composed in `../patches/opencode.nix`.
   patchedOpencode = import ../patches/opencode.nix { inherit pkgs inputs; };
 
   unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.stdenv.hostPlatform.system}";
