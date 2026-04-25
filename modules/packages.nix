@@ -51,6 +51,7 @@ let
   });
 
   flakePackage = (flake: inputs.${flake}.packages."${pkgs.stdenv.hostPlatform.system}".default);
+  patchedOpencode = import ../patches/opencode.nix { inherit pkgs inputs; };
 
   unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.stdenv.hostPlatform.system}";
 in
@@ -227,7 +228,7 @@ in
     rofi-rbw-wayland
     prettierd
     usbutils # lsusb (better one; not the one from busybox)
-    (flakePackage "opencode")
+    patchedOpencode
     unison
   ];
 }
