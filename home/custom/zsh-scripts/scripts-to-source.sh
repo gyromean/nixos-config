@@ -50,3 +50,10 @@ function ranger {
   fi
   command rm -f -- "$tempfile" 2>/dev/null
 }
+
+cppath()
+{
+    pth="$(pwd)/$1"
+    echo "Copying path: $pth"
+    echo -n "$pth" | wl-copy
+}
