@@ -97,7 +97,8 @@ set signcolumn=yes " signs (z gitsigns nebo lsp) se budou vzdy ukazovat v extra 
 set noshowmode " nebude dola ukazovat v jakym jsem modu, protoze to stejne vidim v airline (diky tomu muzu pouzivat `print` z lua v insert modu a bude to vide)
 set termguicolors
 set shortmess+=I " disable intro screen
-set smartindent
+set nosmartindent
+filetype plugin indent on
 set cursorline
 
 " ----- REBINDS -----
