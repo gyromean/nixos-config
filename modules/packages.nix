@@ -232,5 +232,6 @@ in
     usbutils # lsusb (better one; not the one from busybox)
     (flakePackage "opencode")
     unison
+    picocom
   ];
 }
