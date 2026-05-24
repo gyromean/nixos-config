@@ -1,0 +1,248 @@
+diff --git a/src/imv.c b/src/imv.c
+index 6383524..f6fa6f9 100644
+--- a/src/imv.c
++++ b/src/imv.c
+@@ -5,6 +5,7 @@
+ #include <errno.h>
+ #include <getopt.h>
+ #include <limits.h>
++#include <math.h>
+ #include <pthread.h>
+ #include <stdbool.h>
+ #include <stdint.h>
+@@ -138,6 +139,12 @@ struct imv {
+   /* scale up / down images to match window, or actual size */
+   enum scaling_mode scaling_mode;
+ 
++  /* mouse scroll and keyboard zoom sensitivity */
++  double horizontal_scroll_sensitivity;
++  double vertical_scroll_sensitivity;
++  double scroll_zoom_sensitivity;
++  double keyboard_zoom_sensitivity;
++
+   /* initial pan factor when opening new images */
+   bool custom_start_pan;
+   double initial_pan_x, initial_pan_y;
+@@ -460,17 +466,24 @@ static void event_handler(void *data, const struct imv_event *e)
+       key_handler(imv, e);
+       break;
+     case IMV_EVENT_MOUSE_MOTION:
+-      if (imv_window_get_mouse_button(imv->window, 1)) {
++      if (imv_window_get_mouse_button(imv->window, 2)) {
+         imv_viewport_move(imv->view, e->data.mouse_motion.dx,
+             e->data.mouse_motion.dy, imv->current_image);
+       }
+       break;
+     case IMV_EVENT_MOUSE_SCROLL:
+       {
+-        double x, y;
+-        imv_window_get_mouse_position(imv->window, &x, &y);
+-        imv_viewport_zoom(imv->view, imv->current_image, IMV_ZOOM_MOUSE,
+-            x, y, -e->data.mouse_scroll.dy);
++        if (e->data.mouse_scroll.ctrl && e->data.mouse_scroll.dy) {
++          double x, y;
++          imv_window_get_mouse_position(imv->window, &x, &y);
++          imv_viewport_scale_by(imv->view, imv->current_image, IMV_ZOOM_MOUSE,
++              x, y, pow(1.04, -e->data.mouse_scroll.dy * imv->scroll_zoom_sensitivity));
++        } else {
++          imv_viewport_move(imv->view,
++              (int)(-e->data.mouse_scroll.dx * imv->horizontal_scroll_sensitivity),
++              (int)(-e->data.mouse_scroll.dy * imv->vertical_scroll_sensitivity),
++              imv->current_image);
++        }
+       }
+       break;
+     case IMV_EVENT_GESTURE_PINCH:
+@@ -542,6 +556,10 @@ struct imv *imv_create(void)
+   imv->need_rescale = true;
+   imv->scaling_mode = SCALING_FULL;
+   imv->loop_input = true;
++  imv->horizontal_scroll_sensitivity = 50.0;
++  imv->vertical_scroll_sensitivity = 50.0;
++  imv->scroll_zoom_sensitivity = 1.0;
++  imv->keyboard_zoom_sensitivity = 1.0;
+   imv->overlay.font.name = strdup("Monospace");
+   imv->overlay.font.size = 24;
+   imv->backends = backends_create();
+@@ -1545,6 +1563,26 @@ static int handle_ini_value(void *user, const char *section, const char *name,
+       return 1;
+     }
+ 
++    if (!strcmp(name, "horizontal_scroll_sensitivity")) {
++      imv->horizontal_scroll_sensitivity = strtod(value, NULL);
++      return 1;
++    }
++
++    if (!strcmp(name, "vertical_scroll_sensitivity")) {
++      imv->vertical_scroll_sensitivity = strtod(value, NULL);
++      return 1;
++    }
++
++    if (!strcmp(name, "scroll_zoom_sensitivity")) {
++      imv->scroll_zoom_sensitivity = strtod(value, NULL);
++      return 1;
++    }
++
++    if (!strcmp(name, "keyboard_zoom_sensitivity")) {
++      imv->keyboard_zoom_sensitivity = strtod(value, NULL);
++      return 1;
++    }
++
+     if (!strcmp(name, "upscaling_method")) {
+       return parse_upscaling_method(imv, value);
+     }
+@@ -1765,9 +1809,10 @@ static void command_zoom(struct list *args, const char *argstr, void *data)
+       char *endptr;
+       long int amount = strtol(args->items[1], &endptr, 10);
+       if (*endptr == '%') {
+         imv_viewport_scale_by(imv->view, imv->current_image, IMV_ZOOM_KEYBOARD, 0, 0, amount/100.0);
+       } else if (*endptr == '\0') {
+-        imv_viewport_zoom(imv->view, imv->current_image, IMV_ZOOM_KEYBOARD, 0, 0, amount);
++        imv_viewport_scale_by(imv->view, imv->current_image, IMV_ZOOM_KEYBOARD, 0, 0,
++            pow(1.04, amount * imv->keyboard_zoom_sensitivity));
+       }
+     }
+   }
+diff --git a/src/keyboard.c b/src/keyboard.c
+index 811ecb5..82fe801 100644
+--- a/src/keyboard.c
++++ b/src/keyboard.c
+@@ -92,6 +92,12 @@ size_t imv_keyboard_keyname(struct imv_keyboard *keyboard, int scancode, char *b
+   return xkb_keysym_get_name(keysym, buf, buflen);
+ }
+ 
++bool imv_keyboard_ctrl_active(struct imv_keyboard *keyboard)
++{
++  return xkb_state_mod_name_is_active(keyboard->state,
++      XKB_MOD_NAME_CTRL, XKB_STATE_MODS_EFFECTIVE) > 0;
++}
++
+ char *imv_keyboard_describe_key(struct imv_keyboard *keyboard, int scancode)
+ {
+   char keyname[128] = {0};
+diff --git a/src/keyboard.h b/src/keyboard.h
+index 3b4d049..c9d6d48 100644
+--- a/src/keyboard.h
++++ b/src/keyboard.h
+@@ -25,6 +25,9 @@ size_t imv_keyboard_keyname(struct imv_keyboard *keyboard, int scancode, char *b
+ /* Describe the key corresponding to scancode, with modifier keys prefixed */
+ char *imv_keyboard_describe_key(struct imv_keyboard *keyboard, int scancode);
+ 
++/* Is Ctrl currently active */
++bool imv_keyboard_ctrl_active(struct imv_keyboard *keyboard);
++
+ /* Write the null-terminated text generated by scancode being pressed into buf */
+ size_t imv_keyboard_get_text(struct imv_keyboard *keyboard, int scancode, char *buf, size_t buflen);
+ 
+diff --git a/src/window.h b/src/window.h
+index e375857..8a89202 100644
+--- a/src/window.h
++++ b/src/window.h
+@@ -42,6 +42,7 @@ struct imv_event {
+     } mouse_button;
+     struct {
+       double dx, dy;
++      bool ctrl;
+     } mouse_scroll;
+     struct {
+       int dx, dy;
+diff --git a/src/wl_window.c b/src/wl_window.c
+index 1be8ddd..0b0092d 100644
+--- a/src/wl_window.c
++++ b/src/wl_window.c
+@@ -65,7 +65,7 @@ struct imv_window {
+ 
+     struct {
+       wl_fixed_t x, y;
+-      bool mouse1;
++      bool mouse1, mouse2;
+     } current;
+ 
+     struct {
+@@ -356,9 +356,12 @@ static void pointer_button(void *data, struct wl_pointer *pointer,
+ 
+   struct imv_window *window = data;
+   const uint32_t MOUSE1 = 0x110;
++  const uint32_t MOUSE2 = 0x112;
+   if (button == MOUSE1) {
+     window->pointer.change.dmouse1 |= state != window->pointer.current.mouse1;
+     window->pointer.current.mouse1 = state;
++  } else if (button == MOUSE2) {
++    window->pointer.current.mouse2 = state;
+   }
+ }
+ 
+@@ -420,7 +423,8 @@ static void pointer_frame(void *data, struct wl_pointer *pointer)
+         .mouse_scroll = {
+           .dx = wl_fixed_to_double(window->pointer.change.scroll_dx),
+-          .dy = wl_fixed_to_double(window->pointer.change.scroll_dy)
+-        }
++          .dy = wl_fixed_to_double(window->pointer.change.scroll_dy),
++          .ctrl = imv_keyboard_ctrl_active(window->keyboard)
++        }
+       }
+     };
+     imv_window_push_event(window, &e);
+@@ -1057,6 +1061,8 @@ bool imv_window_get_mouse_button(struct imv_window *window, int button)
+ {
+   if (button == 1) {
+     return window->pointer.current.mouse1;
++  } else if (button == 2) {
++    return window->pointer.current.mouse2;
+   }
+   return false;
+ }
+diff --git a/src/x11_window.c b/src/x11_window.c
+index 77808c8..dfec486 100644
+--- a/src/x11_window.c
++++ b/src/x11_window.c
+@@ -36,7 +36,7 @@ struct imv_window {
+     struct {
+       int x, y;
+     } current;
+-    bool mouse1;
++    bool mouse1, mouse2;
+   } pointer;
+ 
+   struct imv_keyboard *keyboard;
+@@ -270,6 +270,8 @@ bool imv_window_get_mouse_button(struct imv_window *window, int button)
+ {
+   if (button == 1) {
+     return window->pointer.mouse1;
++  } else if (button == 2) {
++    return window->pointer.mouse2;
+   }
+   return false;
+ }
+@@ -380,25 +382,16 @@ void imv_window_pump_events(struct imv_window *window, imv_event_handler handler
+     } else if (xev.type == ButtonPress || xev.type == ButtonRelease) {
+       if (xev.xbutton.button == Button1) {
+         window->pointer.mouse1 = xev.type == ButtonPress;
+-        struct imv_event e = {
+-          .type = IMV_EVENT_MOUSE_BUTTON,
+-          .data = {
+-            .mouse_button = {
+-              .button = 1,
+-              .pressed = xev.type == ButtonPress
+-            }
+-          }
+-        };
+-        if (handler) {
+-          handler(data, &e);
+-        }
+-      } else if (xev.xbutton.button == Button4 || xev.xbutton.button == Button5) {
++      } else if (xev.xbutton.button == Button2) {
++        window->pointer.mouse2 = xev.type == ButtonPress;
++      } else if (xev.xbutton.button == Button4 || xev.xbutton.button == Button5 || xev.xbutton.button == 6 || xev.xbutton.button == 7) {
+         struct imv_event e = {
+           .type = IMV_EVENT_MOUSE_SCROLL,
+           .data = {
+             .mouse_scroll = {
+-              .dx = 0,
+-              .dy = xev.xbutton.button == Button4 ? -1 : 1
++              .dx = xev.xbutton.button == 6 ? -1 : xev.xbutton.button == 7 ? 1 : 0,
++              .dy = xev.xbutton.button == Button4 ? -1 : xev.xbutton.button == Button5 ? 1 : 0,
++              .ctrl = (xev.xbutton.state & ControlMask) != 0
+             }
+           }
+         };

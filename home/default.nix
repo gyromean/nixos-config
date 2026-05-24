@@ -50,9 +50,23 @@ application/x-extension-shtml=org.qutebrowser.qutebrowser.desktop
 application/xhtml+xml=org.qutebrowser.qutebrowser.desktop
 application/x-extension-xhtml=org.qutebrowser.qutebrowser.desktop
 application/x-extension-xht=org.qutebrowser.qutebrowser.desktop
-image/png=org.qutebrowser.qutebrowser.desktop
-image/jpeg=org.qutebrowser.qutebrowser.desktop
-image/svg+xml=org.qutebrowser.qutebrowser.desktop
+image/x-farbfeld=imv.desktop
+image/tiff=imv.desktop
+image/tiff-fx=imv.desktop
+image/png=imv.desktop
+image/x-png=imv.desktop
+image/jpeg=imv.desktop
+image/jpg=imv.desktop
+image/pjpeg=imv.desktop
+image/svg+xml=imv.desktop
+image/gif=imv.desktop
+image/bmp=imv.desktop
+image/x-bmp=imv.desktop
+image/heif=imv.desktop
+image/avif=imv.desktop
+image/jxl=imv.desktop
+image/webp=imv.desktop
+image/qoi=imv.desktop
 
 application/pdf=org.pwmt.zathura.desktop
   '';

@@ -54,6 +54,9 @@ let
   # Previously this was just `(flakePackage "opencode")`, but upstream currently
   # needs a couple of local fixes composed in `../patches/opencode.nix`.
   patchedOpencode = import ../patches/opencode.nix { inherit pkgs inputs; };
+  patchedImv = pkgs.imv.overrideAttrs (old: {
+    patches = (old.patches or []) ++ [ ../patches/imv-mouse-bindings.patch ];
+  });
 
   unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.stdenv.hostPlatform.system}";
 in
@@ -233,5 +236,6 @@ in
     (flakePackage "opencode")
     unison
     picocom
+    patchedImv # image viewer
   ];
 }
