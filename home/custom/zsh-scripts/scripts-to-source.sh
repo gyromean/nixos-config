@@ -53,7 +53,11 @@ function ranger {
 
 cppath()
 {
-    pth="$(pwd)/$1"
+    if [ $# -eq 0 ]; then
+        pth="$(pwd)"
+    else
+        pth="$(pwd)/$1"
+    fi
     echo "Copying path: $pth"
     echo -n "$pth" | wl-copy
 }
