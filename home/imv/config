@@ -1,5 +1,7 @@
 [options]
 overlay = true
+overlay_font = Monospace:14
+overlay_position_bottom = true
 horizontal_scroll_sensitivity = 4
 vertical_scroll_sensitivity = 4
 scroll_zoom_sensitivity = 0.24
