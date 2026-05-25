@@ -237,5 +237,6 @@ in
     unison
     picocom
     patchedImv # image viewer
+    localsend
   ];
 }
