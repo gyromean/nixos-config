@@ -1,0 +1,12 @@
+diff --git a/src/imv.c b/src/imv.c
+index 6383524..d8d9827 100644
+--- a/src/imv.c
++++ b/src/imv.c
+@@ -480,7 +480,6 @@ static void event_handler(void *data, const struct imv_event *e)
+             e->data.gesture_pinch.dy, imv->current_image);
+         imv_viewport_scale_by(imv->view, imv->current_image, IMV_ZOOM_MOUSE,
+             x, y, e->data.gesture_pinch.scale);
+-        imv_viewport_rotate_by(imv->view, e->data.gesture_pinch.rotation);
+       }
+       break;
+     case IMV_EVENT_CUSTOM:

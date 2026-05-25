@@ -51,9 +51,7 @@ let
   });
 
   flakePackage = (flake: inputs.${flake}.packages."${pkgs.stdenv.hostPlatform.system}".default);
-  patchedImv = pkgs.imv.overrideAttrs (old: {
-    patches = (old.patches or []) ++ [ ../patches/imv-mouse-bindings.patch ];
-  });
+  patchedImv = import ../patches/imv { inherit pkgs; };
 
   unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.stdenv.hostPlatform.system}";
 in
