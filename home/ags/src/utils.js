@@ -53,8 +53,7 @@ export class ClassManager {
     this.current_timeout = reset_ms
     this.current_cls = cls_set
     this.#clear_classes()
-    for(let obj of this.objs)
-      obj.toggleClassName(cls_set, true)
+    this.objs = this.objs.filter(obj => this.#toggle_class(obj, cls_set, true))
     this.#kill_timeout()
     if(reset_ms !== null)
       this.timeout_handle = setTimeout(() => {
@@ -74,10 +73,25 @@ export class ClassManager {
     if(this.current_cls !== null)
       this.set(this.current_cls, this.current_timeout)
   }
+  remove(obj) {
+    this.objs = this.objs.filter(o => o !== obj)
+  }
   #clear_classes() {
-    for(let obj of this.objs)
+    this.objs = this.objs.filter(obj => {
       for(let cls of this.classes)
-        obj.toggleClassName(cls, false)
+        if(!this.#toggle_class(obj, cls, false))
+          return false
+      return true
+    })
+  }
+
+  #toggle_class(obj, cls, enabled) {
+    try {
+      obj.toggleClassName(cls, enabled)
+      return true
+    } catch(err) {
+      return false
+    }
   }
   #kill_timeout() {
     if(this.timeout_handle !== null)
@@ -155,11 +169,7 @@ class Socket {
 
   #process_message(msg) {
     const index = msg.indexOf(' ')
-    let msg_processed
-    if(index == -1)
-      msg_processed = ''
-    else
-      msg_processed = msg.substr(index + 1)
+    const msg_processed = index === -1 ? '' : msg.substr(index + 1)
 
     for(const [string_match, callback] of this.callbacks)
       if(msg.startsWith(string_match))
@@ -173,33 +183,16 @@ class Socket {
 
 export const socket = new Socket()
 
-export function pack_to_id(workspace, monitor = 1, group = 0) {
-  workspace--
-  monitor--
-  let id_ = workspace + 10 * monitor + 100 * group
-  id_ += 1
-  return id_
-}
-export function unpack_id(id_) {
-  id_ -= 1
-  let workspace = id_ % 10 + 1
-  id_ = Math.floor(id_ / 10)
-  let monitor = id_ % 10 + 1
-  id_ = Math.floor(id_ / 10)
-  let group = id_ % 10
-  return [workspace, monitor, group]
-}
-
-///////////////////////////
-
 export class Bar {
   constructor(data) {
     this.monitor = data.monitor
+    this.hypr_monitor_id = data.hypr_monitor_id ?? data.monitor
     this.left = data.left || []
     this.center = data.center || []
     this.right = data.right || []
 
     this.managed_classes = []
+    this.destroyed = false
 
     this.#construct_widget()
   }
@@ -238,10 +231,17 @@ export class Bar {
   }
 
   remove_class() {
-    // TODO: implement
+    for(const { manager, item } of this.managed_classes)
+      manager.remove(item)
+    this.managed_classes = []
   }
 
-  // TODO: funkce na removal (neco jako destruktor), ktera odlinkuje vsechny managed classy
+  destroy() {
+    if(this.destroyed)
+      return
+    this.destroyed = true
+    this.remove_class()
+  }
 }
 
 ///////////////////////////
