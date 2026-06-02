@@ -31,6 +31,10 @@ function id_to_item(id, label, active_id) {
   let class_names = ['workspace-indicator']
   if(active_id == id)
     class_names.push('active')
+  else
+    for(let { 'activeWorkspace': { 'id': monitor_active_id }} of hyprland.monitors)
+      if(monitor_active_id == id)
+        class_names.push('active-on-idle-monitor')
   const label_text = String(label)
   const text = Text(label_text, {
     class_names,
