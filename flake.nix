@@ -20,6 +20,7 @@
     opencode = {
       url = "github:anomalyco/opencode?ref=v1.15.13";
     };
+    handy.url = "github:cjpais/Handy";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:

@@ -1,7 +1,9 @@
 const hyprland = await Service.import("hyprland")
-import { Item, Icon, Text } from './utils.js'
+import { Item, Icon, Text, Revealer, ClassManager, socket, Box } from './utils.js'
 
 const lang_var = Variable('')
+const dictation_state_var = Variable('idle')
+const dictation_color_manager = new ClassManager([], ['blue'])
 
 function set_lang() {
   Utils.execAsync(['bash', '-c', "hyprctl -j devices | jq -r '.keyboards[] | select(.main == true) | .active_keymap'"]).then(out => {
@@ -13,13 +15,33 @@ function set_lang() {
 set_lang()
 hyprland.connect('keyboard-layout', () => set_lang())
 
-export function Keyboard() {
-  const lang_widget = Text(lang_var.bind())
+socket.add('dictation', state => {
+  state = state.trim()
+  dictation_state_var.value = state
 
-  const item = Item([
+  if(state == 'listening')
+    dictation_color_manager.set('blue')
+  else
+    dictation_color_manager.reset()
+})
+
+export function Keyboard(bar) {
+  const lang_widget = Text(lang_var.bind())
+  const dictation_icon = Icon('󰍬')
+  const dictation_rev = Revealer(dictation_icon, {
+    reveal_child: dictation_state_var.bind().as(state => state != 'idle' && state != 'done'),
+    transition: 'slide_right',
+  })
+
+  const item = Item([Box([
+    dictation_rev,
     Icon('󰌓'),
     lang_widget,
-  ])
+  ], {
+    spacing: 4,
+  })])
+
+  bar.add_managed_item(dictation_color_manager, dictation_icon)
 
   return Widget.EventBox({
     child: item,

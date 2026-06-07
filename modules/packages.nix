@@ -234,5 +234,6 @@ in
     picocom
     patchedImv # image viewer
     localsend
+    (flakePackage "handy")
   ];
 }
