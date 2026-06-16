@@ -236,5 +236,6 @@ in
     localsend
     (flakePackage "handy")
     wtype
+    teams-for-linux
   ];
 }
