@@ -1,55 +1,50 @@
-const hyprland = await Service.import("hyprland")
 import { Item, Text, Box } from './utils.js'
 import { hywoma_status } from './hywoma.js'
 
-const workspaces = Variable([])
-
-function has_hywoma_workspaces(status) {
-  return status !== null && status.state.workspaces.length > 0
-}
-
-function set_workspaces() {
-  workspaces.setValue(hyprland.workspaces)
-}
-
-Utils.merge([hyprland.bind('active'), hyprland.bind('workspaces')], () => {
-  // In opaque mode, hywoma is the authoritative source for labels and active ID. Rendering directly
-  // on Hyprland events caused flicker because Hyprland may report the new workspace before hywoma's
-  // active ID snapshot arrives.
-  if(!has_hywoma_workspaces(hywoma_status.value))
-    setTimeout(set_workspaces, 20) // NOTE: add a small delay for the update of the workspaces to complete
-})
-hywoma_status.connect('changed', () => {
-  // Hyprland destroys empty workspaces asynchronously after a switch. The second refresh lets AGS
-  // drop empty workspace indicators after destroyworkspacev2/present_workspace_ids settle.
-  setTimeout(set_workspaces, 20)
-  setTimeout(set_workspaces, 120)
-})
-set_workspaces()
-
-function id_to_item(id, label, active_id) {
+function id_to_item(id, slot, label, active_id, idle_active_ids) {
   let class_names = ['workspace-indicator']
   if(active_id == id)
     class_names.push('active')
-  else
-    for(let { 'activeWorkspace': { 'id': monitor_active_id }} of hyprland.monitors)
-      if(monitor_active_id == id)
-        class_names.push('active-on-idle-monitor')
+  else if(idle_active_ids.has(id))
+    class_names.push('active-on-idle-monitor')
   const label_text = String(label)
   const text = Text(label_text, {
     class_names,
   })
   return Widget.EventBox({
     child: text,
-    on_primary_click: _ => hyprland.messageAsync(`dispatch workspace ${id}`),
+    on_primary_click: _ => Utils.execAsync(['hywoma', 'select_workspace_in_slot', String(slot), label_text]).catch(logError),
   })
 }
 
-function hywoma_workspaces_to_items(ws, bar, status) {
+function hywoma_idle_active_ids(status) {
+  const active_group = status.state.active_group
+  const active_visible_by_slot = new Map(
+    status.state.groups
+      .find(group => group.id === active_group)
+      ?.active_visible_by_slot ?? []
+  )
+  const attached_slots = new Set(
+    status.state.slots
+      .filter(slot => slot.runtime_monitor_id !== null)
+      .map(slot => slot.id)
+  )
+
+  return new Set(
+    status.state.workspaces
+      .filter(w => w.group === active_group)
+      .filter(w => attached_slots.has(w.slot))
+      .filter(w => active_visible_by_slot.get(w.slot) === w.visible)
+      .map(w => w.internal_id)
+  )
+}
+
+function hywoma_workspaces_to_items(bar, status) {
   if(status === null)
     return []
 
-  const present_ids = new Set(status.present_workspace_ids ?? ws.map(w => w.id))
+  const present_ids = new Set(status.present_workspace_ids ?? [])
+  const idle_active_ids = hywoma_idle_active_ids(status)
   const active_group = status.state.active_group
   const monitor_slot = status.state.slots.find(slot => slot.runtime_monitor_id === bar.hypr_monitor_id)
   if(monitor_slot === undefined)
@@ -62,13 +57,11 @@ function hywoma_workspaces_to_items(ws, bar, status) {
     // active workspace. This avoids showing empty allocated mappings after leaving a workspace.
     .filter(w => present_ids.has(w.internal_id) || w.internal_id === status.active_workspace_id)
     .sort((a, b) => a.visible - b.visible)
-  return entries.map(w => id_to_item(w.internal_id, w.visible, status.active_workspace_id))
+  return entries.map(w => id_to_item(w.internal_id, slot, w.visible, status.active_workspace_id, idle_active_ids))
 }
 
 export function Workspaces(bar) {
   return Item([Box(
-    Utils.merge([workspaces.bind(), hywoma_status.bind()], (ws, status) => {
-      return hywoma_workspaces_to_items(ws, bar, status)
-    })
+    hywoma_status.bind().as(status => hywoma_workspaces_to_items(bar, status))
   )])
 }
