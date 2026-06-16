@@ -235,5 +235,6 @@ in
     patchedImv # image viewer
     localsend
     (flakePackage "handy")
+    wtype
   ];
 }
