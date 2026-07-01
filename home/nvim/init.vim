@@ -65,8 +65,19 @@ vim.keymap.set({"x"}, "<c-p>", "y1vgcO<esc>P", { remap = true, desc = "Duplicate
 vim.keymap.set({"i"}, "<c-return>", "<return><esc>==\"xyy\"xP_\"xC<tab>", { desc = "Enter when inside brackets/tags" })
 
 vim.api.nvim_set_hl(0, "TrailingWhitespace", { bg = "#7E9CD8", fg = "black" })
-local trailing_whitespace = function() vim.fn.matchadd("TrailingWhitespace", [[\s\+$]]) end
-vim.api.nvim_create_autocmd("WinNew", {
+local trailing_whitespace = function()
+  if vim.w.trailing_whitespace_match_id then
+    pcall(vim.fn.matchdelete, vim.w.trailing_whitespace_match_id)
+    vim.w.trailing_whitespace_match_id = nil
+  end
+
+  if vim.bo.buftype == "terminal" or vim.bo.filetype == "opencode_terminal" then
+    return
+  end
+
+  vim.w.trailing_whitespace_match_id = vim.fn.matchadd("TrailingWhitespace", [[\s\+$]])
+end
+vim.api.nvim_create_autocmd({ "WinNew", "WinEnter", "BufWinEnter", "TermOpen", "FileType" }, {
   callback = trailing_whitespace,
 })
 trailing_whitespace() -- WinNew does not get called in the first window, must call manually
