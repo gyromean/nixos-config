@@ -5,9 +5,9 @@ snacks.config.picker.enabled = true
 snacks.config.terminal.enabled = true
 snacks.config.lazygit.config = {
     os = {
-        edit = [[ [ -z "$NVIM" ] && (nvim -- {{filename}}) || (nvim --server "$NVIM" --remote-tab {{filename}}) ]],
-        editAtLine = [[ [ -z "$NVIM" ] && (nvim +{{line}} -- {{filename}}) || (nvim --server "$NVIM" --remote-tab {{filename}} && nvim --server "$NVIM" --remote-send ":{{line}}<CR>") ]],
-        openDirInEditor = [[ [ -z "$NVIM" ] && (nvim -- {{dir}}) || (nvim --server "$NVIM" --remote-tab {{dir}}) ]],
+        edit = [[ [ -z "$NVIM" ] && (nvim -- {{filename}}) || (nvim --server "$NVIM" --remote-send "<C-\><C-N>:tabedit {{filename}}<CR>") ]],
+        editAtLine = [[ [ -z "$NVIM" ] && (nvim +{{line}} -- {{filename}}) || (nvim --server "$NVIM" --remote-send "<C-\><C-N>:tabedit {{filename}}<CR>:{{line}}<CR>") ]],
+        openDirInEditor = [[ [ -z "$NVIM" ] && (nvim -- {{dir}}) || (nvim --server "$NVIM" --remote-send "<C-\><C-N>:tabedit {{dir}}<CR>") ]],
     },
 }
 
