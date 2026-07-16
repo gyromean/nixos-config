@@ -125,8 +125,46 @@ nnoremap <C-h> :wincmd h<CR>
 nnoremap <C-j> :wincmd j<CR>
 nnoremap <C-k> :wincmd k<CR>
 nnoremap <C-l> :wincmd l<CR>
-" otevre Undotree, do nej preskocim jako do jinyho okna, takze <C-h>
-nnoremap <leader>u :UndotreeToggle<CR>
+lua << EOF
+-- otevre Undotree, do nej preskocim jako do jinyho okna, takze <C-h>
+vim.keymap.set("n", "<leader>ut", "<cmd>UndotreeToggle<CR>", { desc = "Toggle Undotree" })
+
+local run_closest_nvim_script = function(script_name)
+  local script_path = vim.fs.find(script_name, {
+    upward = true,
+    path = vim.fn.getcwd(),
+  })[1]
+
+  if not script_path then
+    vim.notify("No " .. script_name .. " found from " .. vim.fn.getcwd())
+    return
+  end
+
+  require("snacks").terminal.open({
+    "bash",
+    "-lc",
+    'bash ' .. vim.fn.shellescape(script_path) .. '; printf "\\nPress any key to close..."; read -r -n 1 _',
+  }, {
+    auto_close = true,
+    start_insert = true,
+    cwd = vim.fs.dirname(script_path),
+    win = {
+      relative = "editor",
+      position = "float",
+      width = 0.9,
+      height = 0.8,
+    },
+  })
+end
+
+vim.keymap.set("n", "<leader>us", function()
+  run_closest_nvim_script(".nvim.us1.sh")
+end, { desc = "Run closest .nvim.us1.sh" })
+
+vim.keymap.set("n", "<leader>uS", function()
+  run_closest_nvim_script(".nvim.us2.sh")
+end, { desc = "Run closest .nvim.us2.sh" })
+EOF
 " navigace uvnitr snippetu z autocompletu
 inoremap <C-h> <cmd>lua require'luasnip'.jump(-1)<CR>
 snoremap <C-h> <cmd>lua require'luasnip'.jump(-1)<CR>
