@@ -237,5 +237,6 @@ in
     (flakePackage "handy")
     wtype
     teams-for-linux
+    ksnip # easy image annotation (arrows etc.)
   ];
 }
