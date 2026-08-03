@@ -26,36 +26,50 @@ require("telescope").setup({
 require("telescope").load_extension("fzf") -- kvuli extensionu, musi se to volat az po volani require'telescope'.setup, https://github.com/nvim-telescope/telescope-fzf-native.nvim
 require("telescope").load_extension("ui-select") -- prettier code actions
 
+local builtin = require("telescope.builtin")
+
+local function live_grep_literal(opts)
+    opts = opts or {}
+    opts.additional_args = { "--hidden", "--follow", "--fixed-strings" }
+    builtin.live_grep(opts)
+end
+
+local function grep_selection(grep)
+    return function()
+        local start_pos = vim.fn.getpos("v")
+        local end_pos = vim.fn.getpos(".")
+
+        local buf = start_pos[1]
+
+        local start_row = start_pos[2] - 1
+        local start_col = start_pos[3]
+        local end_row = end_pos[2] - 1
+        local end_col = end_pos[3]
+
+        if start_row ~= end_row then
+            vim.print("Selection must not span multiple lines")
+            return
+        end
+
+        if start_col > end_col then
+            local tmp = start_col
+            start_col = end_col
+            end_col = tmp
+        end
+        start_col = start_col - 1
+
+        local selected_text = vim.api.nvim_buf_get_text(buf, start_row, start_col, end_row, end_col, {})[1]
+
+        grep({ default_text = selected_text })
+    end
+end
+
 vim.keymap.set("n", "<leader>tf", require("telescope.builtin").find_files, { desc = "Telescope file search" })
 vim.keymap.set("n", "<leader>tg", require("telescope.builtin").git_files, { desc = "Telescope file search" })
 vim.keymap.set("n", "<leader>tG", require("telescope.builtin").git_status, { desc = "Telescope changed file search" })
 vim.keymap.set("n", "<leader>tk", require("telescope.builtin").keymaps, { desc = "Telescope keymap search" })
 vim.keymap.set("n", "<leader>th", require("telescope.builtin").help_tags, { desc = "Telescope help search" })
-vim.keymap.set("n", "<leader>tt", require("telescope.builtin").live_grep, { desc = "Telescope text grep" })
-vim.keymap.set("x", "<leader>tt", function()
-    local start_pos = vim.fn.getpos("v")
-    local end_pos = vim.fn.getpos(".")
-
-    local buf = start_pos[1]
-
-    local start_row = start_pos[2] - 1
-    local start_col = start_pos[3]
-    local end_row = end_pos[2] - 1
-    local end_col = end_pos[3]
-
-    if start_row ~= end_row then
-        vim.print("Selection must not span multiple lines")
-        return
-    end
-
-    if start_col > end_col then
-        local tmp = start_col
-        start_col = end_col
-        end_col = tmp
-    end
-    start_col = start_col - 1
-
-    local selected_text = vim.api.nvim_buf_get_text(buf, start_row, start_col, end_row, end_col, {})[1]
-
-    require("telescope.builtin").live_grep({ default_text = selected_text })
-end, { desc = "Grep current selection" })
+vim.keymap.set("n", "<leader>tt", builtin.live_grep, { desc = "Telescope text grep" })
+vim.keymap.set("x", "<leader>tt", grep_selection(builtin.live_grep), { desc = "Grep current selection" })
+vim.keymap.set("n", "<leader>tT", live_grep_literal, { desc = "Telescope literal text grep" })
+vim.keymap.set("x", "<leader>tT", grep_selection(live_grep_literal), { desc = "Literal grep current selection" })
