@@ -3,6 +3,7 @@
 - Trust `flake.nix` over `README.md`. The README still describes old channel-based setup and broken symlink paths; the active repo entrypoint is the flake.
 - Flake outputs are keyed by hostname, not directory name: `pavelpc`, `pavellt`, `pavelltvm`. The matching source directories are `hosts/desktop`, `hosts/laptop`, `hosts/laptopvm`.
 - Cheap verification: `nix flake show --all-systems` or `nix eval --json .#nixosConfigurations --apply builtins.attrNames`.
+- Do not run `nix build` for verification; it takes too long in this repo. Use the cheap eval commands instead unless the user explicitly requests a build.
 - Full host verification/apply uses the hostname output, e.g. `sudo nixos-rebuild test --flake .#pavelpc` or `sudo nixos-rebuild switch --flake .#pavelpc`.
 
 # Structure
