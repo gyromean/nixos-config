@@ -236,6 +236,7 @@ in
     localsend
     (flakePackage "handy")
     wtype
+    winbox4 # mikrotik router management system
     teams-for-linux
     ksnip # easy image annotation (arrows etc.)
   ];
