@@ -31,6 +31,7 @@ local builtin = require("telescope.builtin")
 local function live_grep_literal(opts)
     opts = opts or {}
     opts.additional_args = { "--hidden", "--follow", "--fixed-strings" }
+    opts.prompt_title = "Live Grep (literal)"
     builtin.live_grep(opts)
 end
 
@@ -69,7 +70,7 @@ vim.keymap.set("n", "<leader>tg", require("telescope.builtin").git_files, { desc
 vim.keymap.set("n", "<leader>tG", require("telescope.builtin").git_status, { desc = "Telescope changed file search" })
 vim.keymap.set("n", "<leader>tk", require("telescope.builtin").keymaps, { desc = "Telescope keymap search" })
 vim.keymap.set("n", "<leader>th", require("telescope.builtin").help_tags, { desc = "Telescope help search" })
-vim.keymap.set("n", "<leader>tt", builtin.live_grep, { desc = "Telescope text grep" })
-vim.keymap.set("x", "<leader>tt", grep_selection(builtin.live_grep), { desc = "Grep current selection" })
-vim.keymap.set("n", "<leader>tT", live_grep_literal, { desc = "Telescope literal text grep" })
-vim.keymap.set("x", "<leader>tT", grep_selection(live_grep_literal), { desc = "Literal grep current selection" })
+vim.keymap.set("n", "<leader>tt", live_grep_literal, { desc = "Telescope literal text grep" })
+vim.keymap.set("x", "<leader>tt", grep_selection(live_grep_literal), { desc = "Literal grep current selection" })
+vim.keymap.set("n", "<leader>tT", builtin.live_grep, { desc = "Telescope regex text grep" })
+vim.keymap.set("x", "<leader>tT", grep_selection(builtin.live_grep), { desc = "Regex grep current selection" })
