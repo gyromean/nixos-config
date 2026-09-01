@@ -61,6 +61,18 @@
   systemd.services.NetworkManager-wait-online.enable = false;
   services.tailscale.enable = true;
 
+  services.jellyfin = {
+    enable = true;
+    openFirewall = true;
+  };
+  users.users.jellyfin.extraGroups = [ "render" "video" ];
+
+  # Expose the media library without granting Jellyfin access to the home directory.
+  fileSystems."/srv/media" = {
+    device = "/home/pavel/Videos";
+    options = [ "bind" "ro" ];
+  };
+
   # networking.interfaces.virtbr = {
   #   useDHCP = true;
   # };
