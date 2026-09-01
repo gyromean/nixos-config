@@ -95,6 +95,7 @@ set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 set ignorecase " musi byt, aby smartcase fungoval
 set smartcase " search je case-insensitive az do momentu, kdy dam neco velkejma
 set clipboard=unnamedplus " nastavi clipboard na systemovej clipboard
+set selection=old " visual $ nevybere newline na konci radku, ale ostatni vybery zustanou inclusive
 set gdefault " V substitute se dava defaultne g (replace vsude)
 set breakindent " text wrap zacina na stejnym indentation levelu
 set splitright " novy okna (treba pres vsplit) se oteviraji vpravo (misto defaultne nahore)
