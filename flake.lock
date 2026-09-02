@@ -189,11 +189,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1781645895,
-        "narHash": "sha256-M0kuze7UOxN4Tsj0gnNsrgKbL6XxCA7Atxx4Xat32FM=",
+        "lastModified": 1788365114,
+        "narHash": "sha256-uifPiehSpHDzIc0DdEaFa1LsqUmZpuyGKnZUqZ7l3Sc=",
         "owner": "gyromean",
         "repo": "hywoma",
-        "rev": "5bf27dd916cb82b932a9a58d77a445628d4d7d24",
+        "rev": "fe9757705b4cff41215f869cddc0b0616c4d69b6",
         "type": "github"
       },
       "original": {

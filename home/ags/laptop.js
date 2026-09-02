@@ -20,6 +20,7 @@ const hyprland = await Service.import('hyprland')
 let monitor_signature = null
 let restart_timeout = null
 let restart_requested = false
+const bar_service = 'ags-bar.service'
 
 Utils.monitorFile(
   '/home/pavel/.config/ags/style.css',
@@ -63,11 +64,14 @@ function restart_bar(reason) {
   restart_requested = true
   print(`[bar] restart: ${reason}`)
   Utils.execAsync([
-    'bash',
-    '-lc',
-    'setsid bash -lc \'sleep 0.7; exec ags1 -c "/home/pavel/.config/ags/laptop.js" -b bar > "${XDG_RUNTIME_DIR:-/tmp}/ags-bar.log" 2>&1\' >/dev/null 2>&1 &',
+    'systemctl',
+    '--user',
+    'restart',
+    '--no-block',
+    bar_service,
   ]).catch(logError)
-  setTimeout(() => App.quit(), 50)
+  // Also terminate a legacy directly-launched instance after the restart job has been queued.
+  setTimeout(() => App.quit(), 250)
 }
 
 function schedule_topology_check() {
@@ -78,13 +82,15 @@ function schedule_topology_check() {
     const next_signature = physical_monitor_signature(hyprland)
     if(next_signature !== monitor_signature)
       restart_bar(`${monitor_signature} -> ${next_signature}`)
-  }, 500)
+  }, 1200)
 }
 
 monitor_signature = physical_monitor_signature(hyprland)
 const monitor_bindings = physical_monitor_bindings(hyprland)
 for(const binding of monitor_bindings)
   print(`[bar] initial monitor ${binding.hypr_monitor_id} ${binding.name} -> gdk ${binding.monitor}`)
+if(monitor_bindings.length === 0)
+  setTimeout(() => restart_bar('no physical monitor bindings during startup'), 1000)
 
 App.config({
   style: './style.css',

@@ -238,6 +238,7 @@ in
     wtype
     winbox4 # mikrotik router management system
     teams-for-linux
+    unstable.quickshell
     ksnip # easy image annotation (arrows etc.)
   ];
 }
