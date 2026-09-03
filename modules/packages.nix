@@ -239,6 +239,7 @@ in
     winbox4 # mikrotik router management system
     teams-for-linux
     unstable.quickshell
+    kdePackages.kdenlive
     ksnip # easy image annotation (arrows etc.)
   ];
 }
