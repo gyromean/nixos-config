@@ -6,8 +6,18 @@ const tooltip = new TooltipManager()
 const wired_color_manager = new ClassManager([], ['yellow'])
 const wifi_color_manager = new ClassManager([], ['red', 'yellow'])
 
-// https://stackoverflow.com/questions/13322485/how-to-get-the-primary-ip-address-of-the-local-machine-on-linux-and-os-x
-const get_ip = () => JSON.parse(Utils.exec('ip -j route get 1'))[0]['prefsrc']
+// The route can disappear briefly while NetworkManager is updating. A missing IP must not abort
+// module evaluation and leave AGS alive without ever reaching App.config().
+function get_ip() {
+  try {
+    const routes = JSON.parse(Utils.exec(['ip', '-j', 'route', 'get', '1']))
+    return routes[0]?.prefsrc ?? null
+  }
+  catch(error) {
+    print(`[network] failed to read primary IP: ${error}`)
+    return null
+  }
+}
 
 function update() {
   const tooltip_content = []
@@ -38,7 +48,7 @@ function update() {
   if(connected == false)
     tooltip_content.push('Disconnected')
   else
-    tooltip_content.push(get_ip())
+    tooltip_content.push(get_ip() ?? 'Connected')
 
   tooltip.set(tooltip_content)
 }
