@@ -3,6 +3,9 @@
   programs.neovim = {
     enable = true;
     vimAlias = true;
+    withRuby = true;
+    withPython3 = true;
+    sideloadInitLua = true;
     plugins = with pkgs.vimPlugins; [
       lualine-nvim
       nord-nvim

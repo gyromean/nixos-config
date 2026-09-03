@@ -13,7 +13,23 @@ esac
 unit=ags-bar.service
 load_state=$(systemctl --user show "$unit" --property=LoadState --value 2>/dev/null || true)
 if [[ -n "$load_state" && "$load_state" != "not-found" ]]; then
-  exec systemctl --user restart "$unit"
+  systemctl --user stop "$unit" || true
+  systemctl --user reset-failed "$unit" 2>/dev/null || true
+
+  # The user manager survives compositor restarts. Wait for --collect to remove
+  # the old transient unit so the replacement gets this session's environment.
+  for _ in $(seq 1 50); do
+    load_state=$(systemctl --user show "$unit" --property=LoadState --value 2>/dev/null || true)
+    if [[ -z "$load_state" || "$load_state" == "not-found" ]]; then
+      break
+    fi
+    sleep 0.1
+  done
+
+  if [[ -n "$load_state" && "$load_state" != "not-found" ]]; then
+    echo "failed to unload stale $unit" >&2
+    exit 1
+  fi
 fi
 
 exec systemd-run --user --quiet --collect \

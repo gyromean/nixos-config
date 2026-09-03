@@ -67,10 +67,8 @@ in
     neovim
     vim
     feh # lighweight image viewer, hlavne se da pouzit pro nastaveni wallaperu
-    xorg.xdpyinfo
     xclip
     numlockx
-    xfce.xfce4-terminal
     tree
     cava
     hexedit
@@ -107,7 +105,7 @@ in
     clang-tools
     pyright
     lua-language-server
-    nodePackages.bash-language-server
+    bash-language-server
     dotnet-sdk
     omnisharp-roslyn
     ntfs3g
@@ -151,7 +149,6 @@ in
     poppler-utils # contains pdfseparate for splitting pdf to multiple pdfs
     fast-downward # pddl planning system
     python312Packages.servefile # simple http server for serving file to download or providing file upload functionality
-    python311Packages.debugpy # python debugger
     diff-pdf
     qrcp # servefile alternative
     imagemagick
@@ -208,7 +205,6 @@ in
     typst
     spotify
     ruff # python formatter
-    xorg.xev
     obsidian
     cmake
     go
@@ -240,6 +236,7 @@ in
     teams-for-linux
     unstable.quickshell
     kdePackages.kdenlive
-    ksnip # easy image annotation (arrows etc.)
+    ksnip # easy image annotation (arrows etc.) (the package from stable has invalid desktop entry as of 3.9.26, thus it is not shown in application launchers)
+    fastfetch # alternative to neofetch
   ];
 }

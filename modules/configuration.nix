@@ -70,6 +70,7 @@
   # Expose the media library without granting Jellyfin access to the home directory.
   fileSystems."/srv/media" = {
     device = "/home/pavel/Videos";
+    fsType = "none";
     options = [ "bind" "ro" ];
   };
 
@@ -260,7 +261,6 @@
       kitty
       # other:
       discord
-      neofetch
       htop
       mc
       gnat # g++
@@ -268,8 +268,6 @@
       # screenshot programs:
       slurp # necha selectnout obdelnik na obrazovce
       # file managers:
-      mate.caja # taky jako nemo
-      xfce.thunar # OK, lehce uglier nemo
       nnn # zajimavy, cli
       broot # zajimavy, CLI, ma to fuzzy searching nebo jak se to jmenuje
       nemo-with-extensions # OK, klasika
@@ -326,8 +324,6 @@
   };
 
   hardware.keyboard.qmk.enable = true;
-
-  programs.light.enable = true; # aby ve Swayi sel menit brightess a volume https://nixos.wiki/wiki/Sway
 
   # konfigurace asi jde i takhle:
   #xdg.configFile."sway/config".text = '''';
