@@ -216,7 +216,7 @@ in
     sqlite
     sshpass # non-interactive ssh password auth
     exfatprogs # enables formatting to exfat in gparted
-    codex
+    unstable.codex
     thunderbird
     distrobox
     bitwarden-desktop
