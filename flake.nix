@@ -18,7 +18,7 @@
     pala.url = "github:gyromean/pala"; # must NOT follow nixpkgs, use its own locked nixpkgs
     hywoma.url = "github:gyromean/hywoma";
     opencode = {
-      url = "github:anomalyco/opencode?ref=v1.18.27";
+      url = "github:anomalyco/opencode?ref=v1.18.29";
     };
     handy.url = "github:cjpais/Handy";
   };
