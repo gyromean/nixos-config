@@ -237,6 +237,7 @@ in
     unstable.quickshell
     kdePackages.kdenlive
     ksnip # easy image annotation (arrows etc.) (the package from stable has invalid desktop entry as of 3.9.26, thus it is not shown in application launchers)
+    wev
     fastfetch # alternative to neofetch
   ];
 }
