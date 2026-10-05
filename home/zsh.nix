@@ -17,6 +17,7 @@
       e = "eog -n";
       lg = "lazygit";
       oc = "opencode";
+      ff = "firefox";
     };
     history.append = true;
     # ty '' pred $ to escapujou v nixu, do relanyho .zshrc se nepropisou
