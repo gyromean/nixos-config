@@ -27,5 +27,6 @@
 
   fileSystems."/home/pavel/harddrive" = {
     device = "/dev/disk/by-uuid/a8d558a8-007b-4852-8169-05f56e9dfa06";
+    fsType = "ext4";
   };
 }
