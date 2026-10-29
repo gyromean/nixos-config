@@ -240,5 +240,6 @@ in
     wev
     fastfetch # alternative to neofetch
     cheese
+    (flakePackage "openspec")
   ];
 }

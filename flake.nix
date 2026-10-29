@@ -21,6 +21,7 @@
       url = "github:anomalyco/opencode?ref=v1.18.32";
     };
     handy.url = "github:cjpais/Handy";
+    openspec.url = "github:Fission-AI/OpenSpec?ref=v1.14.0";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
