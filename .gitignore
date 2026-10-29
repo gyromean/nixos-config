@@ -5,3 +5,4 @@ home/ags/tsconfig.json
 home/qutebrowser/bookmarks
 home/qutebrowser/qsettings
 home/qutebrowser/autoconfig.yml
+home/opencode/service-*.json

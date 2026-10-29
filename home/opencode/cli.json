@@ -1,0 +1,19 @@
+{
+  "$schema": "https://opencode.ai/v2/cli.json",
+  "keybinds": {
+    "leader": "ctrl+x",
+    "agent.cycle": "tab",
+    "prompt.autocomplete.complete": false,
+    "prompt.editor": "ctrl+e",
+    "session.undo": "ctrl+u",
+    "session.redo": "ctrl+r",
+    "session.fork": "ctrl+f",
+    "session.list": "ctrl+l",
+    "session.rename": "<leader>r"
+  },
+  "tabs": {
+    "layout": "horizontal",
+    "scope": "cwd",
+    "indicators": "numbers"
+  }
+}
