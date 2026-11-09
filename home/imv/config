@@ -6,6 +6,7 @@ horizontal_scroll_sensitivity = 4
 vertical_scroll_sensitivity = 4
 scroll_zoom_sensitivity = 0.24
 keyboard_zoom_sensitivity = 2.5
+background = checks
 
 [binds]
 <equal> = reset
