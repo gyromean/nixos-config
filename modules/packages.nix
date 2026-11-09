@@ -27,6 +27,7 @@ let
     systemd-python
     mplcursors
     jsonschema
+    yt-dlp
   ];
 
   fhs = (
